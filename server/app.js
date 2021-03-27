@@ -2,6 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const http = require('http');
+
+const categoryRoutes = require('./routes/category');
+const eventRoutes = require('./routes/event');
+const ticketRoutes = require('./routes/ticket');
+const userRoutes = require('./routes/user');
+
 
 require('custom-env').env(process.env.NODE_ENV, './config');
 
@@ -14,4 +21,12 @@ app.use(express.json());
 
 console.log(process.env.PORT);
 
-app.listen(process.env.PORT);
+app.use('/categories',categoryRoutes);
+app.use('/events',eventRoutes);
+app.use('/tickets',ticketRoutes);
+app.use('/users',userRoutes);
+
+const server = http.createServer(app);
+
+
+server.listen(process.env.PORT);
