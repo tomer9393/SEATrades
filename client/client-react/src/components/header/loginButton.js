@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 class LoginButton extends React.Component {
   render() {
     return (
-      <Link to="/">
+      <Link to="/Login">
       <div className="header__menu__right">
       <a className="login-btn">
         <i className="fa fa-user" />
