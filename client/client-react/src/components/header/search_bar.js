@@ -3,7 +3,7 @@ import React from "react";
 class SearchBar extends React.Component {
   render() {
     return (
-      <section className="hero set-bg" data-setbg="img/hero/bg-homePage.jpg">
+      <section className="hero set-bg" data-setbg="/img/hero/bg-homePage.jpg">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -33,27 +33,27 @@ class SearchBar extends React.Component {
                 <ul className="hero__categories__tags">
                   <li>
                     <a href="#">
-                      <img src="img/hero/cat-1.png" alt /> Concerts
+                      <img src="img/hero/cat-1.png" alt="" /> Concerts
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="img/hero/cat-2.png" alt /> Music Festivals
+                      <img src="img/hero/cat-2.png" alt="" /> Music Festivals
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="img/hero/cat-3.png" alt /> Sport
+                      <img src="img/hero/cat-3.png" alt="" /> Sport
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="img/hero/cat-4.png" alt /> Stand-up Shows
+                      <img src="img/hero/cat-4.png" alt="" /> Stand-up Shows
                     </a>
                   </li>
                   <li>
                     <a href="#">
-                      <img src="img/hero/cat-5.png" alt /> Theatre
+                      <img src="img/hero/cat-5.png" alt="" /> Theatre
                     </a>
                   </li>
                 </ul>

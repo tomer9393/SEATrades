@@ -1,5 +1,6 @@
 import Contact from './contact';
-import Breadcrumb from './breadcrumb';
+import Breadcrumb from './breadcrumb2';
+
 import Newslatter from './newslatter';
 
 function ContactUsPage() {

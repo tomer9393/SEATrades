@@ -16,27 +16,27 @@ class Categories extends React.Component {
               </div>
               <div className="categories__item__list">
                 <div className="categories__item">
-                  <img src="img/categories/cat-1.png" alt />
+                  <img src="img/categories/cat-1.png" alt="" />
                   <h5>Food & Drink</h5>
                   <span>78 Listings</span>
                 </div>
                 <div className="categories__item">
-                  <img src="img/categories/cat-2.png" alt />
+                  <img src="img/categories/cat-2.png" alt="" />
                   <h5>Restaurent</h5>
                   <span>32 Listings</span>
                 </div>
                 <div className="categories__item">
-                  <img src="img/categories/cat-3.png" alt />
+                  <img src="img/categories/cat-3.png" alt="" />
                   <h5>Hotels</h5>
                   <span>16 Listings</span>
                 </div>
                 <div className="categories__item">
-                  <img src="img/categories/cat-4.png" alt />
+                  <img src="img/categories/cat-4.png" alt="" />
                   <h5>Beauty & Spa</h5>
                   <span>55 Listings</span>
                 </div>
                 <div className="categories__item">
-                  <img src="img/categories/cat-5.png" alt />
+                  <img src="img/categories/cat-5.png" alt="" />
                   <h5>Shopping</h5>
                   <span>23 Listings</span>
                 </div>

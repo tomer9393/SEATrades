@@ -603,8 +603,8 @@ ol {
 
 .work {
 	padding-bottom: 70px;
-	padding-top: 90px;
-	background: #f9f9f9;
+	padding-top: 20px;
+	background: #ffffff;
 }
 
 .work.work-about {
@@ -621,6 +621,8 @@ ol {
 	border-radius: 5px;
 	margin-bottom: 30px;
 	background: #ffffff;
+	height: 450px;
+	width: 400px;
 }
 
 .work__item h5 {
@@ -643,7 +645,7 @@ ol {
 	color: #f03250;
 	opacity: 0.1;
 	position: absolute;
-	left: -16px;
+	/* left: -16px; */
 	top: -2px;
 }
 
@@ -2109,17 +2111,17 @@ ol {
 -----------------------*/
 
 .breadcrumb-area {
-	padding-top: 70px;
-	padding-bottom: 30px;
+	padding-top: 200px;
+	padding-bottom: 120px;
 	/* background: #f9f9f9; */
 }
 
 .breadcrumb__text h2 {
 	font-size: 40px;
-	color: #323232;
+	color: #ffffff;
 	font-weight: 700;
 	margin-bottom: 10px;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 .breadcrumb__option a {
@@ -3014,6 +3016,40 @@ ol {
 	border-radius: 2px;
 	padding: 13px 42px 12px;
 }
+
+/*---------------------
+  How It Works
+-----------------------*/
+.how-it-works {
+	margin-bottom: 40px;
+	text-align: center;
+
+}
+
+.how-it-works h1 {
+	font-size: 30px;
+	font-weight: 500;
+	color: #323232;
+	margin-top: 50px;
+	margin-bottom: 30px;
+
+}
+
+.how-it-works h2 {
+	font-size: 20px;
+	font-weight: 400;
+	color: #323232;
+	margin-bottom: 20px;
+	margin-top: 20px;
+
+}
+
+.how-it-works p {
+	color: #707070;
+	font-size: 20px;
+
+}
+
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 

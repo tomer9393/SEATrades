@@ -9,13 +9,15 @@ class Footer extends React.Component {
             <div className="col-lg-3 col-md-6">
               <div className="footer__about">
                 <div className="footer__about__logo">
-                  <a href="./index.html">
-                    <img src="img/footer-logo.png" alt />
+                  <a href="/">
+                    <img src="img/footer-logo.png" alt="" />
                   </a>
                 </div>
                 <p>
-                  Challenging the way things have always been done can lead to
-                  creative new options that reward you.
+                Helping you to book an event ticket in a safe way.
+                </p>
+                <p>
+                And if your plans have changed, just trade your seat!
                 </p>
               </div>
             </div>
@@ -24,15 +26,15 @@ class Footer extends React.Component {
                 <ul>
                   <li>
                     <span>Call Us:</span>
-                    <p>(+12) 345-678-910</p>
+                    <p>(+972)-52-537-666</p>
                   </li>
                   <li>
                     <span>Email:</span>
-                    <p>info.colorlib@gmail .com</p>
+                    <p>contact@seatrades.com</p>
                   </li>
                   <li>
                     <span>Fax:</span>
-                    <p>(+12) 345-678-910</p>
+                    <p>(+972)-3-963-4001</p>
                   </li>
                   <li>
                     <span>Connect Us:</span>
@@ -46,9 +48,6 @@ class Footer extends React.Component {
                       <a href="#">
                         <i className="fa fa-twitter" />
                       </a>
-                      <a href="#">
-                        <i className="fa fa-skype" />
-                      </a>
                     </div>
                   </li>
                 </ul>
@@ -58,36 +57,17 @@ class Footer extends React.Component {
               <div className="footer__widget">
                 <ul>
                   <li>
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                   </li>
-                  <li>
-                    <a href="#">Support</a>
-                  </li>
-                  <li>
-                    <a href="#">How it work</a>
-                  </li>
-                  <li>
-                    <a href="#">Contact</a>
-                  </li>
-                  <li>
-                    <a href="#">Blog</a>
-                  </li>
-                </ul>
-                <ul>
                   <li>
                     <a href="#">Sign In</a>
                   </li>
                   <li>
-                    <a href="#">How it Work</a>
+                    <a href="/Contact">Contact</a>
                   </li>
+
                   <li>
-                    <a href="#">Advantages</a>
-                  </li>
-                  <li>
-                    <a href="#">Direo App</a>
-                  </li>
-                  <li>
-                    <a href="#">Packages</a>
+                    <a href="/HowItWorks">How it Works</a>
                   </li>
                 </ul>
               </div>
@@ -99,7 +79,7 @@ class Footer extends React.Component {
                 <div className="footer__copyright__text">
                   <p>
                     {}
-                    Copyright © All rights reserved to SeaTrades
+                    Copyright © All rights reserved to SEATrades
                     {}
                   </p>
                 </div>

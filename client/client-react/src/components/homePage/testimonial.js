@@ -24,13 +24,13 @@ class Testimonial extends React.Component {
                   </p>
                   <div className="testimonial__item__author">
                     <a href="#review-3">
-                      <img src="img/testimonial/author-3.png" alt />
+                      <img src="img/testimonial/author-3.png" alt="" />
                     </a>
                     <a href="#review-1" className="active">
-                      <img src="img/testimonial/author-1.png" alt />
+                      <img src="img/testimonial/author-1.png" alt="" />
                     </a>
                     <a href="#review-2">
-                      <img src="img/testimonial/author-2.png" alt />
+                      <img src="img/testimonial/author-2.png" alt="" />
                     </a>
                   </div>
                   <div className="testimonial__item__author__text">
@@ -54,13 +54,13 @@ class Testimonial extends React.Component {
                   </p>
                   <div className="testimonial__item__author">
                     <a href="#review-1">
-                      <img src="img/testimonial/author-1.png" alt />
+                      <img src="img/testimonial/author-1.png" alt="" />
                     </a>
                     <a href="#review-2" className="active">
-                      <img src="img/testimonial/author-2.png" alt />
+                      <img src="img/testimonial/author-2.png" alt="" />
                     </a>
                     <a href="#review-3">
-                      <img src="img/testimonial/author-3.png" alt />
+                      <img src="img/testimonial/author-3.png" alt="" />
                     </a>
                   </div>
                   <div className="testimonial__item__author__text">
@@ -84,13 +84,13 @@ class Testimonial extends React.Component {
                   </p>
                   <div className="testimonial__item__author">
                     <a href="#review-2">
-                      <img src="img/testimonial/author-2.png" alt />
+                      <img src="img/testimonial/author-2.png" alt="" />
                     </a>
                     <a href="#review-3" className="active">
-                      <img src="img/testimonial/author-3.png" alt />
+                      <img src="img/testimonial/author-3.png" alt="" />
                     </a>
                     <a href="#review-1">
-                      <img src="img/testimonial/author-1.png" alt />
+                      <img src="img/testimonial/author-1.png" alt="" />
                     </a>
                   </div>
                   <div className="testimonial__item__author__text">
