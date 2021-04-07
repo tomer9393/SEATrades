@@ -131,7 +131,7 @@ ol {
 .set-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: bottom;
+	background-position: center;
 }
 
 .spad {
@@ -269,7 +269,7 @@ ol {
 }
 
 .header__logo {
-	padding: 30px 0;
+	padding: 0px 0;
 }
 
 .header__nav {
@@ -344,7 +344,7 @@ ol {
 }
 
 .header__menu ul li a {
-	font-size: 15px;
+	font-size: 17px;
 	color: #ffffff;
 	font-weight: 600;
 	padding: 5px 0;
@@ -3050,7 +3050,111 @@ ol {
 
 }
 
-
+/*-- events --*/
+.content-event h3{	
+	font-size: 39px;
+	font-weight: 700;
+	color: #000000;
+	margin: .5em 0;
+}
+.content-event ul{
+	padding:0;
+	margin:0;
+}
+.pic{
+	background:url(../img/event/1.png) no-repeat 0px 0px;
+	width:35px;
+	height:35px;
+	display:block;
+	float: left;
+	margin-right: 1.2em;
+}
+.content-event ul{
+	float: right;
+}
+.content-event ul li{	
+	display:inline-block;
+}
+.content-event ul li.date{
+	display:block;
+	color:#838383;
+	font-size:14px;
+}
+.content-event ul li.hedding{
+	color: #000000;
+	font-size: 22px;
+	font-weight: 600;
+}
+.event-grid {
+	border-right: 1px solid #CCCCCC;
+	margin-bottom: 1em;
+}
+.small-text {
+	color: #404040;
+	font-size: 16px;
+}
+.event-grid-second{
+	border-right: 1px solid #CCCCCC;
+}
+.large-text {
+color: #404040;
+font-size: 24px;
+font-weight: 700;
+text-align: center;
+margin: .4em 0;
+}
+.event-grid.text-button{
+	border-right: none;
+}
+.event-grid ul{
+	padding:0;
+	margin:0;
+	float: none;
+}
+.event-grid ul li{
+	display:inline-block;
+}
+.text-button ul li.num {
+	color: #404040;
+	font-size: 14px;
+	font-weight: 700;
+	margin: 1em 1em 0 0;
+}
+.yellow {
+	margin: 0;
+}
+.event-grid ul li.yellow a{
+	padding: 10px 13px;
+	background: #FAAE0B;
+	font-size: 14px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+}
+.event-grids:hover div.event-grid ul li.yellow a{
+	background:#CCCCCC;
+	color:#FFF;
+	text-decoration:none;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+}
+.event-grids:hover div.pic{
+	background:url(../img/event/1hr.png) no-repeat 0px 0px;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+}
+.event-grids {
+	border-bottom: 1px solid #CCCCCC;
+	padding: 1.6em 0;
+}
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1400px) and (max-width: 1920px) {

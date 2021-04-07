@@ -1,5 +1,5 @@
 import Contact from './contact';
-import Breadcrumb from './breadcrumb2';
+import Breadcrumb from './breadcrumb';
 
 import Newslatter from './newslatter';
 

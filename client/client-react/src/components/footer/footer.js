@@ -14,9 +14,7 @@ class Footer extends React.Component {
                   </a>
                 </div>
                 <p>
-                Helping you to book an event ticket in a safe way.
-                </p>
-                <p>
+                Helping you book an event ticket in a safe way.
                 And if your plans have changed, just trade your seat!
                 </p>
               </div>
@@ -63,11 +61,13 @@ class Footer extends React.Component {
                     <a href="#">Sign In</a>
                   </li>
                   <li>
-                    <a href="/Contact">Contact</a>
+                    <a href="/AboutUs">About Us</a>
                   </li>
-
                   <li>
                     <a href="/HowItWorks">How it Works</a>
+                  </li>
+                  <li>
+                    <a href="/Contact">Contact Us</a>
                   </li>
                 </ul>
               </div>

@@ -28,9 +28,10 @@ class AboutUs extends React.Component {
             <div className="col-lg-7 col-md-7">
               <div className="about__text">
                 <p>Have you ever bought an event ticket and could not attend  ? </p>
-                <p>Bought a ticket to the Champions League final and suddenly find out that your best friend is getting married that day  ?</p>
-                <p>You and your friends are going to see your favorite artist perform but you found out that your tickets are not in the same area  ?</p>
+                <p>Got a ticket to the Champions League final monthes ahead and then find out that your best friend is getting married that day  ?</p>
+                <p>You and your friends are going to see your favorite artist perform but you find out that your tickets are not in the same area  ?</p>
                 <p>Have a ticket for a show but suddenly there is a rush at work and you prefer to go at a different time  ?</p>
+                <h3>SEATrades is here for you !</h3>
                 <br />
                 <h5>SEATrades is a platform that centralizes the customer the options of buying and trading event tickets
                     in a unique, convenient and user-friendly interface.

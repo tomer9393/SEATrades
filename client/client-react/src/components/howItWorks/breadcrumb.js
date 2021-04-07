@@ -3,7 +3,7 @@ import React from "react";
 class Breadcrumb extends React.Component {
   render() {
     return (
-      <div className="breadcrumb-area set-bg" data-setbg="img/breadcrumb/breadcrumb-normal.jpg">
+      <div className="breadcrumb-area set-bg" data-setbg="img/breadcrumb/breadcrumb-how-it-works.jpg">
       <div className="container">
           <div className="row">
               <div className="col-lg-12 text-center">

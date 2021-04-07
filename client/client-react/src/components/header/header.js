@@ -12,7 +12,7 @@ class Header extends React.Component {
             <div className="col-lg-2 col-md-2">
               <div className="header__logo">
                 <a >
-                  <img src="img/logo.png" alt="" />
+                  <img src="img/logo-trans.png" alt="" />
                 </a>
               </div>
             </div>

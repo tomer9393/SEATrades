@@ -8,10 +8,10 @@ class Breadcrumb extends React.Component {
           <div className="row">
               <div className="col-lg-12 text-center">
                   <div className="breadcrumb__text">
-                      <h2>Contact Us</h2>
+                      <h2>Events</h2>
                       <div className="breadcrumb__option">
                           <a href="/"><i className="fa fa-home"></i> Home</a>
-                          <span>Contacts</span>
+                          <span>Events</span>
                       </div>
                   </div>
               </div>
