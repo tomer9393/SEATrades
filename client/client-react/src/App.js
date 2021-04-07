@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import HomePage from './components/homePage/homePage';
+import SearchBar from './components/header/search_bar';
+import AboutUsPage from './components/aboutUsPage/aboutUsPage';
+import ContactPage from './components/contactUsPage/contactUsPage.js';
+import HowItWorks from './components/howItWorks/howItWorksPage.js';
+import Events from './components/events/eventPage.js';
+import PageNotFound from './components/404PageNotFound/404PageNotFound';
+import ScrollToTop from './components/scrollToTop/ScrollToTop';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <BrowserRouter basename="/">
+        <Header />
+        
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/AboutUs" component={() => <AboutUsPage />} />
+          <Route path="/Contact" component={() => <ContactPage />} />
+          <Route path="/HowItWorks" component={() => <HowItWorks />} />
+          <Route path="/Events" component={() => <Events />} />
+          <Route path="" component={() => <PageNotFound />} />
+        </Switch>
+
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 
