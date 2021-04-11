@@ -1,0 +1,46 @@
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header card-header-danger">
+      <h4 class="card-title">Events Table</h4>
+      <a class="" (click)="onCreate(listFor)" href="javascript:void(0)">
+        <i class="material-icons">add_box</i>
+        <!-- <p class="card-category">ADD NEW EVENT</p> -->
+      </a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="text-primary">
+            <th>Name</th>
+            <th>Category</th>
+            <th>Artist</th>
+            <th>ImgUrl</th>
+            <th>Date</th>
+            <th>Location</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of events">
+              <td>{{event.name}}</td>
+              <td>{{event.category}}</td>
+              <td>{{event.artist}}</td>
+              <td>{{event.ImgUrl}}</td>
+              <td>{{event.Location}}</td>
+              <td class="text-primary">{{event.date | date: 'short'}}</td>
+              <td>
+                <a class="" href="javascript:void(0)" (click)="onEdit(event)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a class="" href="javascript:void(0)" (click)="onDelete(event)">
+                  <i class="material-icons">delete</i>
+                </a>
+                <a class="" href="javascript:void(0)" (click)="onDetails(event)">
+                  <i class="material-icons">list</i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
