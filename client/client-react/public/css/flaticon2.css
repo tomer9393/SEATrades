@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "flaticon2";
+    src: url("./flaticon2.ttf?4ae0f66558ec57b144fc197d03f5e926") format("truetype"),
+url("../fonts/flaticon2.woff?4ae0f66558ec57b144fc197d03f5e926") format("woff"),
+url("../fonts/flaticon2.woff2?4ae0f66558ec57b144fc197d03f5e926") format("woff2"),
+url("../fonts/flaticon2.eot?4ae0f66558ec57b144fc197d03f5e926#iefix") format("embedded-opentype"),
+url("../fonts/flaticon2.svg?4ae0f66558ec57b144fc197d03f5e926#flaticon") format("svg");
+}
+
+[class^="flaticon2-"]:before, [class*=" flaticon2-"]:before,
+[class^="flaticon2-"]:after, [class*=" flaticon2-"]:after {   
+  font-family: Flaticon2;
+  font-size: 20px;
+  font-style: normal;
+}
+
+.flaticon2-football-1:before {
+    content: "\f101";
+}
+.flaticon2-football:before {
+    content: "\f102";
+}
+.flaticon2-hot-air-balloon:before {
+    content: "\f103";
+}
+.flaticon2-microphone-1:before {
+    content: "\f104";
+}
+.flaticon2-microphone:before {
+    content: "\f105";
+}
+.flaticon2-theater:before {
+    content: "\f106";
+}

@@ -18,7 +18,7 @@ class Contact extends React.Component {
                       <i className="fa fa-envelope" /> contact@seatrades.com
                     </li>
                     <li>
-                      <i className="fa fa-phone" /> +88-111-555-666
+                      <i className="fa fa-phone" />+972-52-537-666
                     </li>
                   </ul>
                 </div>

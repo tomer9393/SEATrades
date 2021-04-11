@@ -8,10 +8,9 @@ class MostSearch extends React.Component {
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title">
-                <h2>The Most Searched Services</h2>
+                <h2>Our Most Searched Events</h2>
                 <p>
-                  Travelocity empowers travelers who are giving back on their
-                  trips in ways big and small
+                  Here you can find all our top searched events in each category!
                 </p>
               </div>
             </div>
@@ -27,7 +26,7 @@ class MostSearch extends React.Component {
                       href="#tabs-1"
                       role="tab"
                     >
-                      <span className="flaticon-039-fork" />
+                      <span className="flaticon2-microphone" />
                       Concerts
                     </a>
                   </li>
@@ -38,7 +37,7 @@ class MostSearch extends React.Component {
                       href="#tabs-2"
                       role="tab"
                     >
-                      <span className="flaticon-030-kebab" />
+                      <span className="flaticon2-hot-air-balloon" />
                       Music Festivals
                     </a>
                   </li>
@@ -49,8 +48,8 @@ class MostSearch extends React.Component {
                       href="#tabs-3"
                       role="tab"
                     >
-                      <span className="flaticon-032-food-truck" />
-                      Sport
+                      <span className="flaticon2-football" />
+                      Sport 
                     </a>
                   </li>
                   <li className="nav-item">
@@ -60,7 +59,7 @@ class MostSearch extends React.Component {
                       href="#tabs-4"
                       role="tab"
                     >
-                      <span className="flaticon-017-croissant" />
+                      <span className="flaticon2-microphone-1" />
                       Stand-up Shows
                     </a>
                   </li>
@@ -71,19 +70,8 @@ class MostSearch extends React.Component {
                       href="#tabs-5"
                       role="tab"
                     >
-                      <span className="flaticon-038-take-away" />
+                      <span className="flaticon2-theater" />
                       Theatre
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      data-toggle="tab"
-                      href="#tabs-6"
-                      role="tab"
-                    >
-                      <span className="flaticon-031-delivery" />
-                      Rental
                     </a>
                   </li>
                 </ul>
@@ -97,7 +85,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-1.jpg"
                         >
-                          <img src="img/listing/list_icon-1.png" alt />
+                          <img src="img/listing/list_icon-1.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -136,7 +124,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-1.png"
-                                alt
+                                alt=""
                               />
                               <span>Restaurant</span>
                             </div>
@@ -153,7 +141,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-2.jpg"
                         >
-                          <img src="img/listing/list_icon-2.png" alt />
+                          <img src="img/listing/list_icon-2.png" alt="" />
                           <div className="listing__item__pic__tag top_rate">
                             Top Rate
                           </div>
@@ -194,7 +182,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-2.png"
-                                alt
+                                alt=""
                               />
                               <span>Food & Drink</span>
                             </div>
@@ -211,7 +199,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-3.jpg"
                         >
-                          <img src="img/listing/list_icon-3.png" alt />
+                          <img src="img/listing/list_icon-3.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -250,7 +238,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-1.png"
-                                alt
+                                alt=""
                               />
                               <span>Restaurant</span>
                             </div>
@@ -267,7 +255,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-4.jpg"
                         >
-                          <img src="img/listing/list_icon-4.png" alt />
+                          <img src="img/listing/list_icon-4.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -306,7 +294,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-3.png"
-                                alt
+                                alt=""
                               />
                               <span>Hotel</span>
                             </div>
@@ -323,7 +311,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-5.jpg"
                         >
-                          <img src="img/listing/list_icon-5.png" alt />
+                          <img src="img/listing/list_icon-5.png" alt="" />
                           <div className="listing__item__pic__tag hot_deal">
                             Hot Deal
                           </div>
@@ -364,7 +352,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-4.png"
-                                alt
+                                alt=""
                               />
                               <span>Shopping</span>
                             </div>
@@ -381,7 +369,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-6.jpg"
                         >
-                          <img src="img/listing/list_icon-6.png" alt />
+                          <img src="img/listing/list_icon-6.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -420,7 +408,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-3.png"
-                                alt
+                                alt=""
                               />
                               <span>Hotel</span>
                             </div>
@@ -441,7 +429,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-1.jpg"
                         >
-                          <img src="img/listing/list_icon-1.png" alt />
+                          <img src="img/listing/list_icon-1.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -480,7 +468,7 @@ class MostSearch extends React.Component {
                             <div className="listing__item__text__info__left">
                               <img
                                 src="img/listing/list_small_icon-1.png"
-                                alt
+                                alt=""
                               />
                               <span>Restaurant</span>
                             </div>
@@ -497,7 +485,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-2.jpg"
                         >
-                          <img src="img/listing/list_icon-2.png" alt />
+                          <img src="img/listing/list_icon-2.png" alt="" />
                           <div className="listing__item__pic__tag top_rate">
                             Top Rate
                           </div>
@@ -555,7 +543,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-3.jpg"
                         >
-                          <img src="img/listing/list_icon-3.png" alt />
+                          <img src="img/listing/list_icon-3.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -611,7 +599,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-4.jpg"
                         >
-                          <img src="img/listing/list_icon-4.png" alt />
+                          <img src="img/listing/list_icon-4.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -667,7 +655,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-5.jpg"
                         >
-                          <img src="img/listing/list_icon-5.png" alt />
+                          <img src="img/listing/list_icon-5.png" alt="" />
                           <div className="listing__item__pic__tag hot_deal">
                             Hot Deal
                           </div>
@@ -729,7 +717,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-3.jpg"
                         >
-                          <img src="img/listing/list_icon-3.png" alt />
+                          <img src="img/listing/list_icon-3.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -785,7 +773,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-4.jpg"
                         >
-                          <img src="img/listing/list_icon-4.png" alt />
+                          <img src="img/listing/list_icon-4.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -841,7 +829,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-5.jpg"
                         >
-                          <img src="img/listing/list_icon-5.png" alt />
+                          <img src="img/listing/list_icon-5.png" alt="" />
                           <div className="listing__item__pic__tag hot_deal">
                             Hot Deal
                           </div>
@@ -899,7 +887,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-6.jpg"
                         >
-                          <img src="img/listing/list_icon-6.png" alt />
+                          <img src="img/listing/list_icon-6.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -959,7 +947,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-1.jpg"
                         >
-                          <img src="img/listing/list_icon-1.png" alt />
+                          <img src="img/listing/list_icon-1.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1015,7 +1003,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-2.jpg"
                         >
-                          <img src="img/listing/list_icon-2.png" alt />
+                          <img src="img/listing/list_icon-2.png" alt="" />
                           <div className="listing__item__pic__tag top_rate">
                             Top Rate
                           </div>
@@ -1073,7 +1061,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-3.jpg"
                         >
-                          <img src="img/listing/list_icon-3.png" alt />
+                          <img src="img/listing/list_icon-3.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1129,7 +1117,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-6.jpg"
                         >
-                          <img src="img/listing/list_icon-6.png" alt />
+                          <img src="img/listing/list_icon-6.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1189,7 +1177,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-1.jpg"
                         >
-                          <img src="img/listing/list_icon-1.png" alt />
+                          <img src="img/listing/list_icon-1.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1245,7 +1233,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-2.jpg"
                         >
-                          <img src="img/listing/list_icon-2.png" alt />
+                          <img src="img/listing/list_icon-2.png" alt="" />
                           <div className="listing__item__pic__tag top_rate">
                             Top Rate
                           </div>
@@ -1303,7 +1291,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-3.jpg"
                         >
-                          <img src="img/listing/list_icon-3.png" alt />
+                          <img src="img/listing/list_icon-3.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1359,7 +1347,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-4.jpg"
                         >
-                          <img src="img/listing/list_icon-4.png" alt />
+                          <img src="img/listing/list_icon-4.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1415,7 +1403,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-6.jpg"
                         >
-                          <img src="img/listing/list_icon-6.png" alt />
+                          <img src="img/listing/list_icon-6.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1475,7 +1463,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-1.jpg"
                         >
-                          <img src="img/listing/list_icon-1.png" alt />
+                          <img src="img/listing/list_icon-1.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1531,7 +1519,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-2.jpg"
                         >
-                          <img src="img/listing/list_icon-2.png" alt />
+                          <img src="img/listing/list_icon-2.png" alt="" />
                           <div className="listing__item__pic__tag top_rate">
                             Top Rate
                           </div>
@@ -1589,7 +1577,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-4.jpg"
                         >
-                          <img src="img/listing/list_icon-4.png" alt />
+                          <img src="img/listing/list_icon-4.png" alt="" />
                           <div className="listing__item__pic__tag">Popular</div>
                           <div className="listing__item__pic__btns">
                             <a href="#">
@@ -1645,7 +1633,7 @@ class MostSearch extends React.Component {
                           className="listing__item__pic set-bg"
                           data-setbg="img/listing/list-5.jpg"
                         >
-                          <img src="img/listing/list_icon-5.png" alt />
+                          <img src="img/listing/list_icon-5.png" alt="" />
                           <div className="listing__item__pic__tag hot_deal">
                             Hot Deal
                           </div>

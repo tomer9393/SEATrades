@@ -10,8 +10,9 @@ class Work extends React.Component {
               <div className="section-title">
                 <h2>How Does It Work</h2>
                 <p>
-                  Travelocity empowers travelers who are giving back on their
-                  trips in ways big and small
+                  SEATrades is a Reliable ticket trading system for events.
+                  A platform that centralizes the customer the option of buying and trading event tickets
+                 in a uniform, convenient and user-friendly interface. 
                 </p>
               </div>
             </div>
@@ -20,7 +21,7 @@ class Work extends React.Component {
             <div className="col-lg-4 col-md-6">
               <div className="work__item">
                 <div className="work__item__number">01.</div>
-                <img src="img/work/work-1.png" alt />
+                <img src="img/work/work-1.png" alt="" />
                 <h5>Location & Categories</h5>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -31,7 +32,7 @@ class Work extends React.Component {
             <div className="col-lg-4 col-md-6">
               <div className="work__item">
                 <div className="work__item__number">02.</div>
-                <img src="img/work/work-2.png" alt />
+                <img src="img/work/work-2.png" alt="" />
                 <h5>Explore Listting</h5>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -42,7 +43,7 @@ class Work extends React.Component {
             <div className="col-lg-4 col-md-6">
               <div className="work__item">
                 <div className="work__item__number">03.</div>
-                <img src="img/work/work-3.png" alt />
+                <img src="img/work/work-3.png" alt="" />
                 <h5>Making Appointments</h5>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

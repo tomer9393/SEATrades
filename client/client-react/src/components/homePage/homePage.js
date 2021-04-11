@@ -5,6 +5,8 @@ import Newslatter from './newslatter';
 import Testimonial from './testimonial';
 import TopLocation from './top_location';
 import Work from './work';
+import SearchBar from '../header/search_bar';
+
 
 
 
@@ -12,8 +14,9 @@ function HomePage() {
     return (
         <>
         {/* <Categories /> */}
-        <MostSearch />
-        <Work />
+        <SearchBar/>
+        <MostSearch /> 
+        {/* <Work /> */}
         {/* <TopLocation />
         <Testimonial />
         <Blog /> */}
