@@ -95,6 +95,36 @@ const getNumOfEvents = async () => {
 };
 
 
+const homePageSearch = async (name, artist, category, location) => {
+
+    if (name === "undefined") {
+      name = "";
+    }
+    if (artist === "undefined") {
+      artist = "";
+    }
+    if (category === "undefined") {
+        category = "";
+      }
+    if (location === "undefined") {
+      location = "";
+    }
+  
+    return await Event.aggregate([
+      {
+        $match: {
+          $and: [
+            { name: { $regex: name, $options: 'i' } },
+            { artist: { $regex: artist, $options: 'i' } },
+            { category: { $regex: category, $options: 'i' } },
+            { location: { $regex: location, $options: 'i' } }
+  
+          ]
+        }
+      }
+    ]);
+  };
+
 
 module.exports = {
     createEvent,
@@ -108,5 +138,6 @@ module.exports = {
     updateTicketOfEvent,
     deleteEvent,
     deleteEventTickets,
-    getNumOfEvents
+    getNumOfEvents,
+    homePageSearch
 }
