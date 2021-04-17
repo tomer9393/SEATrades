@@ -1,21 +1,26 @@
 import React from "react";
+import { format } from "date-fns";
 
-class EventGrid extends React.Component {
-  render() {
+
+function eventGrid(props) {
+  const event = props.event;
+  var date = new Date(event.date);
+  var formattedDate = format(date, "dd/MM/yyyy");
+
     return (
+      <>
       <div className="event-grids">
         <div className="col-md-3 event-grid">
           <div className="pic"> </div>
           <ul>
-            <li className="hedding">Wembley Stadium</li>
-            <li className="date">2 December 2014</li>
+            <li className="hedding">{event.name}</li>
+            <li className="date">{formattedDate}</li>
           </ul>
           <div className="clearfix"> </div>
         </div>
         <div className="col-md-4 event-grid small-text">
           <p>
-            This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel
-            velit auctor aliquet.
+          {event.name}
           </p>
         </div>
         <div className="col-md-2 event-grid large-text">
@@ -31,8 +36,8 @@ class EventGrid extends React.Component {
         </div>
         <div className="clearfix"> </div>
       </div>
+    </>
     );
   }
-}
 
-export default EventGrid;
+export default eventGrid;

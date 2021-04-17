@@ -25,6 +25,13 @@ export const getEventsByCategory = async (category) => {
     } catch (error) { throw new Error(error); }
 }
 
+export const getEventsByArtist = async (artist) => {
+    try {
+        const events = await axios.get(`${baseUrl}/artists/${artist}`);
+        return events;
+    } catch (error) { throw new Error(error); }
+}
+
 export const getNumOfEventsByCategory = async (category, num) => {
     try {
         const events = await axios.get(`${baseUrl}/homeEvents/${category}/${num}`);

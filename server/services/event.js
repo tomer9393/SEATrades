@@ -27,6 +27,10 @@ const getEventsByCategory = async (category) => {
     return await Event.find({category : category});
 };
 
+const getEventsByArtist = async (artist) => {
+    return await Event.find({artist : artist});
+};
+
 const getNumOfEventsByCategory = async (category,num) => {
     return await Event.find({category : category}).sort({ date: 'desc' }).limit(parseInt(num));
 };
@@ -108,5 +112,6 @@ module.exports = {
     updateTicketOfEvent,
     deleteEvent,
     deleteEventTickets,
-    getNumOfEvents
+    getNumOfEvents,
+    getEventsByArtist
 }
