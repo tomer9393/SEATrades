@@ -128,6 +128,14 @@ const getNumOfEvents = async (req, res) => {
   res.json(count);
 };
 
+const homePageSearch = async (req, res) => {
+  const events = await eventService.homePageSearch(req.params.name, req.params.artist, req.params.category, req.params.location);
+  if (!events) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(events);
+};
+
 module.exports = {
   createEvent,
   getEventById,
@@ -138,5 +146,6 @@ module.exports = {
   updateEvent,
   deleteEvent,
   getNumOfEvents,
-  getEventsByArtist
+  getEventsByArtist,
+  homePageSearch
 };

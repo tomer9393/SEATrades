@@ -27,4 +27,7 @@ router.route('/id/:id')
     .patch(eventController.updateEvent) //V
     .delete(eventController.deleteEvent); //V
 
+router.route('/search/:name/:artist/:category/:location')
+    .get(eventController.homePageSearch);
+
 module.exports = router;
