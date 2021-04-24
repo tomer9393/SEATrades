@@ -26,9 +26,14 @@ const Ticket = new Schema({
     seat: {
         type: String  
     },
+    price: {
+        type: String  
+    },
     forTrade: {
         type: Boolean  
     }
 });
+
+Ticket.index({ event:1, section: 1, row: 1, seat: 1 }, { unique: true });
 
 module.exports = mongoose.model('Ticket', Ticket);

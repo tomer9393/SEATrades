@@ -14,6 +14,7 @@ const contactRoutes = require('./routes/contact');
 require('custom-env').env(process.env.NODE_ENV, './config');
 
 mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useCreateIndex', true);
 
 var app = express();
 app.use(cors());

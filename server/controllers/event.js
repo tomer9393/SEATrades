@@ -5,7 +5,7 @@ const ticket = require('../models/ticket');
 
 
 const createEvent = async (req, res) => {
-  const newEvent = await eventService.createEvent(req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location);
+  const newEvent = await eventService.createEvent(req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location, req.body.totalTickets);
   if (!newEvent) {
     return res.status(501).json("No Event created");
   }
@@ -119,6 +119,14 @@ const getNumOfEvents = async (req, res) => {
   res.json(count);
 };
 
+const homePageSearch = async (req, res) => {
+  const events = await eventService.homePageSearch(req.params.name, req.params.artist, req.params.category, req.params.location);
+  if (!events) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(events);
+};
+
 module.exports = {
   createEvent,
   getEventById,
@@ -128,5 +136,6 @@ module.exports = {
   getNumOfEventsByCategory,
   updateEvent,
   deleteEvent,
-  getNumOfEvents
+  getNumOfEvents,
+  homePageSearch
 };
