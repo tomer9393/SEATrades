@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,6 +11,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { AuthContext } from "../context/auth-context";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -33,7 +35,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LoginPage() {
+  const auth = useContext(AuthContext);
   const classes = useStyles();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const history = useHistory();
+
+  const authSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      };
+      fetch("http://localhost:8081/users/login", requestOptions)
+        .then((response) => response.json())
+        .then((response) => {
+          auth.login(response.userId, response.token);
+          history.push("/");
+        });
+    } catch (err) {}
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -45,7 +72,7 @@ export default function LoginPage() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={authSubmitHandler}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -56,6 +83,7 @@ export default function LoginPage() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(event) => setEmail(event.target.value)}
           />
           <TextField
             variant="outlined"
@@ -67,6 +95,7 @@ export default function LoginPage() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(event) => setPassword(event.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -83,7 +112,7 @@ export default function LoginPage() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/Register" variant="body2" style={{ color: "blue" }}>
+              <Link href="/SignUp" variant="body2" style={{ color: "blue" }}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

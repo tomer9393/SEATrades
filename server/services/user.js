@@ -10,7 +10,8 @@ const createUser = async (body) => {
         phoneNumber: body.phoneNumber
     });
 
-    return await user.save();
+    await user.save();
+    return user;
 };
 
 
