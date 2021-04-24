@@ -4,13 +4,23 @@ var router = express.Router();
 
 
 /**
- * post - create a new user
  * get - get all users
  * http://localhost:8081/users
  */
 router.route('/')
- .post(userController.createUser) //V
  .get(userController.getUsers); //V
+
+/**
+ * post - create a new user
+ * http://localhost:8081/users/signup
+ */
+router.route("/signup").post(userController.createUser);
+
+/**
+ * post - login to an existing user
+ * http://localhost:8081/users/login
+ */
+ router.route("/login").post(userController.login);
 
 /**
  * get user by email, first name and last name 

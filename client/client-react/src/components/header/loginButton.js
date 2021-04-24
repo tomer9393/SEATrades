@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import {SignIn} from "../signInPage/signInPage"
+import { AuthContext } from "../context/auth-context";
 
-class LoginButton extends React.Component {
-  render() {
-    return (
-      <Link to="/SignIn">
-      <div className="header__menu__right">
-      <a className="login-btn">
-        <i className="fa fa-user" />
-      </a>
-    </div>
-    </Link>
-    );
-  }
-}
+const LoginButton = () => {
+  const auth = useContext(AuthContext);
+
+  return (
+    <>
+      <Link to={auth.isLoggedIn ? "/Profile" : "/SignIn"}>
+        <div className="header__menu__right">
+          <a className="login-btn">
+            <i className="fa fa-user" />
+          </a>
+        </div>
+      </Link>
+      <button onClick={() => auth.logout()}>Logout</button>
+    </>
+  );
+};
 
 export default LoginButton;
