@@ -18,11 +18,15 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import ButtonBase from "@material-ui/core/ButtonBase";
 // import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
-import img from "../../img/Live-show.png"
+import Icon from "@material-ui/core/Icon";
+import SaveIcon from "@material-ui/icons/Save";
+import { useEffect, useState } from "react";
+import { getOnlyUserById, updateUser } from "../../api/UserAPI";
 
 const images = [
   {
-    url: "https://www.ticketsource.co.uk/brochure/images/pages/ticketmanagement/tickets.png",
+    url:
+      "https://www.ticketsource.co.uk/brochure/images/pages/ticketmanagement/tickets.png",
     title: "My Tickets",
     width: "40%",
   },
@@ -36,18 +40,18 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
     height: 0.5,
   },
+  button: {
+    margin: theme.spacing(4),
+    justifyContent: "center",
+    alignItems: "center",
+  },
   root: {
-    "& > *": {
-      margin: theme.spacing(4),
-      alignItems: "center",
-     
-    },
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
     width: "100%",
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   image: {
     position: "relative",
@@ -118,18 +122,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-export default function ProfilePage() {
+export default function ProfilePage(props) {
   const classes = useStyles();
-  return (
+  const [user, setUser] = useState(undefined);
+  const [email, setEmail] = useState(undefined);
+  const [firstName, setFirstName] = useState(undefined);
+  const [lastName, setLastName] = useState(undefined);
+  const [userId, setUserId] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
+  const [phoneNumber, setPhoneNumber] = useState(undefined);
+  useEffect(
+    () =>
+      getOnlyUserById("60842ddd2220808854d9d74d")
+        .then((res) => res.data)
+        .then((res) => setUser(res)),
+    []
+  );
+
+  return !user ? (
+    <div>Loading</div>
+  ) : (
     <>
       <Typography align="center">
         <TextField
           className={classes.margin}
+          onChange={(event) => setFirstName(event.target.value)}
           id="input-with-icon-textfield"
           label="First Name"
-          defaultValue="Lee" //TODO
+          defaultValue={user.firstName} //TODO
+          value={firstName}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
@@ -145,9 +166,11 @@ export default function ProfilePage() {
       <Typography align="center">
         <TextField
           className={classes.margin}
+          onChange={(event) => setLastName(event.target.value)}
           id="input-with-icon-textfield"
           label="Last Name"
-          defaultValue="Default Value" //TODO
+          defaultValue={user.lastName} //TODO
+          value={lastName}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
@@ -163,9 +186,11 @@ export default function ProfilePage() {
       <Typography align="center">
         <TextField
           className={classes.margin}
+          onChange={(event) => setUserId(event.target.value)}
           id="input-with-icon-textfield"
           label="ID"
-          defaultValue="Default Value" //TODO
+          defaultValue={user.userId} //TODO
+          value={userId}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
@@ -181,9 +206,11 @@ export default function ProfilePage() {
       <Typography align="center">
         <TextField
           className={classes.margin}
+          onChange={(event) => setEmail(event.target.value)}
           id="input-with-icon-textfield"
           label="Email"
-          defaultValue="Default Value" //TODO
+          defaultValue={user.email} //TODO
+          value={email}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
@@ -196,30 +223,34 @@ export default function ProfilePage() {
         />
       </Typography>
 
-      <Typography align="center" variant="h6">
+      {/* <Typography align="center">
         <TextField
           className={classes.margin}
+          onChange={(event) => setPassword(event.target.value)}
           id="input-with-icon-textfield"
           label="Password"
-          defaultValue="Default Value" //TODO
+          defaultValue={user.password} //TODO
+          value={password}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
-              <InputAdornment>
+              <InputAdornment position="start">
                 <VpnKeyIcon />
               </InputAdornment>
             ),
           }}
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-      </Typography>
+      </Typography> */}
 
       <Typography align="center">
         <TextField
           className={classes.margin}
+          onChange={(event) => setPhoneNumber(event.target.value)}
           id="input-with-icon-textfield"
           label="Phone Number"
-          defaultValue="Default Value" //TODO
+          defaultValue={user.phoneNumber} //TODO
+          value={phoneNumber}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
@@ -231,18 +262,20 @@ export default function ProfilePage() {
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
       </Typography>
-      <div className={classes.root} >
-  
+      <Typography align="center">
         <Button
-          variant="outlined"
-          color="secondary"
-         
+          onClick={() => {
+            updateUser(firstName, lastName, userId, email, password, phoneNumber);
+          }}
+          variant="contained"
+          color="primary"
+          size="large"
+          className={classes.button}
+          startIcon={<SaveIcon />}
         >
-          Save Changes
+          Save
         </Button>
-        
-      </div>
-
+      </Typography>
 
       <div className={classes.root}>
         {images.map((image) => (
