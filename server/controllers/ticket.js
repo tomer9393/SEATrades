@@ -5,6 +5,11 @@ const ticket = require('../models/ticket');
 
 const createTicket = async (req, res) => {
     const newTicket = await ticketService.createTicket(req.body);
+    
+    if(newTicket === null){
+        return res.status(501).json("Sold out");
+    }
+
     if (!newTicket) {
         return res.status(501).json("No ticket created");
     }
@@ -75,14 +80,26 @@ const deleteTicket = async (req, res) => {
 
     const ticketId = req.params.id;
 
+    if (!req.params.id || !req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+        res.status(400).json("Valid id is required");
+    }
+    const ticket = await ticketService.getTicketById(req.params.id);
+    if (!ticket) {
+        return res.status(404).json("Ticket not found");
+    }
+
+    const event = await eventService.removeEventTicket(ticket,ticketId);
+    if (event.nModified === 0) {
+        return res.status(404).json('cant find ticket on user table to update');
+    }
     const user = await usersService.removeUserTicket([ticketId]);
 
     if (user.nModified === 0) {
         return res.status(404).json('cant find ticket on user table to update');
     }
 
-    const ticket = await ticketService.deleteTicket(ticketId);
-    if (!ticket) {
+    const ticket1 = await ticketService.deleteTicket(ticketId);
+    if (!ticket1) {
         return res.status(404).json('ticket not found');
     }
 

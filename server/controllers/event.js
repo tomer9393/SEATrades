@@ -5,7 +5,7 @@ const ticket = require('../models/ticket');
 
 
 const createEvent = async (req, res) => {
-  const newEvent = await eventService.createEvent(req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location);
+  const newEvent = await eventService.createEvent(req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location, req.body.totalTickets);
   if (!newEvent) {
     return res.status(501).json("No Event created");
   }

@@ -1,6 +1,7 @@
 const eventService = require('../services/event');
 const serviceUser = require('../services/user');
 const Ticket = require('../models/ticket');
+const { events } = require('../models/ticket');
 
 
 const createTicket = async (body) => {
@@ -12,14 +13,20 @@ const createTicket = async (body) => {
         section : body.section,
         row : body.row,
         seat : body.seat,
+        price : body.price,
         forTrade : body.forTrade
     });
 
-    await eventService.updateTicketOfEvent(body.event, ticket);
-    await serviceUser.updateTicketOfUser(body.user, ticket);
+    const isSoldOut = await eventService.isSoldOut(body.event);
 
+    if(!isSoldOut)
+    {
+        await eventService.updateTicketOfEvent(body.event, ticket);
+        await serviceUser.updateTicketOfUser(body.user, ticket);
+        return await ticket.save();
+    }
 
-    return await ticket.save();
+    return null;
 };
 
 const getTicketById = async (id) => {
@@ -51,6 +58,7 @@ const updateTicket = async (id, body) => {
     ticket.section = body.section;
     ticket.row = body.row;
     ticket.seat = body.seat;
+    ticket.price = body.price;
     ticket.forTrade = body.forTrade;
 
     // await eventService.updateTicketOfEvent(body.event, ticket);
@@ -63,10 +71,12 @@ const updateTicket = async (id, body) => {
 
 const deleteTicket = async (id) => {
     const ticket = await getTicketById(id);
-    if (!ticket)
-        return null;
+    if (!ticket){  return null;}
+
 
     await ticket.remove();
+
+
     return ticket;
 };
 

@@ -22,6 +22,15 @@ const Event = new Schema({
     location: {
         type: String  
     },
+    totalTickets: {
+        type: Number  
+    },
+    soldTickets: {
+        type: Number  
+    },
+    soldOut: {
+        type: Boolean
+    },
     tickets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Ticket"
