@@ -14,8 +14,10 @@ const User = new Schema({
         required: true,
         minlength: 6
     },
-    admin: {
-        type: Boolean
+    userId: {
+        type: String,
+        required: true,
+        unique: true
     },
     firstName: {
         type: String,

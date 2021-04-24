@@ -4,7 +4,7 @@ const createUser = async (body) => {
     const user = new User({
         email: body.email,
         password: body.password,
-        admin: body.admin,
+        userId: body.userId,
         firstName: body.firstName,
         lastName: body.lastName,
         phoneNumber: body.phoneNumber
@@ -15,7 +15,7 @@ const createUser = async (body) => {
 
 
 const getUsers = async () => {
-    return await User.find({},{'_id':1, 'email':2, 'password':3, 'admin':4, 'firstName':5, 'lastName':6, 'phoneNumber':7});
+    return await User.find({},{'_id':1, 'email':2, 'password':3, 'userId':4, 'firstName':5, 'lastName':6, 'phoneNumber':7});
 };
 
 
@@ -55,7 +55,7 @@ const removeUserTicket = async (ticketId) => {
 
 
 const getOnlyUserById = async (id) => {
-    return await User.findById(id,{'email':1, 'password':2, 'admin':3, 'firstName':4, 'lastName':5, 'phoneNumber':6});
+    return await User.findById(id,{'email':1, 'password':2, 'userId':3, 'firstName':4, 'lastName':5, 'phoneNumber':6});
 };
 
 
@@ -66,7 +66,7 @@ const updateUser = async (id, body) => {
 
     user.email = body.email;
     user.password =  body.password;
-    user.admin = body.admin;
+    user.userId = body.userId;
     user.firstName = body.firstName;
     user.lastName = body.lastName;
     user.phoneNumber = body.phoneNumber;
