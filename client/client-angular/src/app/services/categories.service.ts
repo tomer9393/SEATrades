@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class CategoriesService 
 {
   private categoriesUrl = environment.categoriesUrl;
-  private filtersUrl = environment.filtersUrl;
+  // private filtersUrl = environment.filtersUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -25,27 +25,27 @@ export class CategoriesService
     return this.http.get<Number>(url);
   }
 
-  filter(key: string): Observable<any>
-  {
-    const url = `${this.filtersUrl}/categories/${key}`;
-    return this.http.get<any>(url);
-  }
+  // filter(key: string): Observable<any> 
+  // {
+  //   const url = `${this.filtersUrl}/categories/${key}`;
+  //   return this.http.get<any>(url);
+  // }
 
   addCategory(name: string): Observable<any> 
   {
     return this.http.post<any>(this.categoriesUrl, { name: name });
   }
 
-  getCategory(name: String): Observable<any> 
+  getCategory(id: String): Observable<any> 
   {
-    const url = `${this.categoriesUrl}/${name}`;
+    const url = `${this.categoriesUrl}/${id}`;
     return this.http.get<any>(url);
   }
 
   updateCategory(category: Category): Observable<any> 
   {
-    const url = `${this.categoriesUrl}/${category.id}`;
-    return this.http.patch<any>(url, { name: category.name });
+    const url = `${this.categoriesUrl}/${category._id}`;
+    return this.http.patch<any>(url, { id: category._id });
   }
 
   deleteCategory(id: String): Observable<any> 

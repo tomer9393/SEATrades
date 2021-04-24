@@ -30,14 +30,14 @@ export class CategoriesListComponent implements OnInit {
     { 
       this.load();
     }
-    else if(this.listFor === "search")
-    { 
-      this.categoriesService.filter(this.search).subscribe(data =>{
-        this.categories = data;
-      }, err => {
-        window.alert(err.error);
-      })
-    }
+    // else if(this.listFor === "search")
+    // { 
+    //   this.categoriesService.filter(this.search).subscribe(data =>{
+    //     this.categories = data;
+    //   }, err => {
+    //     window.alert(err.error);
+    //   })
+    // }
   }
 
   load(){
@@ -49,7 +49,7 @@ export class CategoriesListComponent implements OnInit {
   }
 
   onCreate(){
-    this.router.navigateByUrl('/CreateCategory', { state: {article: this.listFor}});
+    this.router.navigateByUrl('/CreateCategory', { state: {event: this.listFor}});
   }
   
   onEdit(category : Category){

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
+// import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -12,7 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { TableListModule } from '../../table-list/table-list.module';
-import { GraphsComponent } from '../../graphs/graphs.component';
+// import { GraphsComponent } from '../../graphs/graphs.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { HighlightDirective } from '../../graphs/highlight.directive';
@@ -37,8 +37,8 @@ import { HighlightDirective } from '../../graphs/highlight.directive';
   ],
   declarations: [
     UserProfileComponent,
-    DashboardComponent,
-    GraphsComponent,
+    // DashboardComponent,
+    // GraphsComponent,
     HighlightDirective,
   ]
 })

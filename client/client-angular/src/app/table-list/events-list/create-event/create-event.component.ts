@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../../../models/event';
-import { EventService } from '../../../services/event.service';
+import { EventsService } from '../../../services/events.service';
 import { Router } from '@angular/router';
 import { Category } from '../../../models/category';
 import { CategoriesService } from '../../../services/categories.service';
+import { Ticket } from '../../../models/ticket';
 
 
 
@@ -12,16 +13,18 @@ import { CategoriesService } from '../../../services/categories.service';
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
-export class CreateEventComponent implements OnInit {
+export class CreateEventComponent implements OnInit 
+{
 
   event: Event = null;
   category: String = '';
   categories: Category[] = [];
   isEditable = false;
 
-  constructor(private eventService : EventService, private router: Router, private categoriesService : CategoriesService) { }
+  constructor(private eventsService : EventsService, private router: Router, private categoriesService : CategoriesService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.categoriesService.getCategories().subscribe(data => {
       this.categories = data;
     });
@@ -31,12 +34,11 @@ export class CreateEventComponent implements OnInit {
     }
   }
 
-  // add tickets:
-  onCreate(name: String, id:String ,category: String, artist: String, imgUrl: String, date: Date, location: String){
-    if(name === '' || id === '' || category === '' || artist === '' || imgUrl === '' || location === '')
+  onCreate(name: String, category: String, artist: String, img: String, date: Date, location: String){
+    if(name === '' || category === '' || artist === '' || img === ''||date == undefined || location === '')
       window.alert('Please fill all fields');
     else{
-      this.eventService.addEvent(name, id,category, artist, imgUrl, date, location).subscribe(data => {
+      this.eventsService.addEvent(name, category, artist, img, date, location).subscribe(data => {
         this.event = data;
         this.router.navigate(['/table-list']);
       }, err => {

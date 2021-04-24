@@ -13,12 +13,16 @@ const createCategory = async (name) => {
     return categoryDocument;
 }
 
+const getCategoryById = async (id) => {
+    return await Category.findById(id);
+}
+
 const getCategoryByName = async (name) => {
     return await Category.find({ name: name });
 }
 
-const updateCategory = async (name) => {
-    const category = await getCategoryByName(name);
+const updateCategory = async (id) => {
+    const category = await getCategoryById(id);
     if (!category)
         return null;
 
@@ -26,8 +30,8 @@ const updateCategory = async (name) => {
     return await category.save();
 }
 
-const removeCategory = async (name) => {
-    const category = await getCategoryByName(name);
+const removeCategory = async (id) => {
+    const category = await getCategoryById(id);
     if (!category)
         return null;
 
@@ -47,6 +51,7 @@ module.exports = {
     createCategory,
     getAllCategories,
     getCategoryByName,
+    getCategoryById,
     updateCategory,
     removeCategory,
     getNumOfCategories

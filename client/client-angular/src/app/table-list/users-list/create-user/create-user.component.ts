@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { UsersService } from '../../../services/users.service';
 import { Router } from '@angular/router';
+import { Ticket } from '../../../models/ticket';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit 
+{
   
     user : User;  
   
@@ -17,11 +19,11 @@ export class CreateUserComponent implements OnInit {
     ngOnInit(): void {
     }
     
-    onCreate(email: string, password: string, admin: Boolean, firstName: string, lastName: string, phoneNumber: string){
-      if(email === '' || password === '' || firstName === '' || lastName === '' || phoneNumber === '' )
+    onCreate(firstName: string, lastName: string, email: string, password: string, phone: string, tickets: Ticket[]){
+      if(firstName === '' || lastName === '' || email === '' || password === '' || phone === '' )
       window.alert('Please fill all fields');
       else{
-        this.usersService.addUser(email, password, true, firstName, lastName, phoneNumber).subscribe(data => {
+        this.usersService.addUser(email, password, true, firstName, lastName, phone).subscribe(data => {
           this.user = data;
           this.router.navigate(['/table-list']);
         }, err => {

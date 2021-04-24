@@ -1,11 +1,13 @@
+import { Ticket } from "./ticket";
+
 export interface Event 
 {
+    _id: String,
     name: String,
-    id: String,
     category: String,
     artist: String,
-    imgUrl: String,
+    img: String,
     date: Date,
     location: String,
-    //tickets:
+    tickets: Ticket[]
 }

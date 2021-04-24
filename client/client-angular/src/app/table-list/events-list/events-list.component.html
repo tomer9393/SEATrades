@@ -4,7 +4,7 @@
       <h4 class="card-title">Events Table</h4>
       <a class="" (click)="onCreate(listFor)" href="javascript:void(0)">
         <i class="material-icons">add_box</i>
-        <!-- <p class="card-category">ADD NEW EVENT</p> -->
+        <!-- <p class="card-category">ADD NEW CATEGORY</p> -->
       </a>
     </div>
     <div class="card-body">
@@ -14,18 +14,18 @@
             <th>Name</th>
             <th>Category</th>
             <th>Artist</th>
-            <th>ImgUrl</th>
             <th>Date</th>
             <th>Location</th>
+            <th>Tickets</th>
           </thead>
           <tbody>
             <tr *ngFor="let event of events">
               <td>{{event.name}}</td>
               <td>{{event.category}}</td>
               <td>{{event.artist}}</td>
-              <td>{{event.ImgUrl}}</td>
-              <td>{{event.Location}}</td>
               <td class="text-primary">{{event.date | date: 'short'}}</td>
+              <td>{{event.location}}</td>
+              <td>{{event.tickets}}</td>
               <td>
                 <a class="" href="javascript:void(0)" (click)="onEdit(event)">
                   <i class="material-icons">edit</i>

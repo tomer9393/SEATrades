@@ -1,14 +1,12 @@
-const mongoose = require('mongoose');
-
-
 export interface Ticket 
 {
-    //user: mongoose.Schema.Types.ObjectId,
-    code: String, 
+    _id: String,
+    user: String,
+    code: String,
     QRcode: String,
-    //event: moongose.Schema.Types.ObjectId,
+    event: String,
     section: String,
     row: String,
     seat: String,
-    forTrade: Boolean, 
+    forTrade: Boolean
 }

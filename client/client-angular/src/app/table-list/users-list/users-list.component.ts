@@ -31,14 +31,14 @@ export class UsersListComponent implements OnInit {
     { 
       this.loadAll();
     }
-    else
-    { 
-      this.usersService.filter(this.search).subscribe(data =>{
-        this.users = data;
-      }, err => {
-        window.alert(err.error);
-      })
-    }
+    // else
+    // { 
+    //   this.usersService.filter(this.search).subscribe(data =>{
+    //     this.users = data;
+    //   }, err => {
+    //     window.alert(err.error);
+    //   })
+    // }
 
     if(this.refresh === "true")
       this.loadAll();
@@ -53,7 +53,7 @@ export class UsersListComponent implements OnInit {
   }
 
   isLoggedIn(user : User){
-    if(user.id === this.loggedUser.id)
+    if(user._id === this.loggedUser._id)
       return false;
     return true;
   }
@@ -69,7 +69,7 @@ export class UsersListComponent implements OnInit {
   }
   onDelete(user : User){
     //this.currentArticleService.changeCurrentArticle(article);
-    this.usersService.deleteUser(user.id).subscribe(data => {
+    this.usersService.deleteUser(user._id).subscribe(data => {
       this.users.splice(this.users.indexOf(user),1);
     }, err => {
       window.alert(err.error);

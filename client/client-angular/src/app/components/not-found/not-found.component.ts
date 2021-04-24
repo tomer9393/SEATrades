@@ -14,6 +14,6 @@ export class NotFoundComponent implements OnInit {
   }
 
   onClick(){
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/table-list']);
   }
 }

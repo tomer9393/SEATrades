@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   templateUrl: './tickets-list.component.html',
   styleUrls: ['./tickets-list.component.css']
 })
-export class TicketsListComponent implements OnInit {
+export class TicketsListComponent implements OnInit 
+{
 
   tickets :  Ticket[] = [];  
   @Input() listFor: String = '';
@@ -34,21 +35,15 @@ export class TicketsListComponent implements OnInit {
     { 
       this.loadAll();
     }
-    else if(this.listFor === "search")
-    { 
-      this.ticketsService.filter(this.search).subscribe(data =>{ 
-        this.tickets = data;
-      }, err => {
-        window.alert(err.error);
-      })
-    }
+  
     else if (this.listFor !== '')
     {
       this.loadForEvent(this.listFor);
     }
   }
 
-  loadAll(){
+  loadAll()
+  {
     this.ticketsService.getTickets().subscribe(data => {
       this.tickets = data;
     }, err => {
@@ -66,32 +61,35 @@ export class TicketsListComponent implements OnInit {
     });
   }
 
-  // onCreate(){
-  //   //this.currentArticleService.changeCurrentArticle(article);
-  //   this.router.navigateByUrl('/CreateComment', { state: {article: this.listFor}});
-  // }
+  onCreate()
+  {
+    //this.currentArticleService.changeCurrentArticle(article);
+    this.router.navigateByUrl('/CreateTicket', { state: {event: this.listFor}});
+  }
 
-  // onEdit(ticket : Ticket){
-  //   //this.currentArticleService.changeCurrentArticle(article);
-  //   this.router.navigateByUrl('/EditTicket', { state: ticket });
-  // }
-
+  onEdit(ticket : Ticket)
+  {
+    //this.currentArticleService.changeCurrentArticle(article);
+    this.router.navigateByUrl('/EditTicket', { state: ticket });
+  }
   onDelete(ticket : Ticket)
   {
     //this.currentArticleService.changeCurrentArticle(article);
-    this.ticketsService.deleteTickets(ticket.QRcode).subscribe(data => {
+    this.ticketsService.deleteTicket(ticket._id).subscribe(data => {
       this.tickets.splice(this.tickets.indexOf(ticket),1);
     }, err => {
       window.alert(err.error);
       this.tickets.splice(this.tickets.indexOf(ticket),1);
     });
   }
-  onDetails(ticket : Ticket){
+  onDetails(ticket : Ticket)
+  {
     //this.currentArticleService.changeCurrentArticle(article);
     this.router.navigateByUrl('/DetailsTicket', { state: ticket });
   }
 
-  handlePanel(action : string){
+  handlePanel(action : string)
+  {
     this.loadAll();
   }
 }

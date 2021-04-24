@@ -1,11 +1,10 @@
 export interface User 
 {
-    id:string;
-    email: string;
-    password: string;
-    admin: boolean;
+    _id: string;
+    isAdmin: boolean;
     firstname: string;
     lastname: string;
-    phoneNumber: string;
-    //tickets
+    email: string;
+    password: string;
+    phone?: string;
 }

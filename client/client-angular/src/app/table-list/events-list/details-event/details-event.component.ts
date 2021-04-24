@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../../../services/event.service';
+import { EventsService } from '../../../services/events.service';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { Event } from '../../../models/event';
 
@@ -8,25 +8,29 @@ import { Event } from '../../../models/event';
   templateUrl: './details-event.component.html',
   styleUrls: ['./details-event.component.css']
 })
-export class DetailsEventComponent implements OnInit {
+export class DetailsEventComponent implements OnInit 
+{
 
   event: Event = null;
   listFor: String;
-  constructor(private eventService : EventService, private router:Router, private activatedRoute:ActivatedRoute) {
+  constructor(private eventService : EventsService, private router:Router, private activatedRoute:ActivatedRoute) {
     //this.router.getCurrentNavigation().extras.state;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.event=history.state;
-    this.listFor = this.event.id;
+    this.listFor = this.event._id;
   }
 
-  onEdit(){
+  onEdit()
+  {
     this.router.navigateByUrl('/EditEvent', { state: this.event });
 
   }
-  onDelete(){
-    this.eventService.deleteEvent(this.event.id).subscribe(data => {
+  onDelete()
+  {
+    this.eventService.deleteEvent(this.event._id).subscribe(data => {
       this.router.navigate(['/table-list']);
     }, err => {
       window.alert(err.error);

@@ -4,79 +4,63 @@ import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user';
 import { filter } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { Ticket } from '../models/ticket';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService 
+{
   
     private usersUrl = environment.usersUrl;
-    private filterUrl = environment.filtersUrl;
+    // private filterUrl = environment.filtersUrl;
   
     constructor(private http: HttpClient) { }
     
-    filter(key: string): Observable<any> 
-    {
-      const url = `${this.filterUrl}/users/${key}`;
-      return this.http.get<any>(url);
-    }
+    // filter(key: string): Observable<any> 
+    // {
+    //   const url = `${this.filterUrl}/users/${key}`;
+    //   return this.http.get<any>(url);
+    // }
   
     getUsers(): Observable<any> 
     {
       return this.http.get<any>(this.usersUrl);
     }
-
-    getNumOfUsers(): Observable<Number> 
-    {
-      const url = `${this.usersUrl}/countUsers`;
-      return this.http.get<Number>(url);
-    }
-   
   
-    //add tickets: moongose.Schema.Types.ObjectId
-    addUser(email: string, password: string, admin: boolean, firstName: string, lastName: string, phoneNumber: string): Observable<any> 
-    {
+    addUser(email: string, password: string, isAdmin: boolean, firstname: string, lastname: string ,phone: string): Observable<any> {
       return this.http.post<any>(this.usersUrl, { 
-        email: email,
+        email: email, 
+        firstname: firstname, 
+        lastname: lastname, 
         password: password, 
-        admin: admin,
-        firstName: firstName, 
-        lastName: lastName, 
-        phoneNumber: phoneNumber,
-        //ticket: tickets
-       
+        phone: phone,
+        isAdmin: isAdmin, 
       });
   
     }
   
-    getUserByid(id: string): Observable<any> 
+    getUser(id: string): Observable<any> 
     {
-      const url = `${this.usersUrl}/getUserById/${id}`;
-      return this.http.get<any>(url);
-    }
-
-    getUserByEmail(email: string): Observable<any> 
-    {
-      const url = `${this.usersUrl}/getUserByEmail/${email}`;
+      const url = `${this.usersUrl}/id/${id}`;
       return this.http.get<any>(url);
     }
   
-    updateUser(user: User): Observable<any> {
-      const url = `${this.usersUrl}/${user.id}`;
+    updateUser(user: User): Observable<any> 
+    {
+      const url = `${this.usersUrl}/id/${user._id}`;
       return this.http.patch<any>(url, { 
         email: user.email, 
-        password: user.password, 
-        admin: user.admin,
-        firstName: user.firstname, 
+        firstname: user.firstname, 
         lastname: user.lastname, 
-        phoneNumber: user.phoneNumber
-        //tickets:  
-      });
+        password: user.password, 
+        phone: user.phone,
+        isAdmin: user.isAdmin });
     }
   
     deleteUser(id: string): Observable<any> 
     {
-      const url = `${this.usersUrl}/${id}`;
+      const url = `${this.usersUrl}/id/${id}`;
       return this.http.delete<any>(url);
     }
 }

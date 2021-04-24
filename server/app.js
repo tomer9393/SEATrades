@@ -8,6 +8,8 @@ const categoryRoutes = require('./routes/category');
 const eventRoutes = require('./routes/event');
 const ticketRoutes = require('./routes/ticket');
 const userRoutes = require('./routes/user');
+const userAdminRoutes = require('./routes/userAdmin');
+
 
 
 require('custom-env').env(process.env.NODE_ENV, './config');
@@ -25,6 +27,7 @@ app.use('/categories',categoryRoutes);
 app.use('/events',eventRoutes);
 app.use('/tickets',ticketRoutes);
 app.use('/users',userRoutes);
+app.use('/admin',userAdminRoutes);
 
 const server = http.createServer(app);
 

@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
       this.toggleLink = 'Forgot Password?';
     }
   }
-  onSubmit(formData) {
+  onSubmit(formData) 
+  {
     if (this.login) {
       this.ls.onLogin(formData.form.value).subscribe(
         (res: any) => {
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
           // this.ls.setIsLogin(true);
           this.ls.setIsLogin(true, res.user);
 
-          this.router.navigate(['/dashboard'], { relativeTo: this.route });
+          this.router.navigate(['/table-list'], { relativeTo: this.route });
         }, (error: any) => {
           console.log(error);
           alert('email and password did not match');

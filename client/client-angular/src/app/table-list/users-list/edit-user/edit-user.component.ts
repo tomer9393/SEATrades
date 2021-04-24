@@ -23,16 +23,16 @@ export class EditUserComponent implements OnInit {
     this.user = history.state;
   }
 
-  onUpdate(firstname: string, lastname: string, email: string, password: string, phoneNumber: string ) {
-    if(firstname === '' || lastname === '' || email === '' || password === '' || phoneNumber === '' )
+  onUpdate(firstname: string, lastname: string, email: string, password: string, phone: string ) {
+    if(firstname === '' || lastname === '' || email === '' || password === '' || phone === '' )
     window.alert('Please fill all fields');
     else{
       this.user.firstname = firstname;
       this.user.lastname = lastname;
       this.user.email = email;
-      this.user.phoneNumber = phoneNumber;
+      this.user.phone = phone;
       this.user.password = password;
-      this.user.admin = true;
+      this.user.isAdmin = true;
       this.usersService.updateUser(this.user).subscribe((data) => {
         this.user = data;
         this.router.navigate(["/table-list"]);

@@ -9,11 +9,11 @@ const createCategory = async (req, res) => {
     res.json(newCategory);
 };
 
-const getCategoryByName = async (req, res) => {
-    if (!req.params.name) {
-        res.status(400).json("Category name is required");
+const getCategoryById = async (req, res) => {
+    if (!req.params.id) {
+        res.status(400).json("Category id is required");
     }
-    const category = await categoryService.getCategoryByName(req.params.name);
+    const category = await categoryService.getCategoryById(req.params.id);
     if (!category) {
         return res.status(404).json("Category not found");
     }
@@ -22,11 +22,11 @@ const getCategoryByName = async (req, res) => {
 };
 
 const updateCategory = async (req, res) => {
-    if (!req.body.name) {
-        res.status(400).json("Category name is required");
+    if (!req.params.id) {
+        res.status(400).json("Category id is required");
     }
 
-    const category = await categoryService.updateCategory(req.params.name);
+    const category = await categoryService.updateCategory(req.params.id);
     if (!category) {
         return res.status(404).json("Category not found");
     }
@@ -35,10 +35,10 @@ const updateCategory = async (req, res) => {
 };
 
 const removeCategory = async (req, res) => {
-    if (!req.body.name) {
-        res.status(400).json("Category name is required");
+    if (!req.params.id) {
+        res.status(400).json("Category id is required");
     }
-    const category = await categoryService.removeCategory(req.params.name);
+    const category = await categoryService.removeCategory(req.params.id);
     if (!category) {
         return res.status(404).json("Category not found");
     }
@@ -64,7 +64,7 @@ const getNumOfCategories = async (req, res) => {
 module.exports = {
     createCategory,
     getAllCategories,
-    getCategoryByName,
+    getCategoryById,
     updateCategory,
     removeCategory,
     getNumOfCategories

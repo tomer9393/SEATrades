@@ -1,12 +1,10 @@
 export const environment = {
   production: true,
 
-  articlesUrl : 'http://localhost:8081/articles',
+  eventsUrl : 'http://localhost:8081/events',
   categoriesUrl : 'http://localhost:8081/categories',
-  commentsUrl : 'http://localhost:8081/comments',
-  contactsUrl : 'http://localhost:8081/contacts',
-  scrapesUrl : 'http://localhost:8081/scrapes',
-  filtersUrl : 'http://localhost:8081/filters',
-  userssUrl : 'http://localhost:8081/users',
+  ticketsUrl : 'http://localhost:8081/tickets',
+  // filtersUrl : 'http://localhost:8081/filters',
+  userssUrl : 'http://localhost:8081/admin',
 
 };

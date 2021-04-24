@@ -9,7 +9,8 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService 
+{
   private token = '';
   public isLogin = new BehaviorSubject(false);
   public showLoginComponent = new BehaviorSubject(false);
@@ -19,11 +20,13 @@ export class LoginService {
   error;
 
   constructor(private http: HttpClient) { }
-  onLogin(data) {
+  onLogin(data) 
+  {
     const url = `${this.usersUrl}/adminLogin`;
     return this.http.post(url, data);
   }
-  onUpdate(data) {
+  onUpdate(data) 
+  {
     const url = `${this.usersUrl}/updateAdmin`;
     return this.http.put(url, data);
   }
@@ -36,14 +39,17 @@ export class LoginService {
     }
     this.loginUserDetails.next(userDetails);
   }
-  getConnectedUser() {
+  getConnectedUser() 
+  {
     return this.connectedUser;
   }
 
-  showLogin(data: boolean) {
+  showLogin(data: boolean) 
+  {
       this.showLoginComponent.next(data);
   }
-  setShowLoginComp(data: boolean){
+  setShowLoginComp(data: boolean)
+  {
     this.showLoginComponent.next(data);
   }
 }

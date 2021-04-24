@@ -30,13 +30,13 @@ export class DetailsUserComponent implements OnInit {
     }
 
     isLoggedIn(user : User){
-      if(user.id === this.loggedUser.id)
+      if(user._id === this.loggedUser._id)
         return false;
       return true;
     }
     
     onDelete(){
-      this.usersService.deleteUser(this.user.id).subscribe(data => {
+      this.usersService.deleteUser(this.user._id).subscribe(data => {
         this.router.navigate(['/table-list']);
       }, err => {
         window.alert(err.error);
