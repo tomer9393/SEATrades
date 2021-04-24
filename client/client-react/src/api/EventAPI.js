@@ -41,5 +41,11 @@ export const getEventById = async (id) => {
     } catch (error) { return ERROR; }
 }
 
+export const homePageSearch = async (name ,artist ,category, location) => {
+    try {
+        const articles = await axios.get(`${baseUrl}/search/${name}/${artist}/${category}}/${location}`);
+        return articles;
+    } catch (error) { throw new Error(error); }
+}
 
 
