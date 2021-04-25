@@ -2,20 +2,24 @@ import React from "react";
 import { useState } from "react";
 import { categories, locations } from "../utils";
 import {
-  TextField,
+  // TextField,
   Dropdown,
-  DatePicker,
-  mergeStyleSets,
+  // DatePicker,
+  // mergeStyleSets,
 } from "@fluentui/react";
-import { homePageSearch } from "../../api/EventAPI";
-import { useHistory } from "react-router-dom";
+// import { homePageSearch } from "../../api/EventAPI";
+// import { useHistory } from "react-router-dom";
+// import {Link} from "react-router-dom";
 
-function SearchBar (props){
+function SearchBar (){
 
-  const [searchText, setSearchText] = useState();
-  const [selectedCategory, setSelectedCategory] = useState();
-  const [selectedLocation, setselectedLocation] = useState();
-  const history = useHistory();
+  // const [searchText, setSearchText] = useState();
+  // const [selectedCategory, setSelectedCategory] = useState();
+  // const [selectedLocation, setselectedLocation] = useState();
+  const [ setSearchText] = useState();
+  const [ setSelectedCategory] = useState();
+  const [ setselectedLocation] = useState();
+  // const history = useHistory();
 
   const dropdownOptions1 = [
     { key: "emptyOption", text: "Select a category" },
@@ -71,27 +75,27 @@ function SearchBar (props){
                 </div>
                 <ul className="hero__categories__tags">
                   <li>
-                    <a href="#">
+                    <a href="/Category/Concerts">
                       <img src="img/hero/cat-1.png" alt="" /> Concerts
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/Category/Festivals">
                       <img src="img/hero/cat-2.png" alt="" /> Festivals
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/Category/Sport">
                       <img src="img/hero/cat-3.png" alt="" /> Sport
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/Category/StandUp">
                       <img src="img/hero/cat-4.png" alt="" /> StandUp
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/Category/Theatre">
                       <img src="img/hero/cat-5.png" alt="" /> Theatre
                     </a>
                   </li>
@@ -105,14 +109,14 @@ function SearchBar (props){
     );
 }
 
-const clearFields = (
-  setSearchText,
-  setSelectedCategory,
-  setSelectedLocation,
-) => {
-  setSearchText(undefined);
-  setSelectedCategory(undefined);
-  setSelectedLocation(undefined);
-};
+// const clearFields = (
+//   setSearchText,
+//   setSelectedCategory,
+//   setSelectedLocation,
+// ) => {
+//   setSearchText(undefined);
+//   setSelectedCategory(undefined);
+//   setSelectedLocation(undefined);
+// };
 
 export default SearchBar;

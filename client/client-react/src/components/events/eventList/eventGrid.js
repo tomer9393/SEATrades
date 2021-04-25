@@ -20,7 +20,7 @@ function eventGrid(props) {
         </div>
         <div className="col-md-4 event-grid small-text">
           <p>
-            This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel
+            This is Photoshops version of Lorem Ipsum. Proin gravida nibh vel
             velit auctor aliquet.
           </p>
         </div>

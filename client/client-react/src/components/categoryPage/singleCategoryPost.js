@@ -1,9 +1,9 @@
 import React from "react";
+// import {Link} from "react-router-dom";
 import { format } from "date-fns";
 
-
-function SingleEventPost(props) {
-  const event = props.event;
+function SingleCategoryPost(props) {
+  const event = props.event; 
   var bg = event.imgUrl;
   var date = new Date(event.date);
   var formattedDate = format(date, "dd/MM/yyyy");
@@ -11,7 +11,7 @@ function SingleEventPost(props) {
       <>
       <div className="col-lg-4 col-md-6">
       <div className="listing__item">
-        <div className="listing__item__pic set-bg" data-setbg={bg}>
+        <div className="listing__item__pic set-bg" style={{backgroundImage: `url(${bg})`}}>
           <img src="img/listing/list_icon-1.png" alt="" />
           <div className="listing__item__pic__tag">Popular</div>
           <div className="listing__item__pic__btns">
@@ -34,7 +34,7 @@ function SingleEventPost(props) {
                 <span className="icon_star" />
                 <span className="icon_star-half_alt" />
               </div>
-              <h6>$40 - $70</h6>
+              <h6>Starting Price: ₪{event.minPrice}</h6>
             </div>
             <ul>
               <li>
@@ -48,14 +48,10 @@ function SingleEventPost(props) {
           </div>
           <div className="listing__item__text__info">
             <div className="listing__item__text__info__left">
-              <img
-                src="img/listing/list_small_icon-1.png"
-                alt=""
-              />
-              <span>{formattedDate}</span>
+              <span>Date: {formattedDate}</span>
             </div>
             <div className="listing__item__text__info__right">
-              Open Now
+              Available
             </div>
           </div>
         </div>
@@ -63,6 +59,6 @@ function SingleEventPost(props) {
     </div>
     </>
     );
-  }
+}
 
-export default SingleEventPost;
+export default SingleCategoryPost;

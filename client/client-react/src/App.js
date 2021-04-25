@@ -7,6 +7,7 @@ import ContactPage from './components/contactUsPage/contactUsPage.js';
 import HowItWorks from './components/howItWorks/howItWorksPage.js';
 import EventsList from './components/events/eventList/eventListPage';
 import Events from './components/events/event/eventPage2';
+import CategoryPage from './components/categoryPage/categoryPage';
 import PageNotFound from './components/404PageNotFound/404PageNotFound';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -18,6 +19,7 @@ function App() {
         
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/Category/:name" component={() => <CategoryPage />} />
           <Route path="/AboutUs" component={() => <AboutUsPage />} />
           <Route path="/Contact" component={() => <ContactPage />} />
           <Route path="/HowItWorks" component={() => <HowItWorks />} />

@@ -5,7 +5,7 @@ import Breadcrumb from './breadcrumb';
 function EventListPage() {
     return (
         <>
-        {/* <Breadcrumb/> */}
+        <Breadcrumb/>
         <EventList/>
         </>
     );

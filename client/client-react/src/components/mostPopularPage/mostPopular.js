@@ -1,4 +1,4 @@
-import SingleEventPost from "./SingleEventPost.js";
+import SingleEventPost from "./SinglePopularPost.js";
 import { getEventsByCategory } from "../../api/EventAPI.js";
 import React, { useEffect, useState } from "react";
 
@@ -13,15 +13,6 @@ function MostSearch() {
     });
   }, [name]);
 
-//const change = (e) => setName(e.target.value);
-
-//   React.useEffect(() => {
-//   console.log("Changed NAME");
-//   getEventsByCategory(name).then((res) => {
-//     setName(res.data);
-//   });
-// }, [name]);
-
   const singleEventsPosts = events?.map((event) => (
     <SingleEventPost key={event._id} event={event} />
   ));
@@ -35,9 +26,9 @@ function MostSearch() {
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title">
-                <h2>Our Most Searched Events</h2>
+                <h2>Our Most Popular Events</h2>
                 <p>
-                  Here you can find all our top searched events in each category!
+                  Here you can find all our top popular events in each category!
                 </p>
               </div>
             </div>
