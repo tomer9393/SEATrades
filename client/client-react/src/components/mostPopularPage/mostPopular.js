@@ -1,5 +1,5 @@
 import SingleEventPost from "./SinglePopularPost.js";
-import { getEventsByCategory } from "../../api/EventAPI.js";
+import { getNumOfEventsByCategory } from "../../api/EventAPI.js";
 import React, { useEffect, useState } from "react";
 
 function MostSearch() {
@@ -7,8 +7,7 @@ function MostSearch() {
   const [events, setEvents] = useState(undefined);
 
   useEffect(() => {
-    console.log("Changed EVENTS");
-    getEventsByCategory(name).then((res) => {
+    getNumOfEventsByCategory(name, 2).then((res) => {
       setEvents(res.data);
     });
   }, [name]);

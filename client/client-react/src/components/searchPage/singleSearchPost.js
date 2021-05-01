@@ -1,8 +1,8 @@
 import React from "react";
-import { format } from "date-fns";
 import {Link} from "react-router-dom";
+import { format } from "date-fns";
 
-function SingleEventPost(props) {
+function SingleSearchPost(props) {
   const event = props.event; 
   var bg = event.imgUrl;
   var date = new Date(event.date);
@@ -14,11 +14,26 @@ function SingleEventPost(props) {
         <div className="listing__item__pic set-bg" style={{backgroundImage: `url(${bg})`}}>
           <img src="img/listing/list_icon-1.png" alt="" />
           <div className="listing__item__pic__tag">Popular</div>
+          {/* <div className="listing__item__pic__btns">
+            <a href="#">
+              <span className="icon_zoom-in_alt" />
+            </a>
+            <a href="#">
+              <span className="icon_heart_alt" />
+            </a>
+          </div> */}
         </div>
         <div className="listing__item__text">
           <div className="listing__item__text__inside">
-            <h5>{event.name}</h5>
+            <h5>{event._id}</h5>
             <div className="listing__item__text__rating">
+              {/* <div className="listing__item__rating__star">
+                <span className="icon_star" />
+                <span className="icon_star" />
+                <span className="icon_star" />
+                <span className="icon_star" />
+                <span className="icon_star-half_alt" />
+              </div> */}
               <h6>Starting Price: ₪{event.minPrice}</h6>
             </div>
             <ul>
@@ -32,9 +47,9 @@ function SingleEventPost(props) {
             </ul>
           </div>
           <div className="listing__item__text__info">
-          <Link to={`/EventDetails/${event._id}`}>
+          <Link to={`/EventsList/${event._id}`}>
           <a className="listing__item__text__info__center">
-            <img src="img/hero/tickets.png" alt="" /> Buy Tickets
+            <img src="img/hero/tickets.png" alt="" /> See tickets
             </a>
             </Link>
           </div>
@@ -43,6 +58,6 @@ function SingleEventPost(props) {
     </div>
     </>
     );
-  }
+}
 
-export default SingleEventPost;
+export default SingleSearchPost;

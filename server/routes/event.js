@@ -9,11 +9,18 @@ router.route('/')
 router.route('/latestEvents/:numOfEvents')
     .get(eventController.getLatestEvents); //V
 
-router.route('/:category')
+router.route('/category/:category')
     .get(eventController.getEventsByCategory);//V
+
+router.route('/eventlist/:name')
+.get(eventController.getEventsByName);//V
 
 router.route('/artists/:artist')
     .get(eventController.getEventsByArtist);//V
+
+router.route('/distinct/:category')
+    .get(eventController.getDistincEventsByCategory);//
+
 
 router.route('/homeEvents/:category/:num')
     .get(eventController.getNumOfEventsByCategory); //V

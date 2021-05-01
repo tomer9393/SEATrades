@@ -5,11 +5,16 @@ function Breadcrumb() {
   const { name } = useParams();
     return (
       <>
-      <div className="breadcrumb-area set-bg" data-setbg="/img/breadcrumb/breadcrumb-normal.jpg">
+      <div className="breadcrumb-area set-bg" data-setbg="/img/hero/bg-homepage.jpg">
       <div className="container">
         <div className="col-lg-12 text-center">
             <div className="breadcrumb__text">
-            <h2>{name}</h2>
+            <h2 style={{textShadow: '2px 1px #000000'}}>{name}</h2>
+            </div>
+        </div>
+        <div className="col-lg-12 text-center">
+            <div className="breadcrumb__text">
+            <h1></h1>
             </div>
         </div>
       <div className="container">

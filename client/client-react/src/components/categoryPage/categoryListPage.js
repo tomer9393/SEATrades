@@ -1,6 +1,6 @@
 import SingleCategoryPost from "./singleCategoryPost";
 import { useParams } from "react-router-dom";
-import { getEventsByCategory } from "../../api/EventAPI";
+import { getDistincEventsByCategory } from "../../api/EventAPI";
 import React, { useEffect, useState } from "react";
 
 function CategoryListPage() {
@@ -8,7 +8,7 @@ function CategoryListPage() {
   const [events, setEvents] = useState(undefined);
 
   useEffect(() => {
-    getEventsByCategory(name).then((res) => {
+    getDistincEventsByCategory(name).then((res) => {
       setEvents(res.data);
     });
   }, [name]);

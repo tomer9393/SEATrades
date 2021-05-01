@@ -1,11 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-//import { getEventsByName } from "../../../api/EventAPI";
-//import { format } from "date-fns";
 
 function Breadcrumb(props) {
-  //const event = props.event;
-  var bg = props.bg;
+  const event = props.event;
+  var bg = event.imgUrl;
   const { name } = useParams();
     return (
       <>
