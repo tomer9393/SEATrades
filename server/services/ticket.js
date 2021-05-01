@@ -2,6 +2,8 @@ const eventService = require('../services/event');
 const serviceUser = require('../services/user');
 const Ticket = require('../models/ticket');
 const { events } = require('../models/ticket');
+const { json } = require('body-parser');
+const { request } = require('http');
 
 
 const createTicket = async (body) => {
@@ -17,16 +19,27 @@ const createTicket = async (body) => {
         forTrade : body.forTrade
     });
 
+// בהמשך להוסיף פונקציה של עירבול קוד ויצירת קוד קיואר לפי היוזר
+
     const isSoldOut = await eventService.isSoldOut(body.event);
 
     if(!isSoldOut)
     {
-        await eventService.updateTicketOfEvent(body.event, ticket);
-        await serviceUser.updateTicketOfUser(body.user, ticket);
-        return await ticket.save();
+        try {
+            await ticket.save(); 
+            await eventService.updateTicketOfEvent(body.event, ticket);
+            await serviceUser.updateTicketOfUser(body.user, ticket);
+
+        } catch (error) {
+            console.log(error);
+            return;
+        }
+
+    }else{
+        return null;
     }
 
-    return null;
+    return ticket;
 };
 
 const getTicketById = async (id) => {
@@ -61,9 +74,29 @@ const updateTicket = async (id, body) => {
     ticket.price = body.price;
     ticket.forTrade = body.forTrade;
 
+    // בהמשך להוסיף פונקציה של עירבול קוד ויצירת קוד קיואר לפי היוזר
+
     // await eventService.updateTicketOfEvent(body.event, ticket);
     // await serviceUser.removeUserTicket(ticket); //?????
     // await serviceUser.updateTicketOfUser(body.user, ticket);
+    
+    await ticket.save();
+    return ticket;
+};
+
+const updateTicketBySwap = async (id, user) => {
+    const ticket = await getTicketById(id);
+    if (!ticket)
+        return null;
+
+    ticket.user = user;
+
+    
+    // add ticket 2 to user 1 & ticket 1 to user 2
+
+    await serviceUser.updateTicketOfUser(user, ticket);
+
+    //update the code & QRcode - function
     
     await ticket.save();
     return ticket;
@@ -95,6 +128,7 @@ module.exports = {
     getTicketsByEventId,
     getTicketsByUserId,
     updateTicket,
+    updateTicketBySwap,
     deleteTicket,
     getNumOfTickets
 }

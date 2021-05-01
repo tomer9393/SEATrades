@@ -22,6 +22,9 @@ const Event = new Schema({
     location: {
         type: String  
     },
+    minPrice: {
+        type: Number  
+    },
     totalTickets: {
         type: Number  
     },
