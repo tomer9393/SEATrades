@@ -9,6 +9,7 @@ const eventRoutes = require('./routes/event');
 const ticketRoutes = require('./routes/ticket');
 const userRoutes = require('./routes/user');
 const contactRoutes = require('./routes/contact');
+const swapRoutes = require('./routes/swap');
 
 
 require('custom-env').env(process.env.NODE_ENV, './config');
@@ -28,6 +29,7 @@ app.use('/events', eventRoutes);
 app.use('/tickets', ticketRoutes);
 app.use('/users', userRoutes);
 app.use('/contacts', contactRoutes);
+app.use('/swaps', swapRoutes);
 
 const server = http.createServer(app);
 

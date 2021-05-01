@@ -34,6 +34,7 @@ const Ticket = new Schema({
     }
 });
 
-Ticket.index({ event:1, section: 1, row: 1, seat: 1 }, { unique: true });
+
+Ticket.index({ section: 1, row: 1, seat: 1, event: 1 }, { unique: true });
 
 module.exports = mongoose.model('Ticket', Ticket);

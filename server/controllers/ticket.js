@@ -93,6 +93,7 @@ const deleteTicket = async (req, res) => {
         return res.status(404).json('cant find ticket on user table to update');
     }
     const user = await usersService.removeUserTicket([ticketId]);
+    console.log(user);
 
     if (user.nModified === 0) {
         return res.status(404).json('cant find ticket on user table to update');

@@ -1,12 +1,13 @@
 const Event = require('../models/event');
 
-const createEvent = async (name, category, artist, imgUrl, date, location, totalTickets) => {
+const createEvent = async (name, category, artist, imgUrl, date, location, minPrice, totalTickets) => {
     const event = new Event({
         name: name,
         category: category,
         artist: artist,
         imgUrl: imgUrl,
         location: location,
+        minPrice: minPrice,
         totalTickets: totalTickets,
         soldTickets: 0,
         soldOut: false
@@ -55,7 +56,7 @@ const isSoldOut = async (eventId) => {
     return await event.soldOut;
 };
 
-const updateEvent = async (id, name, category, artist, imgUrl, date, location, totalTickets, soldTickets, soldOut) => {
+const updateEvent = async (id, name, category, artist, imgUrl, date, location, minPrice, totalTickets, soldTickets, soldOut) => {
     const event = await getEventById(id);
     if (!event)
         return null;
@@ -66,6 +67,7 @@ const updateEvent = async (id, name, category, artist, imgUrl, date, location, t
     event.imgUrl = imgUrl;
     event.date = date;
     event.location = location;
+    event.minPrice = minPrice;
     event.totalTickets = totalTickets;
     event.soldTickets = soldTickets;
     event.soldOut = soldOut;
