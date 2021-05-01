@@ -31,8 +31,29 @@ const getEventsByCategory = async (category) => {
     return await Event.find({ category: category });
 };
 
+const getDistincEventsByCategory = async (category) => {
+    return await Event.aggregate([
+        {
+            $match: {
+                category: category
+            },
+
+        },
+        {
+            $group:{
+                _id: "$name",
+                artist: {$first: "$artist"},
+                imgUrl: {$first: "$imgUrl"},
+                location: { $push: "$location" },
+                date: { $push: "$date" },
+                minPrice: { $first: "$minPrice"}
+            }
+        }
+    ]);
+};
+
 const getNumOfEventsByCategory = async (category, num) => {
-    return await Event.find({ category: category }).sort({ date: 'desc' }).limit(parseInt(num));
+    return await Event.find({ category: category }).sort({ soldTickets: -1 }).limit(parseInt(num));
 };
 
 const getLatestEvents = async (numOfevents) => {
@@ -170,6 +191,7 @@ module.exports = {
     getEvents,
     getLatestEvents,
     getEventsByCategory,
+    getDistincEventsByCategory,
     getNumOfEventsByCategory,
     getTicketsByEventId,
     isSoldOut,

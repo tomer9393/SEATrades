@@ -12,6 +12,9 @@ router.route('/latestEvents/:numOfEvents')
 router.route('/:category')
     .get(eventController.getEventsByCategory);//V
 
+router.route('/distinct/:category')
+    .get(eventController.getDistincEventsByCategory);//
+
 router.route('/homeEvents/:category/:num')
     .get(eventController.getNumOfEventsByCategory); //V
 
