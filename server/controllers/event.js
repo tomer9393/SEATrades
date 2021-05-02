@@ -43,6 +43,33 @@ const getEventsByCategory = async (req, res) => {
     res.json(events);
   };
 
+  const getEventsByName = async (req, res) => {
+    const events = await eventService.getEventsByName(req.params.name);
+    if (!events) {
+      return res.status(500).json("Events not found");
+    }
+  
+    res.json(events);
+  };
+
+const getEventsByArtist = async (req, res) => {
+  const events = await eventService.getEventsByArtist(req.params.artist);
+  if (!events) {
+    return res.status(500).json("Events not found");
+  }
+
+  res.json(events);
+};
+
+const getDistincEventsByCategory = async (req, res) => {
+  const events = await eventService.getDistincEventsByCategory(req.params.category);
+  if (!events) {
+    return res.status(500).json("Events not found");
+  }
+
+  res.json(events);
+};
+
 
 const getNumOfEventsByCategory = async (req, res) => {
     const events = await eventService.getNumOfEventsByCategory(req.params.category, req.params.num);
@@ -119,14 +146,26 @@ const getNumOfEvents = async (req, res) => {
   res.json(count);
 };
 
+const homePageSearch = async (req, res) => {
+  const events = await eventService.homePageSearch(req.params.name, req.params.artist, req.params.category, req.params.location);
+  if (!events) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(events);
+};
+
 module.exports = {
   createEvent,
   getEventById,
   getEvents,
   getLatestEvents,
   getEventsByCategory,
+  getDistincEventsByCategory,
   getNumOfEventsByCategory,
   updateEvent,
   deleteEvent,
-  getNumOfEvents
+  getNumOfEvents,
+  getEventsByArtist,
+  homePageSearch,
+  getEventsByName
 };

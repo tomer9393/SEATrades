@@ -2,13 +2,15 @@ import React from "react";
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import HomePage from './components/homePage/homePage';
-import SearchBar from './components/header/search_bar';
 import AboutUsPage from './components/aboutUsPage/aboutUsPage';
 import ContactPage from './components/contactUsPage/contactUsPage.js';
 import HowItWorks from './components/howItWorks/howItWorksPage.js';
-import Events from './components/events/eventPage.js';
+import EventsList from './components/events/eventList/eventList';
+import EventDetails from './components/events/eventDetails/eventDetails';
+import Events from './components/events/event/eventPage2';
+import CategoryPage from './components/categoryPage/categoryPage';
+import SearchListPage from './components/searchPage/searchListPage'
 import PageNotFound from './components/404PageNotFound/404PageNotFound';
-import ScrollToTop from './components/scrollToTop/ScrollToTop';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -19,10 +21,14 @@ function App() {
         
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route path="/Category/:name" component={() => <CategoryPage />} />
+          <Route path="/EventsList/:name" component={() => <EventsList />} />
+          <Route path="/EventDetails/:id" component={() => <EventDetails />} />
           <Route path="/AboutUs" component={() => <AboutUsPage />} />
           <Route path="/Contact" component={() => <ContactPage />} />
           <Route path="/HowItWorks" component={() => <HowItWorks />} />
-          <Route path="/Events" component={() => <Events />} />
+          <Route path="/Events/artists/:artist" component={() => <Events />} />
+          <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
           <Route path="" component={() => <PageNotFound />} />
         </Switch>
 

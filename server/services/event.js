@@ -27,8 +27,38 @@ const getEventsByCategory = async (category) => {
     return await Event.find({category : category});
 };
 
+const getEventsByName = async (name) => {
+    return await Event.find({name : name});
+};
+
+const getEventsByArtist = async (artist) => {
+    return await Event.find({artist : artist});
+};
+
+const getDistincEventsByCategory = async (category) => {
+    return await Event.aggregate([
+        {
+            $match: {
+                category: category
+            },
+
+        },
+        {
+            $group:{
+                _id: "$name",
+                artist: {$first: "$artist"},
+                imgUrl: {$first: "$imgUrl"},
+                location: { $push: "$location" },
+                date: { $push: "$date" },
+                minPrice: { $first: "$minPrice"}
+            }
+        }
+    ]);
+};
+
+
 const getNumOfEventsByCategory = async (category,num) => {
-    return await Event.find({category : category}).sort({ date: 'desc' }).limit(parseInt(num));
+    return await Event.find({ category: category }).sort({ soldTickets: -1 }).limit(parseInt(num));
 };
 
 const getLatestEvents = async (numOfevents) => {
@@ -95,6 +125,36 @@ const getNumOfEvents = async () => {
 };
 
 
+const homePageSearch = async (name, artist, category, location) => {
+
+    if (name === "undefined") {
+      name = "";
+    }
+    if (artist === "undefined") {
+      artist = "";
+    }
+    if (category === "undefined") {
+        category = "";
+      }
+    if (location === "undefined") {
+      location = "";
+    }
+  
+    return await Event.aggregate([
+      {
+        $match: {
+          $and: [
+            { name: { $regex: name, $options: 'i' } },
+            { artist: { $regex: artist, $options: 'i' } },
+            { category: { $regex: category, $options: 'i' } },
+            { location: { $regex: location, $options: 'i' } }
+  
+          ]
+        }
+      }
+    ]);
+  };
+
 
 module.exports = {
     createEvent,
@@ -102,11 +162,15 @@ module.exports = {
     getEvents,
     getLatestEvents,
     getEventsByCategory,
+    getDistincEventsByCategory,
     getNumOfEventsByCategory,
     getTicketsByEventId,
     updateEvent,
     updateTicketOfEvent,
     deleteEvent,
     deleteEventTickets,
-    getNumOfEvents
+    getNumOfEvents,
+    getEventsByArtist,
+    homePageSearch,
+    getEventsByName
 }

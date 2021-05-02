@@ -1,8 +1,27 @@
 import React from "react";
+import Breadcrumb from './breadcrumb';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getEventById } from "../../../api/EventAPI.js";
 
-class AboutUs extends React.Component {
-  render() {
-    return (
+function EventDetails() {
+  //const event = this.props.event; 
+  //var bg = event.imgUrl;
+  //var date = new Date(event.date);
+  //var formattedDate = format(date, "dd/MM/yyyy");
+  const { id } = useParams();
+  const [event, setEvents] = useState();
+  useEffect(() => {
+    getEventById(id).then((res) => {
+      setEvents(res.data);
+    });
+  }, []);
+
+  return !event ? (
+    <div>Loading...</div>
+  ) : (
+    <>
+    <Breadcrumb event={event}/>
       <section className="about spad">
         <div className="container">
           <div className="row">
@@ -10,7 +29,7 @@ class AboutUs extends React.Component {
               <div className="about__title">
                 <h2>
                   Welcome to
-                  <br /> SEATrades!
+                  <br /> {event.name}
                 </h2>
                 <a href="/Contact" className="primary-btn">
                   Contact Us
@@ -43,8 +62,8 @@ class AboutUs extends React.Component {
           </div>
         </div>
       </section>
-    );
-  }
+      </>
+  );
 }
 
-export default AboutUs;
+export default EventDetails;

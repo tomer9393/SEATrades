@@ -1,5 +1,5 @@
 import React from "react";
-import AboutUs from './aboutUs';
+import AboutUs from './ticketDetails';
 import Breadcrumb from './breadcrumb';
 import OurTeam from './ourTeam';
 

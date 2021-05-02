@@ -2,7 +2,7 @@ import React from "react";
 import EventList from "./eventList";
 import Breadcrumb from './breadcrumb';
 
-function EventPage() {
+function EventListPage() {
     return (
         <>
         <Breadcrumb/>
@@ -11,4 +11,4 @@ function EventPage() {
     );
 }
 
-export default EventPage;
+export default EventListPage;

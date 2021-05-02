@@ -1,15 +1,14 @@
 import React from "react";
+import EventList from "./eventList";
 import Breadcrumb from './breadcrumb';
-import Work from './howItWorks';
 
-function HowItWorks() {
+function EventListPage() {
     return (
-        
         <>
         <Breadcrumb/>
-        <Work />
+        <EventList/>
         </>
     );
 }
 
-export default HowItWorks;
+export default EventListPage;

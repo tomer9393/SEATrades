@@ -9,8 +9,18 @@ router.route('/')
 router.route('/latestEvents/:numOfEvents')
     .get(eventController.getLatestEvents); //V
 
-router.route('/:category')
+router.route('/category/:category')
     .get(eventController.getEventsByCategory);//V
+
+router.route('/eventlist/:name')
+.get(eventController.getEventsByName);//V
+
+router.route('/artists/:artist')
+    .get(eventController.getEventsByArtist);//V
+
+router.route('/distinct/:category')
+    .get(eventController.getDistincEventsByCategory);//
+
 
 router.route('/homeEvents/:category/:num')
     .get(eventController.getNumOfEventsByCategory); //V
@@ -23,5 +33,8 @@ router.route('/id/:id')
     .get(eventController.getEventById) //V
     .patch(eventController.updateEvent) //V
     .delete(eventController.deleteEvent); //V
+
+router.route('/search/:name/:artist/:category/:location')
+    .get(eventController.homePageSearch);
 
 module.exports = router;
