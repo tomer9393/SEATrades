@@ -8,5 +8,6 @@ export interface Ticket
     section: String,
     row: String,
     seat: String,
-    forTrade: Boolean
+    forTrade: Boolean,
+    price: Number
 }

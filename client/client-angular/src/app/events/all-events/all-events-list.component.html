@@ -1,7 +1,7 @@
 <div class="col-md-12">
-  <div class="card">
-    <div class="card-header card-header-danger">
-      <h4 class="card-title">Events Table</h4>
+  <!-- <div class="card">
+    <div class="card-header card-header-danger"> -->
+      <!-- <h4 class="card-title">blabla</h4> -->
       <a class="" (click)="onCreate(listFor)" href="javascript:void(0)">
         <i class="material-icons">add_box</i>
         <!-- <p class="card-category">ADD NEW CATEGORY</p> -->
@@ -12,20 +12,22 @@
         <table class="table">
           <thead class="text-primary">
             <th>Name</th>
-            <th>Category</th>
+            <!-- <th>Category</th> -->
             <th>Artist</th>
             <th>Date</th>
             <th>Location</th>
-            <th>Tickets</th>
+            <th>Sold Tickets</th>
+            <th>Sold Out</th>
           </thead>
           <tbody>
             <tr *ngFor="let event of events">
               <td>{{event.name}}</td>
-              <td>{{event.category}}</td>
+              <!-- <td>{{event.category}}</td> -->
               <td>{{event.artist}}</td>
               <td class="text-primary">{{event.date | date: 'short'}}</td>
               <td>{{event.location}}</td>
-              <td>{{event.tickets}}</td>
+              <td>{{event.soldTickets}}</td>
+              <td>{{event.soldOut}}</td>
               <td>
                 <a class="" href="javascript:void(0)" (click)="onEdit(event)">
                   <i class="material-icons">edit</i>
@@ -41,6 +43,6 @@
           </tbody>
         </table>
       </div>
-    </div>
-  </div>
+    <!-- </div>
+  </div> -->
 </div>

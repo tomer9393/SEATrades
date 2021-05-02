@@ -16,6 +16,7 @@ import { TableListModule } from '../../table-list/table-list.module';
 
 import { ChartsModule } from 'ng2-charts';
 import { HighlightDirective } from '../../graphs/highlight.directive';
+import { EventsListModule } from '../../events/event-list.module';
 
     
 
@@ -33,12 +34,14 @@ import { HighlightDirective } from '../../graphs/highlight.directive';
     MatSelectModule,
     MatTooltipModule,
     TableListModule,
+    EventsListModule,
     ChartsModule,
   ],
   declarations: [
     UserProfileComponent,
     // DashboardComponent,
     // GraphsComponent,
+    // concertEventsListComponent,
     HighlightDirective,
   ]
 })

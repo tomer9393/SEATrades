@@ -1,0 +1,109 @@
+<div class="main-content">
+  <div class="col-md-4">
+    <form class="navbar-form">
+      <span class="bmd-form-group">
+        <div class="input-group no-border">
+          <input
+            #inp
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            (input)="onSearch(inp.value)"
+          />
+          <button
+            mat-raised-button
+            type="submit"
+            (click)="onSearch(inp.value)"
+            class="btn btn-white btn-round btn-just-icon"
+          >
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+          </button>
+          <button
+            mat-raised-button
+            type="submit"
+            (click)="onRefresh()"
+            class="btn btn-white btn-round btn-just-icon"
+          >
+            <i class="material-icons">autorenew</i>
+            <div class="ripple-container"></div>
+          </button>
+        </div>
+      </span>
+    </form>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- <app-categories-list
+        [listFor]="listFor"
+        [search]="search"
+        [refresh]="refresh"
+      ></app-categories-list> -->
+      <!-- <app-users-list [search]="search" [refresh]="refresh"></app-users-list> -->
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Concerts</h4>
+        </div>
+            <app-all-events-list
+            [listFor]="listFor"
+            [Category]="Concerts"
+            [search]="search"
+            [refresh]="refresh"
+          ></app-all-events-list>
+      </div>
+
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Festivals</h4>
+        </div>
+            <app-all-events-list
+            [listFor]="listFor"
+            [Category]="Festivals"
+            [search]="search"
+            [refresh]="refresh"
+          ></app-all-events-list>
+      </div>
+
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Sport</h4>
+        </div>
+            <app-all-events-list
+            [listFor]="listFor"
+            [Category]="Sport"
+            [search]="search"
+            [refresh]="refresh"
+          ></app-all-events-list>
+      </div>
+
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">StandUp</h4>
+        </div>
+            <app-all-events-list
+            [listFor]="listFor"
+            [Category]="StandUp"
+            [search]="search"
+            [refresh]="refresh"
+          ></app-all-events-list>
+      </div>
+
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Theatre</h4>
+        </div>
+            <app-all-events-list
+            [listFor]="listFor"
+            [Category]="Theatre"
+            [search]="search"
+            [refresh]="refresh"
+            ></app-all-events-list>
+      </div>
+      <!-- <app-tickets-list
+        [listFor]="listFor"
+        [search]="search"
+        [refresh]="refresh"
+      ></app-tickets-list> -->
+    </div>
+  </div>
+</div>

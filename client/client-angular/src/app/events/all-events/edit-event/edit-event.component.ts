@@ -44,10 +44,10 @@ export class EditEventComponent implements OnInit
       this.event.tickets = tickets;
       this.eventsService.updateEvent(this.event).subscribe(data => {
         this.event = data;
-        this.router.navigate(['/table-list']);
+        this.router.navigate(['/events-list']);
       }, err => {
         window.alert(err.error);
-        this.router.navigate(['/table-list']);
+        this.router.navigate(['/events-list']);
       });
     }
   }

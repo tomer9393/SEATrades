@@ -1,10 +1,5 @@
 import { Routes } from '@angular/router';
 
-import { CreateEventComponent } from './events-list/create-event/create-event.component';
-//import { CreateScrapeComponent } from './scrapes-list/create-scrape/create-scrape.component';
-import { EditEventComponent } from './events-list/edit-event/edit-event.component';
-import { DetailsEventComponent } from './events-list/details-event/details-event.component';
-
 
 import { CreateTicketComponent } from './tickets-list/create-ticket/create-ticket.component';
 import { EditTicketComponent } from './tickets-list/edit-ticket/edit-ticket.component';
@@ -62,10 +57,7 @@ export const TableListRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-     { path: 'CreateEvent',      component: CreateEventComponent },
 
-     { path: 'EditEvent',      component: EditEventComponent },
-     { path: 'DetailsEvent',      component: DetailsEventComponent },
      { path: 'CreateTicket',      component: CreateTicketComponent },
      { path: 'EditTicket',      component: EditTicketComponent },
      { path: 'DetailsTicket',      component: DetailsTicketComponent },

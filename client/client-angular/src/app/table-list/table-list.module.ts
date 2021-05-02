@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { TableListComponent } from './table-list.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
-import { EventsListComponent } from './events-list/events-list.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -15,9 +14,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 
 import { TableListRoutes } from './table-list.routing';
-import { CreateEventComponent } from './events-list/create-event/create-event.component';
-import { EditEventComponent } from './events-list/edit-event/edit-event.component';
-import { DetailsEventComponent } from './events-list/details-event/details-event.component';
 
 import { TicketsListComponent } from './tickets-list/tickets-list.component';
 import { CreateTicketComponent } from './tickets-list/create-ticket/create-ticket.component';
@@ -38,14 +34,9 @@ import { DetailsUserComponent } from './users-list/details-user/details-user.com
 @NgModule({
   declarations: [
     TableListComponent,
-    EventsListComponent,
     CategoriesListComponent,
     UsersListComponent,
     TicketsListComponent,
-    EventsListComponent,
-    CreateEventComponent,
-    EditEventComponent,
-    DetailsEventComponent,
     TicketsListComponent,
     CreateTicketComponent,
     EditTicketComponent,

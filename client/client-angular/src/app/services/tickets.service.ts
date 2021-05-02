@@ -25,9 +25,9 @@ export class TicketService
     return this.http.get<any>(this.TicketsUrl);
   }
 
-  getTicketsByEventID(ticketId: String): Observable<any> 
+  getTicketsByEventID(eventId: String): Observable<any> 
   {
-    const url = `${this.TicketsUrl}/${ticketId}`;
+    const url = `${this.TicketsUrl}/event/${eventId}`;
     return this.http.get<any>(url);
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../../services/events.service';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { Event } from '../../../models/event';
+import { TicketService } from '../../../services/tickets.service';
 
 @Component({
   selector: 'app-details-event',
@@ -13,7 +14,7 @@ export class DetailsEventComponent implements OnInit
 
   event: Event = null;
   listFor: String;
-  constructor(private eventService : EventsService, private router:Router, private activatedRoute:ActivatedRoute) {
+  constructor(private eventService : EventsService, private ticketService : TicketService  ,private router:Router, private activatedRoute:ActivatedRoute) {
     //this.router.getCurrentNavigation().extras.state;
   }
 
@@ -31,10 +32,10 @@ export class DetailsEventComponent implements OnInit
   onDelete()
   {
     this.eventService.deleteEvent(this.event._id).subscribe(data => {
-      this.router.navigate(['/table-list']);
+      this.router.navigate(['/events-list']);
     }, err => {
       window.alert(err.error);
-      this.router.navigate(['/table-list']);
+      this.router.navigate(['/events-list']);
     });
   }
 }

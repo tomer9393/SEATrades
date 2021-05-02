@@ -9,5 +9,9 @@ export interface Event
     img: String,
     date: Date,
     location: String,
-    tickets: Ticket[]
+    tickets: Ticket[],
+    minPrice: Number, 
+    totalTickets: Number, 
+    soldTickets: Number,
+    soldOut: Boolean
 }

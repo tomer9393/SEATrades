@@ -40,10 +40,10 @@ export class CreateEventComponent implements OnInit
     else{
       this.eventsService.addEvent(name, category, artist, img, date, location).subscribe(data => {
         this.event = data;
-        this.router.navigate(['/table-list']);
+        this.router.navigate(['/events-list']);
       }, err => {
         window.alert(err.error);
-        this.router.navigate(['/table-list']);
+        this.router.navigate(['/events-list']);
       });
     }
   }
