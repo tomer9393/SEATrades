@@ -21,7 +21,6 @@ router.route('/artists/:artist')
 router.route('/distinct/:category')
     .get(eventController.getDistincEventsByCategory);//
 
-
 router.route('/homeEvents/:category/:num')
     .get(eventController.getNumOfEventsByCategory); //V
 

@@ -43,6 +43,7 @@ const getEventsByCategory = async (req, res) => {
     res.json(events);
   };
 
+
   const getEventsByName = async (req, res) => {
     const events = await eventService.getEventsByName(req.params.name);
     if (!events) {
@@ -51,6 +52,7 @@ const getEventsByCategory = async (req, res) => {
   
     res.json(events);
   };
+
 
 const getEventsByArtist = async (req, res) => {
   const events = await eventService.getEventsByArtist(req.params.artist);
@@ -69,6 +71,7 @@ const getDistincEventsByCategory = async (req, res) => {
 
   res.json(events);
 };
+
 
 
 const getNumOfEventsByCategory = async (req, res) => {

@@ -25,6 +25,7 @@ export const getEventsByCategory = async (category) => {
     } catch (error) { throw new Error(error); }
 }
 
+
 export const getEventsByName = async (name) => {
     try {
         const events = await axios.get(`${baseUrl}/eventlist/${name}`);
@@ -45,7 +46,6 @@ export const getDistincEventsByCategory = async (category) => {
         return events;
     } catch (error) { throw new Error(error); }
 }
-
 
 export const getNumOfEventsByCategory = async (category, num) => {
     try {
