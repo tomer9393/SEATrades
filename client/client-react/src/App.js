@@ -1,12 +1,15 @@
 import React from "react";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
-import HomePage from "./components/homePage/homePage";
-import AboutUsPage from "./components/aboutUsPage/aboutUsPage";
-import ContactPage from "./components/contactUsPage/contactUsPage.js";
-import HowItWorks from "./components/howItWorks/howItWorksPage.js";
-import Events from "./components/events/eventPage.js";
-import PageNotFound from "./components/404PageNotFound/404PageNotFound";
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import HomePage from './components/homePage/homePage';
+import AboutUsPage from './components/aboutUsPage/aboutUsPage';
+import ContactPage from './components/contactUsPage/contactUsPage.js';
+import HowItWorks from './components/howItWorks/howItWorksPage.js';
+import EventsList from './components/events/eventList/eventList';
+import EventDetails from './components/events/eventDetails/eventDetails';
+import CategoryPage from './components/categoryPage/categoryPage';
+import SearchListPage from './components/searchPage/searchListPage'
+import PageNotFound from './components/404PageNotFound/404PageNotFound';
 import SignInPage from "./components/signInPage/signInPage";
 import SignUpPage from "./components/signUp/signUpPage";
 import ProfilePage from "./components/profilePage/profilePage";
@@ -22,6 +25,15 @@ function App() {
       <Route path="/" exact>
         <HomePage />
       </Route>
+      <Route path="/Category/:name"> 
+        <CategoryPage />
+      </Route>
+      <Route path="/EventsList/:name">
+        <EventsList />
+      </Route>
+      <Route path="/EventDetails/:id">
+        <EventDetails />
+      </Route>
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>
@@ -31,9 +43,7 @@ function App() {
       <Route path="/HowItWorks">
         <HowItWorks />
       </Route>
-      <Route path="/Events">
-        <Events />
-      </Route>
+      <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="/Profile" exact>
         <ProfilePage />
       </Route>
@@ -46,6 +56,15 @@ function App() {
       <Route path="/" exact>
         <HomePage />
       </Route>
+      <Route path="/Category/:name"> 
+        <CategoryPage />
+      </Route>
+      <Route path="/EventsList/:name">
+        <EventsList />
+      </Route>
+      <Route path="/EventDetails/:id">
+        <EventDetails />
+      </Route>
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>
@@ -54,9 +73,6 @@ function App() {
       </Route>
       <Route path="/HowItWorks">
         <HowItWorks />
-      </Route>
-      <Route path="/Events">
-        <Events />
       </Route>
       <Route path="/SignIn">
         <SignInPage />
@@ -67,6 +83,7 @@ function App() {
       <Route path="/Profile" exact>
         <ProfilePage />
       </Route>
+      <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="*">
         <PageNotFound />
       </Route>
@@ -84,7 +101,7 @@ function App() {
           logout: logout,
         }}
       >
-        <BrowserRouter>
+        <BrowserRouter basename="/">
           <Header />
           <main>{routes}</main>
           <Footer />

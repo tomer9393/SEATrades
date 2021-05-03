@@ -8,8 +8,10 @@ const categoryRoutes = require('./routes/category');
 const eventRoutes = require('./routes/event');
 const ticketRoutes = require('./routes/ticket');
 const userRoutes = require('./routes/user');
+const userAdminRoutes = require('./routes/userAdmin');
 const contactRoutes = require('./routes/contact');
 const swapRoutes = require('./routes/swap');
+
 
 
 require('custom-env').env(process.env.NODE_ENV, './config');
@@ -24,10 +26,11 @@ app.use(express.json());
 
 console.log(process.env.PORT);
 
-app.use('/categories', categoryRoutes);
-app.use('/events', eventRoutes);
-app.use('/tickets', ticketRoutes);
-app.use('/users', userRoutes);
+app.use('/categories',categoryRoutes);
+app.use('/events',eventRoutes);
+app.use('/tickets',ticketRoutes);
+app.use('/users',userRoutes);
+app.use('/admin',userAdminRoutes);
 app.use('/contacts', contactRoutes);
 app.use('/swaps', swapRoutes);
 

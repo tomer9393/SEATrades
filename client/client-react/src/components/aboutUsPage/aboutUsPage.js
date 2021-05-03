@@ -1,3 +1,4 @@
+import React from "react";
 import AboutUs from './aboutUs';
 import Breadcrumb from './breadcrumb';
 import OurTeam from './ourTeam';

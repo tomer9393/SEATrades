@@ -10,9 +10,10 @@ router.route('/')
 router.route('/count')
     .get(categoryController.getNumOfCategories);
 
-router.route('/:name')
-    .get(categoryController.getCategoryByName)
+router.route('/:id')
+    .get(categoryController.getCategoryById)
     .patch(categoryController.updateCategory)
-    .delete(categoryController.removeCategory);
+    .delete(categoryController.removeCategory);  
+    
 
 module.exports = router;
