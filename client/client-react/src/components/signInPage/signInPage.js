@@ -59,7 +59,7 @@ export default function LoginPage() {
           auth.login(response.userId, response.token);
           history.push("/");
         });
-    } catch (err) {}
+    } catch (err) {/* empty */}
   };
 
   return (
