@@ -28,6 +28,14 @@
     });
 
     /*------------------
+        Artwork Set
+    --------------------*/
+    $('.artwork-image').each(function () {
+        var bg = $(this).data('.artworkImage');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+
+    /*------------------
 		Navigation
 	--------------------*/
     $(".mobile-menu").slicknav({

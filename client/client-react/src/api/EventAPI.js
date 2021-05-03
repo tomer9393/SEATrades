@@ -20,10 +20,32 @@ export const getLatestEvents = async (numOfEvents) => {
 
 export const getEventsByCategory = async (category) => {
     try {
-        const events = await axios.get(`${baseUrl}/${category}`);
+        const events = await axios.get(`${baseUrl}/category/${category}`);
         return events;
     } catch (error) { throw new Error(error); }
 }
+
+export const getEventsByName = async (name) => {
+    try {
+        const events = await axios.get(`${baseUrl}/eventlist/${name}`);
+        return events;
+    } catch (error) { throw new Error(error); }
+}
+
+export const getEventsByArtist = async (artist) => {
+    try {
+        const events = await axios.get(`${baseUrl}/artists/${artist}`);
+        return events;
+    } catch (error) { throw new Error(error); }
+}
+
+export const getDistincEventsByCategory = async (category) => {
+    try {
+        const events = await axios.get(`${baseUrl}/distinct/${category}`);
+        return events;
+    } catch (error) { throw new Error(error); }
+}
+
 
 export const getNumOfEventsByCategory = async (category, num) => {
     try {
@@ -43,8 +65,8 @@ export const getEventById = async (id) => {
 
 export const homePageSearch = async (name ,artist ,category, location) => {
     try {
-        const articles = await axios.get(`${baseUrl}/search/${name}/${artist}/${category}}/${location}`);
-        return articles;
+        const events = await axios.get(`${baseUrl}/search/${name}/${artist}/${category}}/${location}`);
+        return events;
     } catch (error) { throw new Error(error); }
 }
 

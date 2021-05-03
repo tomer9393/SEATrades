@@ -43,6 +43,33 @@ const getEventsByCategory = async (req, res) => {
     res.json(events);
   };
 
+  const getEventsByName = async (req, res) => {
+    const events = await eventService.getEventsByName(req.params.name);
+    if (!events) {
+      return res.status(500).json("Events not found");
+    }
+  
+    res.json(events);
+  };
+
+const getEventsByArtist = async (req, res) => {
+  const events = await eventService.getEventsByArtist(req.params.artist);
+  if (!events) {
+    return res.status(500).json("Events not found");
+  }
+
+  res.json(events);
+};
+
+const getDistincEventsByCategory = async (req, res) => {
+  const events = await eventService.getDistincEventsByCategory(req.params.category);
+  if (!events) {
+    return res.status(500).json("Events not found");
+  }
+
+  res.json(events);
+};
+
 
 const getNumOfEventsByCategory = async (req, res) => {
     const events = await eventService.getNumOfEventsByCategory(req.params.category, req.params.num);
@@ -133,9 +160,12 @@ module.exports = {
   getEvents,
   getLatestEvents,
   getEventsByCategory,
+  getDistincEventsByCategory,
   getNumOfEventsByCategory,
   updateEvent,
   deleteEvent,
   getNumOfEvents,
-  homePageSearch
+  getEventsByArtist,
+  homePageSearch,
+  getEventsByName
 };

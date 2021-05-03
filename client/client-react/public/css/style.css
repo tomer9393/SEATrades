@@ -1530,7 +1530,7 @@ ol {
 	font-size: 15px;
 	color: #f03250;
 	font-weight: 600;
-	float: right;
+	float: left;
 }
 
 .listing__item__text__info {
@@ -1568,6 +1568,18 @@ ol {
 }
 
 .listing__item__text__info__right.closed {
+	color: #f03250;
+}
+
+.listing__item__text__info__center {
+	float: center;
+	font-size: 14px;
+	color: #50D437;
+	font-weight: 700;
+	padding-top: 4px;
+}
+
+.listing__item__text__info__center.closed {
 	color: #f03250;
 }
 
@@ -3155,6 +3167,83 @@ margin: .4em 0;
 	border-bottom: 1px solid #CCCCCC;
 	padding: 1.6em 0;
 }
+
+
+/*---- Show's Breadcrumb ----*/
+
+.artwork {
+	color: #ffffff
+}
+@media (min-width: 660px) {
+.artwork {
+	background-color: #000000
+}
+.gradient-left {
+	background: linear-gradient(
+	to right,
+	#000000,
+	rgba(0, 0, 0, 0)
+	)
+}
+.gradient-right {
+	background: linear-gradient(
+	to left,
+	#000000,
+	rgba(0, 0, 0, 0)
+	)
+}
+}
+/* .artwork-image {
+	
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+} */
+
+/*------ Blurred background -----*/
+body, html {
+	height: 100%;
+  }
+  
+  * {
+	box-sizing: border-box;
+  }
+  
+  .bg-image {
+	/* The image used */
+	background-image: url(${bg});
+  
+	/* Add the blur effect */
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+  
+	/* Full height */
+	height: 100%;
+  
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  
+  /* Position text in the middle of the page/image */
+  .bg-text {
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+	color: white;
+	font-weight: bold;
+	border: 3px solid #f1f1f1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+  }
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1400px) and (max-width: 1920px) {
