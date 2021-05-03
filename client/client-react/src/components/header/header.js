@@ -24,6 +24,11 @@ class Header extends React.Component {
             <div className="col-lg-5 col-md-5">
               <div className="header__nav_login">
               <LoginButton></LoginButton>
+              {/* <div className="header__menu__right">
+                <a href="/" className="login-btn">
+                  <i className="fa fa-user" />
+                </a>
+              </div> */}
               </div>
             </div>
           </div>

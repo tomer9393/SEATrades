@@ -31,6 +31,14 @@ const getEventsByCategory = async (category) => {
     return await Event.find({ category: category });
 };
 
+const getEventsByName = async (name) => {
+    return await Event.find({name : name});
+};
+
+const getEventsByArtist = async (artist) => {
+    return await Event.find({artist : artist});
+};
+
 const getDistincEventsByCategory = async (category) => {
     return await Event.aggregate([
         {
@@ -52,7 +60,8 @@ const getDistincEventsByCategory = async (category) => {
     ]);
 };
 
-const getNumOfEventsByCategory = async (category, num) => {
+
+const getNumOfEventsByCategory = async (category,num) => {
     return await Event.find({ category: category }).sort({ soldTickets: -1 }).limit(parseInt(num));
 };
 
@@ -201,5 +210,7 @@ module.exports = {
     deleteEvent,
     deleteEventTickets,
     getNumOfEvents,
-    homePageSearch
+    getEventsByArtist,
+    homePageSearch,
+    getEventsByName
 }
