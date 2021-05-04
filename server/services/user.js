@@ -66,7 +66,6 @@ const updateUser = async (id, body) => {
         return null;
 
     user.email = body.email;
-    user.password =  body.password;
     user.userId = body.userId;
     user.firstName = body.firstName;
     user.lastName = body.lastName;

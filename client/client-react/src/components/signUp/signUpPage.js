@@ -63,7 +63,10 @@ export default function RegisterPage() {
       fetch("http://localhost:8081/users/signup", requestOptions)
         .then((response) => response.json())
         .then((response) => auth.login(response.userId, response.token));
-    } catch (err) {}
+    } catch (err) {
+      console.log("ERRORR!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      console.log(err);
+    }
   };
 
   return (

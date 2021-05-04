@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/auth-context";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -123,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfilePage(props) {
+  const auth = useContext(AuthContext);
   const classes = useStyles();
   const [user, setUser] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -131,12 +133,20 @@ export default function ProfilePage(props) {
   const [userId, setUserId] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [phoneNumber, setPhoneNumber] = useState(undefined);
+
   useEffect(
     () =>
-      getOnlyUserById("60842ddd2220808854d9d74d")
+      getOnlyUserById(auth.userId)
         .then((res) => res.data)
-        .then((res) => setUser(res)),
-    []
+        .then((res) => {
+          setUser(res);
+          setEmail(res.email);
+          setFirstName(res.firstName);
+          setLastName(res.lastName);
+          setUserId(res.userId);
+          setPhoneNumber(res.phoneNumber);
+        }),
+    [auth]
   );
 
   return !user ? (
@@ -150,7 +160,6 @@ export default function ProfilePage(props) {
           id="input-with-icon-textfield"
           label="First Name"
           defaultValue={user.firstName} //TODO
-          value={firstName}
           InputProps={{
             style: { fontSize: 15 },
             startAdornment: (
@@ -265,7 +274,15 @@ export default function ProfilePage(props) {
       <Typography align="center">
         <Button
           onClick={() => {
-            updateUser(firstName, lastName, userId, email, password, phoneNumber);
+            updateUser(
+              auth.userId,
+              email,
+              userId,
+              firstName,
+              lastName,
+              phoneNumber
+            );
+            window.location.reload();
           }}
           variant="contained"
           color="primary"
