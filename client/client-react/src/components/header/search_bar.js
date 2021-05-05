@@ -75,7 +75,7 @@ function SearchBar() {
                     </div>
                     {/* <button onClick={() => homePageSearch(text ,text ,category, location)}type="submit">Search</button> */}
                   </form>
-                  <button
+                  <button className="hero__search__button"
                     onClick={() =>
                       homePageSearch(text, text, category, location)
                         .then((res) => res.data)
