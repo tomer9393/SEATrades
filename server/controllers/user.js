@@ -3,7 +3,7 @@ const ticketService = require("../services/ticket");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const HttpError = require("../models/http-error");
+//const HttpError = require("../models/http-error");
 
 const createUser = async (req, res, next) => {
   let hashedPassword;

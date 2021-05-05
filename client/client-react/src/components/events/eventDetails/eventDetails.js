@@ -3,6 +3,7 @@ import Breadcrumb from './breadcrumb';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getEventById } from "../../../api/EventAPI.js";
+import EventList from "../eventList/eventList";
 
 function EventDetails() {
   //const event = this.props.event; 
@@ -15,7 +16,7 @@ function EventDetails() {
     getEventById(id).then((res) => {
       setEvents(res.data);
     });
-  }, []);
+  }, [id]);
 
   return !event ? (
     <div>Loading...</div>
@@ -31,33 +32,28 @@ function EventDetails() {
                   Welcome to
                   <br /> {event.name}
                 </h2>
-                <a href="/Contact" className="primary-btn">
-                  Contact Us
-                </a>
+                <div className="col-lg-10 col-md-6">
+                <div className="listing__item">
+                  <div className="listing__item__pic set-bg" style={{backgroundImage: `url(${event.imgUrl})`}}>
+                  </div>
+                  <div className="listing__item__text">
+                    <div className="listing__item__text__inside">
+                      <h5>{event.name}</h5>
+                      <div className="listing__item__text__rating">
+                        <h6>Starting Price: ₪{event.minPrice}</h6>
+                      </div>
+                      <ul>
+                        <li>
+                          <span className="icon_pin_alt" /> {event.location}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
               </div>
             </div>
             <div className="col-lg-7 col-md-7">
-              <div className="about__text">
-                <p>Have you ever bought an event ticket and could not attend  ? </p>
-                <p>Got a ticket to the Champions League final monthes ahead and then find out that your best friend is getting married that day  ?</p>
-                <p>You and your friends are going to see your favorite artist perform but you find out that your tickets are not in the same area  ?</p>
-                <p>Have a ticket for a show but suddenly there is a rush at work and you prefer to go at a different time  ?</p>
-                <h3>SEATrades is here for you !</h3>
-                <br />
-                <h5>SEATrades is a platform that centralizes the customer the options of buying and trading event tickets
-                    in a unique, convenient and user-friendly interface.
-                </h5>
-                <div className="about__text">
-                <h5>
-                  Do you want to know how we do it? 
-                  
-                </h5>
-                <span><a href="/HowItWorks" className="primary-btn">
-                  How It Works
-                </a></span>
-
-              </div>
-              </div>
             </div>
           </div>
         </div>

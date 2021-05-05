@@ -7,7 +7,7 @@ function MostSearch() {
   const [events, setEvents] = useState(undefined);
 
   useEffect(() => {
-    getNumOfEventsByCategory(name, 2).then((res) => {
+    getNumOfEventsByCategory(name, 6).then((res) => {
       setEvents(res.data);
     });
   }, [name]);

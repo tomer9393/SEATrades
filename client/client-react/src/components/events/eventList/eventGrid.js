@@ -6,7 +6,9 @@ function eventGrid(props) {
   const event = props.event;
   var date = new Date(event.date);
   var formattedDate = format(date, "dd/MM/yyyy");
-  var ticketsAvailable = (event.totalTickets - event.soldTickets)
+  var ticketsAvailable = (event.totalTickets - event.soldTickets);
+  var soldOut = event.soldOut;
+
     return (
       <>
       <div className="event-grids">
@@ -16,24 +18,33 @@ function eventGrid(props) {
             <li className="hedding">{formattedDate}</li>
           </ul>
           <div className="clearfix"> </div>
+          </div>
+        <div className="col-md-3 event-grid">
+        <ul>
+           <li className="hedding" >
+           <i className="fa fa-location-arrow"></i> {event.location}
+          </li>
+        </ul>
+        <div className="clearfix"> </div>
         </div>
-        <div className="col-md-4 event-grid large-text">
-           <p >
-            location: {event.location}
-          </p>
-        </div>
-        <div className="col-md-2 event-grid large-text">
-          <p className="text">Starting price at: ₪{event.minPrice}</p>
+        <div className="col-md-3 event-grid">
+        <ul>
+           <li className="large-text-grid" >
+           Starting price at:&nbsp;&nbsp;</li>
+           <li className="hedding" style={{ color: 'green' }} > ₪{event.minPrice}
+          </li>
+        </ul>
+        <div className="clearfix"> </div>
         </div>
         <div className="col-md-3 event-grid text-button">
-          <ul>
-            <li className="num">{ticketsAvailable} tickets Available</li>
-            <Link to={`/EventDetails/${event._id}`}>
-            <li className="button yellow">
-              <a>Buy Ticket</a>
-            </li>
-            </Link>
+          <ul >
+          {
+          soldOut==true
+          ? <Link to="/" className="disabledCursor" onClick={ (e) => e.preventDefault() }><li className="button yellow"><a>{ticketsAvailable} tickets Available</a></li></Link>
+          : <Link to={`/EventDetails/${event._id}`} className="notDisabled"><li className="button yellow"><a>{ticketsAvailable} tickets Available</a></li></Link>
+          }
           </ul>
+          <div className="clearfix"> </div>
         </div>
         <div className="clearfix"> </div>
       </div>

@@ -25,15 +25,9 @@ function App() {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/Category/:name"> 
-        <CategoryPage />
-      </Route>
-      <Route path="/EventsList/:name">
-        <EventsList />
-      </Route>
-      <Route path="/EventDetails/:id">
-        <EventDetails />
-      </Route>
+      <Route path="/Category/:name" component={(props) => <CategoryPage {...props}/>} />
+      <Route path="/EventsList/:name" component={(props) => <EventsList {...props}/>} />
+      <Route path="/EventDetails/:id" component={(props) => <EventDetails {...props}/>} />
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>
@@ -56,15 +50,9 @@ function App() {
       <Route path="/" exact>
         <HomePage />
       </Route>
-      <Route path="/Category/:name"> 
-        <CategoryPage />
-      </Route>
-      <Route path="/EventsList/:name">
-        <EventsList />
-      </Route>
-      <Route path="/EventDetails/:id">
-        <EventDetails />
-      </Route>
+      <Route path="/Category/:name" component={(props) => <CategoryPage {...props}/>} />
+      <Route path="/EventsList/:name" component={(props) => <EventsList {...props}/>} />
+      <Route path="/EventDetails/:id" component={(props) => <EventDetails {...props}/>} />
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>
