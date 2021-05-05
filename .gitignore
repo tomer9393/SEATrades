@@ -6,6 +6,7 @@ client/client-react/.eslintcache
 /node_modules
 server/node_modules
 client/client-react/node_modules
+client/client-angular/node_modules
 /.pnp
 .pnp.js
 

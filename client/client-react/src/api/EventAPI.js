@@ -65,7 +65,7 @@ export const getEventById = async (id) => {
 
 export const homePageSearch = async (name ,artist ,category, location) => {
     try {
-        const events = await axios.get(`${baseUrl}/search/${name}/${artist}/${category}}/${location}`);
+        const events = await axios.get(`${baseUrl}/search/${name}/${artist}/${category}/${location}`);
         return events;
     } catch (error) { throw new Error(error); }
 }
