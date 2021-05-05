@@ -39,27 +39,32 @@ export default function LoginPage() {
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState();
   const history = useHistory();
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
-    try {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      };
-      fetch("http://localhost:8081/users/login", requestOptions)
-        .then((response) => response.json())
-        .then((response) => {
-          auth.login(response.userId, response.token);
-          history.push("/");
-        });
-    } catch (err) {/* empty */}
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    };
+
+    fetch("http://localhost:8081/users/login", requestOptions)
+      .then((response) => response.json())
+      .then((response) => {
+        auth.login(response.userId, response.token);
+        history.push("/");
+      })
+      .catch((error) => {
+        console.log("YYYYYY");
+        console.log(error);
+        // setError(error);
+      });
   };
 
   return (
@@ -115,6 +120,7 @@ export default function LoginPage() {
               <Link href="/SignUp" variant="body2" style={{ color: "blue" }}>
                 {"Don't have an account? Sign Up"}
               </Link>
+              <div style={{ color: "red" }}>{error}</div>
             </Grid>
           </Grid>
         </form>

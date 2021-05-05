@@ -10,7 +10,6 @@ export const signUp = async (
   lastName,
   phoneNumber
 ) => {
-  
   try {
     const newUser = {
       email: email,
@@ -41,7 +40,6 @@ export const getOnlyUserById = async (id) => {
 export const updateUser = async (
   id,
   email,
-  password,
   userId,
   firstName,
   lastName,
@@ -50,7 +48,6 @@ export const updateUser = async (
   try {
     const newUser = {
       email: email,
-      password: password,
       userId: userId,
       firstName: firstName,
       lastName: lastName,
