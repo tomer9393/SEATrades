@@ -20,21 +20,30 @@ function EventList() {
     <EventGrid key={event._id} event={event} />
   ));
 
-  const bg = events;
+  const event = events;
 
 
   return !events ? (
     <div>Loading...</div>
   ) : (
     <>
-      <Breadcrumb bg={bg[0].imgUrl} />
-      <div id="event" className="content-event">
-        {}
+        <Breadcrumb event={event[0]} />
+        <section className="about spad">
         <div className="container">
-          {singleEventsPosts}
+          <div className="col-lg-5 col-md-5">
+            <div className="about__title">
+            <h1>List Of Dates</h1>
+            </div>
+            <div className="col-lg-4 col-md-4">
+              <div id="event" className="content-event">
+              <div className="container">
+                {singleEventsPosts}
+              </div>
+              </div>
+          </div>
+          </div>
         </div>
-        {}
-      </div>
+      </section>
       </>
     );
 }

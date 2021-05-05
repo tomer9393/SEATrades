@@ -55,10 +55,10 @@ function SearchBar() {
                         setSearchText(text.target.value || "")
                       }
                     />
-                    <div className="select__option">
-                      <Dropdown
+                    <div className="select__option" style={{borderRadius: '5px'}}>
+                      <Dropdown style={{borderRadius: '5px'}}
                         placeholder="Select a category"
-                        options={dropdownOptions1}
+                        options={dropdownOptions1 }
                         onChange={(_, item) => {
                           setSelectedCategory(item.key);
                         }}

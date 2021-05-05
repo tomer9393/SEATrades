@@ -25,7 +25,7 @@ function SingleSearchPost(props) {
         </div>
         <div className="listing__item__text">
           <div className="listing__item__text__inside">
-            <h5>{event._id}</h5>
+            <h5>{event.name}</h5>
             <div className="listing__item__text__rating">
               {/* <div className="listing__item__rating__star">
                 <span className="icon_star" />
@@ -47,9 +47,9 @@ function SingleSearchPost(props) {
             </ul>
           </div>
           <div className="listing__item__text__info">
-          <Link to={`/EventsList/${event._id}`}>
+          <Link to={`/EventDetails/${event._id}`}>
           <a className="listing__item__text__info__center">
-            <img src="img/hero/tickets.png" alt="" /> See tickets
+            <img src="img/hero/tickets.png" alt="" /> Buy Tickets
             </a>
             </Link>
           </div>

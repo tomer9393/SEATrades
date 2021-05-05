@@ -8,7 +8,7 @@ function HomePage() {
         <>
         <SearchBar/>
         <MostSearch /> 
-        <hr style={{width: '70%'}}></hr>
+        <hr style={{width: '70%'}}></hr> 
         <Newslatter />
         </>
     );
