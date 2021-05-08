@@ -101,7 +101,7 @@ const updateEvent = async (req, res) => {
     res.status(400).json("id is required");
   }
 
-  const event = await eventService.updateEvent(req.params.id, req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location);
+  const event = await eventService.updateEvent(req.params.id, req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location, req.body.minPrice, req.body.totalTickets, req.body.soldTickets, req.body.soldOut);
   if (!event) {
     return res.status(404).json('Event not found');
   }

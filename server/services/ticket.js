@@ -4,13 +4,53 @@ const Ticket = require('../models/ticket');
 const { events } = require('../models/ticket');
 const { json } = require('body-parser');
 const { request } = require('http');
+const { ObjectId } = require('mongodb');
+var QRCode = require('qrcode');
+var crypto = require('crypto');
 
+
+const generateCode = async (user, event, section, row, seat) => {
+
+    var prop = [user,event,section,row,seat].toString();
+    var code;
+    try {
+        code = await crypto.createHash("sha256").update(prop).digest("hex");
+    } catch (err) {
+        console.error(err)
+    }
+
+    return code;
+};
+
+const generateQR = async (code) => {
+
+    var QR;
+    try {
+        QR = await QRCode.toString(code);
+        console.log(QR)
+    } catch (err) {
+        console.error(err)
+    }
+
+    return QR;
+};
 
 const createTicket = async (body) => {
+
+    var user = await serviceUser.getUserById(body.user);
+    var userId = user.userId;
+    var event = body.event;
+    var section = body.section;
+    var row = body.row;
+    var seat = body.seat;
+
+    var code = await generateCode(userId, event, section, row, seat);
+    var QRcode = await generateQR(code);
+
     const ticket = new Ticket({
         user : body.user,
-        code : body.code,
-        QRcode: body.QRcode,
+        code : code,
+        QRcode: QRcode,
         event : body.event,
         section : body.section,
         row : body.row,
@@ -56,8 +96,47 @@ const getTicketsByEventId = async (id) => {
 };
 
 const getTicketsByUserId = async (userId) => {
-    return await Ticket.find({'user': Object(userId)});
+    //return await Ticket.find({'user': Object(userId)});
+
+    var query = [
+        
+    {
+        $lookup: {
+            from: "events",
+            localField: "event",
+            foreignField: "_id",
+            as: "event"
+        }
+    }, 
+    {
+        $unwind: {
+            path: "$event"
+        }
+    }, 
+    {
+        $project: {
+            "_id": 1,
+            "QRcode": 2,
+            "event.name": 3,
+            "event.location": 4,
+            "event.date": 5,
+            "section": 6,
+            "row": 7,
+            "seat": 8,
+            "user":9
+        }
+    },
+    {
+        $match: 
+        {
+            user: ObjectId(userId)
+        }
+    }
+]; 
+
+    return await Ticket.aggregate(query);
 };
+
 
 const updateTicket = async (id, body) => {
     const ticket = await getTicketById(id);
@@ -92,7 +171,7 @@ const updateTicketBySwap = async (id, user) => {
     ticket.user = user;
 
     
-    // add ticket 2 to user 1 & ticket 1 to user 2
+    // add ticket to user
 
     await serviceUser.updateTicketOfUser(user, ticket);
 
