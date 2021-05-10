@@ -181,13 +181,18 @@ const homePageSearch = async (name, artist, category, location) => {
     return await Event.aggregate([
         {
             $match: {
+  
+                $or: [
+                  { name: {$regex: name, $options: 'i' } },
+                  { artist: { $regex: artist, $options: 'i' } }
+            
+                ],
                 $and: [
-                    { name: { $regex: name, $options: 'i' } },
-                    { artist: { $regex: artist, $options: 'i' } },
                     { category: { $regex: category, $options: 'i' } },
                     { location: { $regex: location, $options: 'i' } }
-
                 ]
+                  
+              
             }
         }
     ]);
