@@ -9,7 +9,6 @@ function ProfilePage() {
         <>
         <Breadcrumb/>
         <Profile />
-        <hr style={{width: '70%'}}></hr>
         </>
     );
 }

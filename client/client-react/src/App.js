@@ -16,6 +16,8 @@ import ProfilePage from "./components/profilePage/profilePage";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useAuth } from "./components/hooks/auth-hook";
 import { AuthContext } from "./components/context/auth-context";
+import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
+import "../src/App.css"
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -40,6 +42,9 @@ function App() {
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="/Profile" exact>
         <ProfilePage />
+      </Route>
+      <Route path="/MyTickets" exact>
+        <MyTicketsPage />
       </Route>
       <Route path="*">
         <PageNotFound />
@@ -71,6 +76,7 @@ function App() {
       <Route path="/Profile" exact>
         <ProfilePage />
       </Route>
+    
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="*">
         <PageNotFound />

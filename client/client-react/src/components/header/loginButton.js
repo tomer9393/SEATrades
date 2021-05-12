@@ -1,8 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth-context";
-import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const LoginButton = () => {
   const auth = useContext(AuthContext);
@@ -31,10 +40,14 @@ const LoginButton = () => {
       keepMounted
       open={Boolean(anchorEl)}
       onClose={handleClose}
+      aria-haspopup="true"
+    
     >
+      
       {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-     <Link to="/Profile"><MenuItem onClick={handleClose} >My profile</MenuItem></Link> 
-      <MenuItem onClick={() =>{ auth.logout(); window.parent.location = "/" }} >Logout</MenuItem>
+     <Link to="/Profile"> <MenuItem  onClick={handleClose}><AccountBoxIcon style={{margin:5}}/> {' '} My profile </MenuItem></Link> 
+     <Link to="/MyTickets"><MenuItem onClick={handleClose} > <ConfirmationNumberIcon style={{margin:5}}/>My tickets</MenuItem></Link> 
+      <MenuItem onClick={() =>{ auth.logout(); window.parent.location = "/" }} ><ExitToAppIcon style={{margin:5}}/>Logout</MenuItem>
     </Menu>
   </div>
   : <Link to="/SignIn">
