@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { AuthContext } from "../context/auth-context";
 import { useHttpClient } from "../hooks/http-hook";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +37,7 @@ export default function RegisterPage() {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const classes = useStyles();
+  const history = useHistory();
 
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -62,7 +64,10 @@ export default function RegisterPage() {
       };
       fetch("http://localhost:8081/users/signup", requestOptions)
         .then((response) => response.json())
-        .then((response) => auth.login(response.userId, response.token));
+        .then((response) => {
+          auth.login(response.userId, response.token);
+          history.push("/");
+        });
     } catch (err) {
       console.log("ERRORR!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       console.log(err);

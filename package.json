@@ -28,12 +28,14 @@
   "dependencies": {
     "axios": "^0.21.1",
     "concurrently": "^5.3.0",
+    "data-grid": "^3.0.0",
     "node-sass": "^5.0.0",
     "react-alert": "^7.0.2",
     "react-datepicker": "^3.6.0",
     "react-multi-carousel": "^2.6.2",
     "react-widgets": "^4.6.1",
     "recursive": "^0.0.2",
-    "recursive-install": "^1.4.0"
+    "recursive-install": "^1.4.0",
+    "x-grid": "^0.1.0"
   }
 }
