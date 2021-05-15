@@ -1,13 +1,54 @@
 const User = require('../models/user');
+const { ObjectId } = require('mongodb');
+var QRCode = require('qrcode');
+var crypto = require('crypto');
+
+const generateCode = async (userId, email, password, phone) => {
+
+    var prop = [userId,email,password,phone].toString();
+    var code;
+    try {
+        code = await crypto.createHash("sha256").update(prop).digest("hex");
+    } catch (err) {
+        console.error(err)
+    }
+
+    return code;
+};
+
+const generateQR = async (code) => {
+
+    var QR;
+    try {
+        QR = await QRCode.toString(code);
+        console.log(QR)
+    } catch (err) {
+        console.error(err)
+    }
+
+    return QR;
+};
 
 const createUser = async (body) => {
+
+    var userId = body.userId;
+    var email = body.email;
+    var password = body.password;
+    var phone = body.phoneNumber;
+
+    var code = await generateCode(userId, email, password, phone);
+    var QRcode = await generateQR(code);
+
+
     const user = new User({
         email: body.email,
         password: body.password,
         userId: body.userId,
         firstName: body.firstName,
         lastName: body.lastName,
-        phoneNumber: body.phoneNumber
+        phoneNumber: body.phoneNumber,
+        code: code,
+        QRcode: QRcode
     });
 
     await user.save();
@@ -62,14 +103,47 @@ const getOnlyUserById = async (id) => {
 
 const updateUser = async (id, body) => {
     const user = await getUserById(id);
-    if (!user)
+    if (!user){
         return null;
+    }
 
-    user.email = body.email;
-    user.userId = body.userId;
-    user.firstName = body.firstName;
-    user.lastName = body.lastName;
-    user.phoneNumber = body.phoneNumber;
+    var userId = body.userId;
+    var email = body.email;
+    var password = body.password;
+    var phone = body.phoneNumber;
+    var firstName = body.firstName;
+    var lastName = body.lastName;
+
+    if(!userId){
+        userId = user.userId;
+    }
+    if(!email){
+        email = user.email;
+    }
+    if(!password){
+        password = user.password;
+    }
+    if(!phone){
+        phone = user.phoneNumber;
+    }
+    if(!firstName){
+        firstName = user.firstName;
+    }
+    if(!lastName){
+        lastName = user.lastName;
+    }
+
+
+    var code = await generateCode(userId, email, password, phone);
+    var QRcode = await generateQR(code);
+
+    user.email = email;
+    user.userId = userId;
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.phoneNumber = phone;
+    user.code = code;
+    user.QRcode = QRcode;
 
     await user.save();
     return user;
