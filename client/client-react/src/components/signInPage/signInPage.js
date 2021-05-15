@@ -39,7 +39,8 @@ export default function LoginPage() {
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [error, setError] = useState();
+  const [isWrongUsername, setIsWrongUsername] = useState();
+  const [isWrongPassword, setIsWrongPassword] = useState();
   const history = useHistory();
 
   const authSubmitHandler = async (event) => {
@@ -55,15 +56,29 @@ export default function LoginPage() {
     };
 
     fetch("http://localhost:8081/users/login", requestOptions)
-      .then((response) => response.json())
       .then((response) => {
-        auth.login(response.userId, response.token);
-        history.push("/");
+        setIsWrongUsername(false);
+        setIsWrongPassword(false);
+
+        switch (response.status) {
+          case 400:
+            setIsWrongPassword(true);
+            break;
+          case 403:
+            setIsWrongUsername(true);
+            break;
+          default:
+            return response.json();
+        }
+      })
+      .then((response) => {
+        if (response.userId && response.token) {
+          auth.login(response.userId, response.token);
+          history.push("/");
+        }
       })
       .catch((error) => {
-        console.log("YYYYYY");
         console.log(error);
-        // setError(error);
       });
   };
 
@@ -102,6 +117,12 @@ export default function LoginPage() {
             autoComplete="current-password"
             onChange={(event) => setPassword(event.target.value)}
           />
+          {isWrongUsername && (
+            <div style={{ color: "red" }}>Username does not exist</div>
+          )}
+          {isWrongPassword && (
+            <div style={{ color: "red" }}>Wrong password</div>
+          )}
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -120,7 +141,6 @@ export default function LoginPage() {
               <Link href="/SignUp" variant="body2" style={{ color: "blue" }}>
                 {"Don't have an account? Sign Up"}
               </Link>
-              <div style={{ color: "red" }}>{error}</div>
             </Grid>
           </Grid>
         </form>
