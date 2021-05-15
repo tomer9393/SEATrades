@@ -162,7 +162,7 @@ export default function RegisterPage() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="confirm password"
                 type="password"
                 id="confirmPassword"
                 autoComplete="current-password"
@@ -171,7 +171,7 @@ export default function RegisterPage() {
             </Grid>
             {!isPasswordsMatch && (
               <div style={{ color: "red" }}>
-                Those passwords did not match. Try again
+                Password does not match. Try again
               </div>
             )}
             <Grid item xs={12}>
