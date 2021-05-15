@@ -45,15 +45,39 @@ export default function RegisterPage() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+  const [isUnvalidEmail, setIsUnvalidEmail] = useState();
+  const [isUnvalidPhone, setIsUnvalidPhone] = useState();
   const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState();
+  const [isExistingUser, setIsExistingUser] = useState();
 
+  const emailPattern = new RegExp(
+    /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+  );
+  const PhonePattern= new RegExp(/^[0-9\b]+$/);
+
+  
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
+    setIsExistingUser(false);
+    setIsUnvalidEmail(false);
+    setIsUnvalidPhone(false);
+    setIsPasswordsMatch(false);
+
+    const isEmailValid = emailPattern.test(email);
+    if (!isEmailValid) {
+      setIsUnvalidEmail(true);
+    }
+
+    const isPhoneValid = PhonePattern.test(phoneNumber);
+    if (!isPhoneValid) {
+      setIsUnvalidPhone(true);
+    }
     const isSamePasswords = password === confirmPassword;
     setIsPasswordsMatch(isSamePasswords);
-    if (isSamePasswords) {
+
+    if (isSamePasswords && isEmailValid && isPhoneValid) {
       try {
         const requestOptions = {
           method: "POST",
@@ -68,10 +92,17 @@ export default function RegisterPage() {
           }),
         };
         fetch("http://localhost:8081/users/signup", requestOptions)
-          .then((response) => response.json())
           .then((response) => {
-            auth.login(response.userId, response.token);
-            history.push("/");
+            if (response.status === 422) {
+              setIsExistingUser(true);
+            }
+            return response.json();
+          })
+          .then((response) => {
+            if (response.userId && response.token) {
+              auth.login(response.userId, response.token);
+              history.push("/");
+            }
           });
       } catch (err) {
         console.log(err);
@@ -139,6 +170,11 @@ export default function RegisterPage() {
                 autoComplete="email"
                 onChange={(event) => setEmail(event.target.value)}
               />
+              {isUnvalidEmail && (
+                <div style={{ color: "red" }}>
+                  Please enter valid email address
+                </div>
+              )}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -185,6 +221,11 @@ export default function RegisterPage() {
                 autoComplete="lname"
                 onChange={(event) => setPhoneNumber(event.target.value)}
               />
+               {isUnvalidPhone && (
+                <div style={{ color: "red" }}>
+                  Please enter valid phone number
+                </div>
+              )}
             </Grid>
           </Grid>
           <Button
@@ -196,6 +237,9 @@ export default function RegisterPage() {
           >
             Sign Up
           </Button>
+          {isExistingUser && (
+            <div style={{ color: "red" }}>User already exists</div>
+          )}
           <Grid container justify="flex-start">
             <Grid item>
               <Link href="/SignIn" variant="body2" style={{ color: "blue" }}>
