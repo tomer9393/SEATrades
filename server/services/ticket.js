@@ -5,52 +5,15 @@ const { events } = require('../models/ticket');
 const { json } = require('body-parser');
 const { request } = require('http');
 const { ObjectId } = require('mongodb');
-var QRCode = require('qrcode');
-var crypto = require('crypto');
-
-
-const generateCode = async (user, event, section, row, seat) => {
-
-    var prop = [user,event,section,row,seat].toString();
-    var code;
-    try {
-        code = await crypto.createHash("sha256").update(prop).digest("hex");
-    } catch (err) {
-        console.error(err)
-    }
-
-    return code;
-};
-
-const generateQR = async (code) => {
-
-    var QR;
-    try {
-        QR = await QRCode.toString(code);
-        console.log(QR)
-    } catch (err) {
-        console.error(err)
-    }
-
-    return QR;
-};
 
 const createTicket = async (body) => {
 
     var user = await serviceUser.getUserById(body.user);
-    var userId = user.userId;
-    var event = body.event;
-    var section = body.section;
-    var row = body.row;
-    var seat = body.seat;
-
-    var code = await generateCode(userId, event, section, row, seat);
-    var QRcode = await generateQR(code);
 
     const ticket = new Ticket({
         user : body.user,
-        code : code,
-        QRcode: QRcode,
+        code : user.code,
+        QRcode: user.QRcode,
         event : body.event,
         section : body.section,
         row : body.row,
@@ -59,7 +22,6 @@ const createTicket = async (body) => {
         forTrade : body.forTrade
     });
 
-// בהמשך להוסיף פונקציה של עירבול קוד ויצירת קוד קיואר לפי היוזר
 
     const isSoldOut = await eventService.isSoldOut(body.event);
 
@@ -95,8 +57,9 @@ const getTicketsByEventId = async (id) => {
     return await Ticket.find({'event' : [id]});
 };
 
+
+
 const getTicketsByUserId = async (userId) => {
-    //return await Ticket.find({'user': Object(userId)});
 
     var query = [
         
@@ -140,44 +103,81 @@ const getTicketsByUserId = async (userId) => {
 
 const updateTicket = async (id, body) => {
     const ticket = await getTicketById(id);
-    if (!ticket)
+    if (!ticket){
         return null;
+    }
+    if(!body.user){
+        body.user = ticket.user;
+    }
+    var user = await serviceUser.getUserById(body.user);
+
+    var event = body.event;
+    var section = body.section;
+    var row = body.row;
+    var seat = body.seat;
+    var price = body.price;
+    var forTrade = body.forTrade;
+
+    if(!event){
+        event = ticket.event;
+    }
+    if(!section){
+        section = ticket.section;
+    }
+    if(!row){
+        row = ticket.row;
+    }
+    if(!seat){
+        seat = ticket.seat;
+    }
+    if(!price){
+        price = ticket.price;
+    }
+    if(!forTrade){
+        forTrade = ticket.forTrade;
+    }
 
     ticket.user = body.user;
-    ticket.code = body.code;
-    ticket.QRcode = body.QRcode;
-    ticket.event = body.event;
-    ticket.section = body.section;
-    ticket.row = body.row;
-    ticket.seat = body.seat;
-    ticket.price = body.price;
-    ticket.forTrade = body.forTrade;
-
-    // בהמשך להוסיף פונקציה של עירבול קוד ויצירת קוד קיואר לפי היוזר
-
-    // await eventService.updateTicketOfEvent(body.event, ticket);
-    // await serviceUser.removeUserTicket(ticket); //?????
-    // await serviceUser.updateTicketOfUser(body.user, ticket);
+    ticket.code = user.code;
+    ticket.QRcode = user.QRcode;
+    ticket.event = event;
+    ticket.section = section;
+    ticket.row = row;
+    ticket.seat = seat;
+    ticket.price = price;
+    ticket.forTrade = forTrade;
     
     await ticket.save();
     return ticket;
 };
 
-const updateTicketBySwap = async (id, user) => {
+const updateTicketBySwap = async (id, userObjectId) => {
     const ticket = await getTicketById(id);
-    if (!ticket)
+    if (!ticket){
         return null;
+    }
+        
+    const user = await serviceUser.getUserById(userObjectId);
+    if(!user){
+        return null;
+    }
 
+    const event = await eventService.getEventById(ticket.event);
+    if(!event){
+        return null;
+    }
+
+    //update the ticket - user, code & QRcode - function
     ticket.user = user;
+    ticket.code = user.code;
+    ticket.QRcode = user.QRcode;
 
-    
-    // add ticket to user
-
-    await serviceUser.updateTicketOfUser(user, ticket);
-
-    //update the code & QRcode - function
-    
     await ticket.save();
+
+    // add ticket to user in tickets array
+
+    await serviceUser.updateTicketOfUser(userObjectId, ticket);
+
     return ticket;
 };
 
