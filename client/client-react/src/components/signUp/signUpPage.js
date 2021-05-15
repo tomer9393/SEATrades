@@ -44,33 +44,38 @@ export default function RegisterPage() {
   const [userId, setUserId] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState();
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
-    try {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: firstName,
-          lastName: lastName,
-          userId: userId,
-          email: email,
-          password: password,
-          phoneNumber: phoneNumber,
-        }),
-      };
-      fetch("http://localhost:8081/users/signup", requestOptions)
-        .then((response) => response.json())
-        .then((response) => {
-          auth.login(response.userId, response.token);
-          history.push("/");
-        });
-    } catch (err) {
-      console.log("ERRORR!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      console.log(err);
+    const isSamePasswords = password === confirmPassword;
+    setIsPasswordsMatch(isSamePasswords);
+    if (isSamePasswords) {
+      try {
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            userId: userId,
+            email: email,
+            password: password,
+            phoneNumber: phoneNumber,
+          }),
+        };
+        fetch("http://localhost:8081/users/signup", requestOptions)
+          .then((response) => response.json())
+          .then((response) => {
+            auth.login(response.userId, response.token);
+            history.push("/");
+          });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -145,9 +150,30 @@ export default function RegisterPage() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(event) => setPassword(event.target.value)}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  setConfirmPassword;
+                }}
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="confirmPassword"
+                autoComplete="current-password"
+                onChange={(event) => setConfirmPassword(event.target.value)}
+              />
+            </Grid>
+            {!isPasswordsMatch && (
+              <div style={{ color: "red" }}>
+                Those passwords did not match. Try again
+              </div>
+            )}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
