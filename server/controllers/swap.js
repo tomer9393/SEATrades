@@ -25,18 +25,6 @@ const createSwap = async (req, res) => {
             return res.status(404).json('cant find ticket on user1 table to update');
         }
 
-        // // add ticket 2 to user 1 & ticket 1 to user 2
-
-        // const add_ticket2_to_user1 = await usersService.updateTicketOfUser(user1, ticket2);
-        // if (add_ticket2_to_user1.nModified === 0) {
-        //     return res.status(404).json('cant add ticket2 to user1 table to update');
-        // }
-
-        // const add_ticket1_to_user2 = await usersService.updateTicketOfUser(user2, ticket1);
-        // if (add_ticket1_to_user2.nModified === 0) {
-        //     return res.status(404).json('cant add ticket1 to user2 table to update');
-        // }
-
         
         // update ticket - update the user, code, codeQR, and ticketsUser
 
@@ -56,6 +44,26 @@ const createSwap = async (req, res) => {
     return res.status(501).json("The swap rejected");
 };
 
+const getTicketsForSwap = async (req, res) => {
+    const tickets = await swapService.getTicketsForSwap( req.params.ticketId);
+    if (!tickets) {
+        return res.status(500).json("Tickets not found");
+    }
+
+    res.json(tickets);
+};
+
+const ticketForSwap = async (req, res) => {
+    const ticket = await swapService.ticketForSwap( req.params.ticketId);
+    if (!ticket) {
+        return res.status(500).json("Tickets not found");
+    }
+
+    res.json(ticket);
+};
+
 module.exports = {
-    createSwap
+    createSwap,
+    getTicketsForSwap,
+    ticketForSwap
 }

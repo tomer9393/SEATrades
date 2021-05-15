@@ -21,4 +21,7 @@ router.route('/id/:id')
     .patch(ticketController.updateTicket) //עדכון בסיסי כרגע
     .delete(ticketController.deleteTicket); //V
 
+router.route('/byId/:ticketId')
+    .get(ticketController.getTicketByTicketId);
+
 module.exports = router;
