@@ -11,6 +11,7 @@ function SignUpPage() {
         <SignUp />
         </>
     );
+
 }
 
 export default SignUpPage;
