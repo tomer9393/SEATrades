@@ -79,20 +79,25 @@ const getTicketsByUserId = async (userId) => {
     {
         $project: {
             "_id": 1,
-            "QRcode": 2,
-            "event.name": 3,
-            "event.location": 4,
-            "event.date": 5,
-            "section": 6,
-            "row": 7,
-            "seat": 8,
-            "user":9
+            "event.name": 2,
+            "event.location": 3,
+            "event.date": 4,
+            "section": 5,
+            "row": 6,
+            "seat": 7,
+            "user":8,
+            "forTrade":9
         }
     },
     {
         $match: 
         {
             user: ObjectId(userId)
+        }
+    },  
+    {
+        $sort: {
+            "event.date": 1
         }
     }
 ]; 

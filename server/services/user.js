@@ -97,7 +97,7 @@ const removeUserTicket = async (ticketId) => {
 
 
 const getOnlyUserById = async (id) => {
-    return await User.findById(id,{'email':1, 'password':2, 'userId':3, 'firstName':4, 'lastName':5, 'phoneNumber':6});
+    return await User.findById(id,{'email':1, 'password':2, 'userId':3, 'firstName':4, 'lastName':5, 'phoneNumber':6, 'QRcode':7, 'code':8});
 };
 
 

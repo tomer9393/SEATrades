@@ -30,15 +30,15 @@ function EventList() {
         <Breadcrumb event={event[0]} />
         <section className="about spad">
         <div className="container">
-          <div className="col-lg-5 col-md-5">
-            <div className="about__title">
+          <div className="col-lg-12 col-md-12">
+            <div className="event__title">
             <h1>List Of Dates</h1>
             </div>
-            <div className="col-lg-4 col-md-4">
+            <div className="col-lg-12 col-md-12">
               <div id="event" className="content-event">
-              <div className="container">
+              {/* <div className="container"> */}
                 {singleEventsPosts}
-              </div>
+              {/* </div> */}
               </div>
           </div>
           </div>

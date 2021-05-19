@@ -1,6 +1,6 @@
 import React from "react";
 // import { Link } from "react-router-dom";
-// import LoginButton from "./loginButton";
+ //import LoginButton from "./loginButton";
 
 
 class Nav extends React.Component {
@@ -28,6 +28,9 @@ class Nav extends React.Component {
             Contact Us
             </a>
           </li>
+          {/* <li>
+          <LoginButton></LoginButton>
+          </li> */}
         </ul>
       </nav>
     );

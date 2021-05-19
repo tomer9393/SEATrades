@@ -1,5 +1,5 @@
 import React from "react";
-import Header from './components/header/header';
+import Header from './components/header/header2';
 import Footer from './components/footer/footer';
 import HomePage from './components/homePage/homePage';
 import AboutUsPage from './components/aboutUsPage/aboutUsPage';
@@ -13,8 +13,9 @@ import PageNotFound from './components/404PageNotFound/404PageNotFound';
 import SignInPage from "./components/signInPage/signInPage";
 import SignUpPage from "./components/signUp/signUpPage";
 import ProfilePage from "./components/profilePage/profilePage";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useAuth } from "./components/hooks/auth-hook";
+import { BrowserRouter, Route, Switch , Redirect} from "react-router-dom";
+import { useAuth  } from "./components/hooks/auth-hook";
+import { useProfile } from "./components/hooks/profile-hook";
 import { AuthContext } from "./components/context/auth-context";
 import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
 import "../src/App.css"
@@ -43,9 +44,9 @@ function App() {
       <Route path="/Profile" exact>
         <ProfilePage />
       </Route>
-      <Route path="/MyTickets" exact>
-        <MyTicketsPage />
-      </Route>
+      <Route path="/SignIn"><Redirect to="Profile" /></Route>
+      <Route path="/SignUp"><Redirect to="Profile" /></Route>
+      <Route path="/MyTickets" component={(props) => <MyTicketsPage {...props}/>} />
       <Route path="*">
         <PageNotFound />
       </Route>
@@ -73,10 +74,12 @@ function App() {
       <Route path="/SignUp">
         <SignUpPage />
       </Route>
-      <Route path="/Profile" exact>
-        <ProfilePage />
+      <Route path="/Profile">
+         <SignInPage />
       </Route>
-    
+      <Route path="/MyTickets" exact>
+        <SignInPage />
+      </Route>
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="*">
         <PageNotFound />
@@ -96,8 +99,10 @@ function App() {
         }}
       >
         <BrowserRouter basename="/">
+          
           <Header />
           <main>{routes}</main>
+          <hr style={{width: '70%'}}></hr> 
           <Footer />
         </BrowserRouter>
       </AuthContext.Provider>

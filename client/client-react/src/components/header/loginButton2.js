@@ -30,7 +30,7 @@ const LoginButton = () => {
 <div>
   {
     auth.isLoggedIn
-    ? <div className="header__menu__right">
+    ? <div>
     <a className="login-btn" onClick={handleClick}>
       <i className="fa fa-user" />
     </a>
@@ -38,23 +38,29 @@ const LoginButton = () => {
       id="simple-menu"
       anchorEl={anchorEl}
       keepMounted
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      transformOrigin={{ horizontal: "center" }}
       open={Boolean(anchorEl)}
       onClose={handleClose}
       aria-haspopup="true"
+      
+      // disableScrollLock={true}
+      //container={this.AnchorEl.parentNode}
     
     >
-      
+          
       {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
      <Link to="/Profile"> <MenuItem  onClick={handleClose}><AccountBoxIcon style={{margin:5}}/> {' '} My profile </MenuItem></Link> 
-     <Link to="/MyTickets"><MenuItem onClick={handleClose} > <ConfirmationNumberIcon style={{margin:5}}/>My tickets</MenuItem></Link> 
+     <Link to="/MyTickets"><MenuItem onClick={handleClose} > <ConfirmationNumberIcon style={{margin:5}}/> My tickets</MenuItem></Link> 
       <MenuItem onClick={() =>{ auth.logout(); window.parent.location = "/" }} ><ExitToAppIcon style={{margin:5}}/>Logout</MenuItem>
     </Menu>
   </div>
   : <Link to="/SignIn">
-    {/* <div className="header__menu__right"> */}
-          <a className="login-btn" ><i className="fa fa-user" /></a>
-          {/* </div> */}
-     
+    <div>
+    <a className="login-btn" >
+      <i className="fa fa-user" />
+    </a>
+    </div>
   </Link>
 
   }
