@@ -1,8 +1,8 @@
-import SingleEventPost from "./SinglePopularPost.js";
+import SinglePopularPost from "./SinglePopularPost.js";
 import { getNumOfEventsByCategory } from "../../api/EventAPI.js";
 import React, { useEffect, useState } from "react";
 
-function MostSearch() {
+function MostPopular() {
   const [name, setName] = React.useState("Concerts");
   const [events, setEvents] = useState(undefined);
 
@@ -12,8 +12,8 @@ function MostSearch() {
     });
   }, [name]);
 
-  const singleEventsPosts = events?.map((event) => (
-    <SingleEventPost key={event._id} event={event} />
+  const SinglePopularPosts = events?.map((event) => (
+    <SinglePopularPost key={event._id} event={event} />
   ));
 
   return !events ? (
@@ -101,7 +101,7 @@ function MostSearch() {
               <div className="tab-content">
                 <div className="tab-pane active" role="tabpanel">
                   <div className="row">
-                  {singleEventsPosts}
+                  {SinglePopularPosts}
                   </div>
                 </div>
               </div>
@@ -113,4 +113,4 @@ function MostSearch() {
   );
   }
 
-export default MostSearch;
+export default MostPopular;

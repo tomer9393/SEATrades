@@ -67,6 +67,7 @@ export default function RegisterPage() {
         .then((response) => {
           auth.login(response.userId, response.token);
           history.push("/");
+          window.location.reload();
         });
     } catch (err) {
       console.log("ERRORR!!!!!!!!!!!!!!!!!!!!!!!!!!!!");

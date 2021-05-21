@@ -37,9 +37,18 @@ export default function MyTickets() {
   );
 
   //const ticket = tickets;
+  console.log(tickets);
 
-  return !tickets ? (
-    <div>Loading...</div>
+  return tickets==0 ? (
+    <section className="about spad">
+    <div className="container">
+      <div className="col-lg-12 col-md-12">
+        <div className="event__title">
+        <h1>No Ticket Available</h1>
+        </div>
+      </div>
+    </div>
+  </section>
   ) : (
     <>
     <section className="about spad">
