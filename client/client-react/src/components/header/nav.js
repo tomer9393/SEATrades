@@ -4,7 +4,7 @@ import { getOnlyUserById } from "../../api/UserAPI";
 import { useProfile } from "../hooks/profile-hook";
 
 
-function UserProfile (){
+const MyProfile = React.memo(function UserProfile (){
   const auth = useContext(AuthContext);
   const user = useProfile(auth.userId);
   console.log(user);
@@ -28,7 +28,7 @@ function UserProfile (){
       </ul>
     </>
     );
-}
+});
 
 
 class Nav extends React.Component{
@@ -48,7 +48,7 @@ class Nav extends React.Component{
           <li><a href="/Contact">Contact Us</a></li>
       </ul>
       <div id="vl" className="header__menu_vl"></div>
-      <UserProfile></UserProfile>
+      <MyProfile></MyProfile>
     </nav>
     </>
     );

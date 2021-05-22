@@ -1,9 +1,9 @@
 import React from "react";
 import Nav from "./nav";
-import { useContext , useState , useEffect } from "react";
-import { AuthContext } from "../context/auth-context";
-import { getOnlyUserById } from "../../api/UserAPI";
-import { useProfile } from "../hooks/profile-hook";
+// import { useContext , useState , useEffect } from "react";
+// import { AuthContext } from "../context/auth-context";
+// import { getOnlyUserById } from "../../api/UserAPI";
+// import { useProfile } from "../hooks/profile-hook";
 
 
 class Header extends React.Component{

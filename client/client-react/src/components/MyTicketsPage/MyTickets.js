@@ -37,7 +37,7 @@ export default function MyTickets() {
   );
 
   //const ticket = tickets;
-  console.log(tickets);
+  //console.log(tickets);
 
   return tickets==0 ? (
     <section className="about spad">
