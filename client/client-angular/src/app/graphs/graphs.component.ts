@@ -55,9 +55,9 @@ export class GraphsComponent implements OnInit {
 
     this.stat.getTicketsStatistic().subscribe(res => {
 
-      var article = res.map(o => o._id);
+      var tickets = res.map(o => o._id);
       var count = res.map(o => o.count);
-      this.barChartLabels = article;
+      this.barChartLabels = tickets;
       this.barChartData = [{ data: count, label: 'Sold Tickets By Event' }]
 
     });
