@@ -36,4 +36,10 @@ router.route('/id/:id')
 router.route('/search/:name/:artist/:category/:location')
     .get(eventController.homePageSearch);
 
+router.route('/adminGraph/sumOfEventsByCategory')
+    .get(eventController.getSumOfEventsByCategory); //V
+
+router.route('/adminGraph/soldTicketsByEvent')
+    .get(eventController.getSoldTicketsByEvent); //V
+
 module.exports = router;
