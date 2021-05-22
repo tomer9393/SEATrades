@@ -36,20 +36,20 @@
     });
 
     /*------------------
-        Artwork Set
-    --------------------*/
-    $('.artwork-image').each(function () {
-        var bg = $(this).data('.artworkImage');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-
-    /*------------------
 		Navigation
 	--------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
     });
+
+    // /*------------------
+	// 	SeatChart
+	// --------------------*/
+    // $(".mobile-menu").slicknav({
+    //     prependTo: '#mobile-menu-wrap',
+    //     allowParentLinks: true
+    // });
     
     /*--------------------------
     Testimonial Slider

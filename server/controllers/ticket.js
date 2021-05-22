@@ -31,6 +31,14 @@ const getTicketById = async (req, res) => {
     res.json(ticket);
 };
 
+const getTicketByTicketId = async (req, res) => {
+    const tickets = await ticketService.getTicketByTicketId(req.params.ticketId);
+    if (!tickets) {
+        return res.status(500).json("Tickets not found");
+    }
+    res.json(tickets);
+};
+
 const getTickets = async (req, res) => {
     const tickets = await ticketService.getTickets();
     if (!tickets) {
@@ -120,6 +128,7 @@ const getNumOfTickets = async (req, res) => {
 module.exports = {
     createTicket,
     getTicketById,
+    getTicketByTicketId,
     getTickets,
     getTicketsByEventId,
     getTicketsByUserId,

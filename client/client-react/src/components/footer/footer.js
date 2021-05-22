@@ -10,7 +10,7 @@ class Footer extends React.Component {
               <div className="footer__about">
                 <div className="footer__about__logo">
                   <a href="/">
-                    <img src="img/footer-logo.png" alt="" />
+                    <img src="img/footer-logo2.png" alt="" />
                   </a>
                 </div>
                 <p>
@@ -60,6 +60,8 @@ class Footer extends React.Component {
                   <li>
                     <a href="#">Sign In</a>
                   </li>
+                </ul>
+                <ul>
                   <li>
                     <a href="/AboutUs">About Us</a>
                   </li>
