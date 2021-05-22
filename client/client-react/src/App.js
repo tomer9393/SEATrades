@@ -14,8 +14,6 @@ import SignInPage from "./components/signInPage/signInPage";
 import SignUpPage from "./components/signUp/signUpPage";
 import ProfilePage from "./components/profilePage/profilePage";
 import CheckoutPage from "./components/checkoutPage/checkout";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useAuth } from "./components/hooks/auth-hook";
 import { BrowserRouter, Route, Switch , Redirect} from "react-router-dom";
 import { useAuth  } from "./components/hooks/auth-hook";
 import { useProfile } from "./components/hooks/profile-hook";
