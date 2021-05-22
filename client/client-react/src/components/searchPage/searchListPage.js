@@ -3,7 +3,9 @@ import SingleSearchPost from "./singleSearchPost";
 //import { useParams } from "react-router-dom";
 //import { homePageSearch } from "../../api/EventAPI";
 //import React, { useEffect, useState } from "react";
+import MostPopular from '../mostPopularPage/mostPopular';
 import Breadcrumb from './breadcrumb';
+import {Link} from "react-router-dom";
 
 function SearchListPage(props) {
   // const { name, artist, category, location } = useParams();
@@ -21,7 +23,21 @@ function SearchListPage(props) {
   ));
 
   return events?.length === 0 ? (
-    <div style={{ textAlign: "center" }}>No results</div>
+    <>
+      <Breadcrumb />
+      <section className="spad" >
+      <div className="container search-title">
+          < h2 >We are sorry but there are no results for your search.</ h2>
+          </div>
+          <hr style={{width: '70%'}}></hr> 
+          <div className="container  search-title">
+          < p>You can try and run a new <a href="/" style={{color: '#ec171e'}}>search</a></ p>
+          < p>In the meanwhile you can take a look at our most popular events down here</ p>
+          
+      </div>
+      <MostPopular ></MostPopular>
+      </section>
+    </>
   ) : (
     <>
       <Breadcrumb />

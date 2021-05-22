@@ -2,7 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import {Link} from "react-router-dom";
 
-function SingleEventPost(props) {
+function SinglePopularPost(props) {
   const event = props.event; 
   var bg = event.imgUrl;
   var date = new Date(event.date);
@@ -45,4 +45,4 @@ function SingleEventPost(props) {
     );
   }
 
-export default SingleEventPost;
+export default SinglePopularPost;

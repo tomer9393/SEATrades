@@ -9,6 +9,12 @@ export const getTicketsByEventId = async (eventId) => {
     } catch (error) { throw new Error(error); }
 }
 
+export const getTicketsByUserId = async (userId) => {
+    try {
+        const tickets = await axios.get(`${baseUrl}/user/${userId}`);
+        return tickets;
+    } catch (error) { throw new Error(error); }
+}
 
 export const createTicket = async (user, event, section, row, seat) => {
 

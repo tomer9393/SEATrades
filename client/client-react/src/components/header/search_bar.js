@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { categories, locations } from "../utils";
+//import { categories, locations } from "../utils";
 import {
   // TextField,
   Dropdown,
@@ -16,6 +16,19 @@ function SearchBar() {
   const [category, setSelectedCategory] = useState(undefined);
   const [location, setselectedLocation] = useState(undefined);
   const history = useHistory();
+
+  const categories = [
+    "Concerts",
+    "Festivals",
+    "Sport",
+    "StandUp",
+    "Theatre",
+  ];
+  
+  const locations = [
+    "Tel-Aviv",
+    "Jeruslaem",
+  ];
 
   const dropdownOptions1 = [
     { key: "undefined", text: "Select a category" },

@@ -107,13 +107,19 @@ const getTicketsByUserId = async (userId) => {
             "section": 5,
             "row": 6,
             "seat": 7,
-            "user":8
+            "user":8,
+            "forTrade":9
         }
     },
     {
         $match: 
         {
             user: ObjectId(userId)
+        }
+    },  
+    {
+        $sort: {
+            "event.date": 1
         }
     }
 ]; 
