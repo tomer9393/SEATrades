@@ -28,6 +28,14 @@
     });
 
     /*------------------
+        Background Set2
+    --------------------*/
+    $('.set-bg2').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+
+    /*------------------
         Artwork Set
     --------------------*/
     $('.artwork-image').each(function () {

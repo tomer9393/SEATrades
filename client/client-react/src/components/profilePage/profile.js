@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/auth-context";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -8,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import { Typography } from "@material-ui/core";
+import { Link, Typography } from "@material-ui/core";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import PersonIcon from "@material-ui/icons/Person";
@@ -23,12 +24,14 @@ import SaveIcon from "@material-ui/icons/Save";
 import { useEffect, useState } from "react";
 import { getOnlyUserById, updateUser } from "../../api/UserAPI";
 
+
 const images = [
   {
     url:
       "https://www.ticketsource.co.uk/brochure/images/pages/ticketmanagement/tickets.png",
     title: "My Tickets",
     width: "40%",
+    
   },
 ];
 
@@ -123,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ProfilePage(props) {
+  const auth = useContext(AuthContext);
   const classes = useStyles();
   const [user, setUser] = useState(undefined);
   const [email, setEmail] = useState(undefined);
@@ -131,12 +135,20 @@ export default function ProfilePage(props) {
   const [userId, setUserId] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [phoneNumber, setPhoneNumber] = useState(undefined);
+
   useEffect(
     () =>
-      getOnlyUserById("60842ddd2220808854d9d74d")
+      getOnlyUserById(auth.userId)
         .then((res) => res.data)
-        .then((res) => setUser(res)),
-    []
+        .then((res) => {
+          setUser(res);
+          setEmail(res.email);
+          setFirstName(res.firstName);
+          setLastName(res.lastName);
+          setUserId(res.userId);
+          setPhoneNumber(res.phoneNumber);
+        }),
+    [auth]
   );
 
   return !user ? (
@@ -150,8 +162,8 @@ export default function ProfilePage(props) {
           id="input-with-icon-textfield"
           label="First Name"
           defaultValue={user.firstName} //TODO
-          value={firstName}
           InputProps={{
+           readOnly:true,
             style: { fontSize: 15 },
             startAdornment: (
               <InputAdornment position="start">
@@ -172,6 +184,7 @@ export default function ProfilePage(props) {
           defaultValue={user.lastName} //TODO
           value={lastName}
           InputProps={{
+            readOnly:true,
             style: { fontSize: 15 },
             startAdornment: (
               <InputAdornment position="start">
@@ -192,6 +205,7 @@ export default function ProfilePage(props) {
           defaultValue={user.userId} //TODO
           value={userId}
           InputProps={{
+            readOnly:true,
             style: { fontSize: 15 },
             startAdornment: (
               <InputAdornment position="start">
@@ -212,6 +226,7 @@ export default function ProfilePage(props) {
           defaultValue={user.email} //TODO
           value={email}
           InputProps={{
+            readOnly:true,
             style: { fontSize: 15 },
             startAdornment: (
               <InputAdornment position="start">
@@ -252,6 +267,7 @@ export default function ProfilePage(props) {
           defaultValue={user.phoneNumber} //TODO
           value={phoneNumber}
           InputProps={{
+            readOnly:true,
             style: { fontSize: 15 },
             startAdornment: (
               <InputAdornment position="start">
@@ -262,10 +278,18 @@ export default function ProfilePage(props) {
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
       </Typography>
-      <Typography align="center">
+      {/* <Typography align="center">
         <Button
           onClick={() => {
-            updateUser(firstName, lastName, userId, email, password, phoneNumber);
+            updateUser(
+              auth.userId,
+              email,
+              userId,
+              firstName,
+              lastName,
+              phoneNumber
+            );
+            window.location.reload();
           }}
           variant="contained"
           color="primary"
@@ -275,17 +299,21 @@ export default function ProfilePage(props) {
         >
           Save
         </Button>
-      </Typography>
+      </Typography> */}
+
+     
 
       <div className={classes.root}>
         {images.map((image) => (
-          <ButtonBase
+          <ButtonBase href="/MyTickets"
             focusRipple
             key={image.title}
+            // onclick={window.parent.location = "/"}
             className={classes.image}
             focusVisibleClassName={classes.focusVisible}
             style={{
               width: image.width,
+              margin:70,
             }}
           >
             <span
@@ -295,7 +323,7 @@ export default function ProfilePage(props) {
               }}
             />
             <span className={classes.imageBackdrop} />
-            <span className={classes.imageButton}>
+            <span  className={classes.imageButton}>
               <Typography
                 component="span"
                 variant="subtitle1"
@@ -306,6 +334,7 @@ export default function ProfilePage(props) {
                 <span className={classes.imageMarked} />
               </Typography>
             </span>
+            
           </ButtonBase>
         ))}
       </div>

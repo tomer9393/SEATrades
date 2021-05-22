@@ -4,8 +4,7 @@ import Breadcrumb from './breadcrumb';
 
 
 function SearchPage() {
-    //const events = props.events;
-
+    
     return (
         <>
         <Breadcrumb />

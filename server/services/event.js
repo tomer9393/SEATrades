@@ -1,4 +1,5 @@
 const Event = require('../models/event');
+const Ticket = require('../models/ticket')
 
 const createEvent = async (name, category, artist, imgUrl, date, location, minPrice, totalTickets) => {
     const event = new Event({
@@ -181,16 +182,61 @@ const homePageSearch = async (name, artist, category, location) => {
     return await Event.aggregate([
         {
             $match: {
+  
+                $or: [
+                  { name: {$regex: name, $options: 'i' } },
+                  { artist: { $regex: artist, $options: 'i' } }
+            
+                ],
                 $and: [
-                    { name: { $regex: name, $options: 'i' } },
-                    { artist: { $regex: artist, $options: 'i' } },
                     { category: { $regex: category, $options: 'i' } },
                     { location: { $regex: location, $options: 'i' } }
-
                 ]
+                  
+              
             }
         }
     ]);
+};
+
+const getSumOfEventsByCategory = async () => {
+    return await Event.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+};
+
+
+const getSoldTicketsByEvent = async () => {
+    return await Ticket.aggregate([{
+        $lookup: {
+            from: 'events',
+            localField: 'event',
+            foreignField: '_id',
+            as: 'event'
+        }
+    }, {
+        $unwind: {
+            path: '$event'
+        }
+    }, {
+        $group: {
+            _id: "$event.name",
+            soldTickets: {
+                $sum: 1
+            }
+        }
+    }, {
+        $limit: 4
+    }, {
+        $sort: {
+            "soldTickets": -1
+        }
+    }]);
 };
 
 
@@ -212,5 +258,7 @@ module.exports = {
     getNumOfEvents,
     getEventsByArtist,
     homePageSearch,
-    getEventsByName
+    getEventsByName,
+    getSumOfEventsByCategory,
+    getSoldTicketsByEvent
 }

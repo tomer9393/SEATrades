@@ -4,97 +4,109 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const createUser = async (req, res, next) => {
+const createUser = async (req, res) => {
   let hashedPassword;
-  // try {
-  hashedPassword = await bcrypt.hash(req.body.password, 12);
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     "Could not create user, please try again.",
-  //     500
-  //   );
-  //   return next(error);
-  // }
+  try {
+    hashedPassword = await bcrypt.hash(req.body.password, 12);
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Could not create user, please try again." });
+    return;
+  }
+
+  let existingUser;
+  try {
+    existingUser =
+      (await User.findOne({
+        userId: req.body.userId,
+      })) ??
+      (await User.findOne({
+        email: req.body.email,
+      }));
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Signing up failed, please try again later." });
+    return;
+  }
+
+  if (existingUser) {
+    res
+      .status(422)
+      .send({ message: "User exists already, please login instead." });
+    return;
+  }
 
   req.body.password = hashedPassword;
   const createdUser = await userService.createUser(req.body);
 
   let token;
-  // try {
-  token = jwt.sign(
-    { firstName: createdUser.firstName, email: createdUser.email },
-    "supersecret_dont_share",
-    { expiresIn: "1h" }
-  );
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     'Signing up failed, please try again later.',
-  //     500
-  //   );
-  //   return next(error);
-  // }
+  try {
+    token = jwt.sign(
+      { firstName: createdUser.firstName, email: createdUser.email },
+      "supersecret_dont_share",
+      { expiresIn: "1h" }
+    );
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Signing up failed, please try again later." });
+    return;
+  }
 
   res
     .status(201)
     .json({ userId: createdUser.id, email: createdUser.email, token: token });
 };
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   let existingUser;
 
-  // try {
+  try {
     existingUser = await User.findOne({ email: email });
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     "Logging in failed, please try again later.",
-  //     500
-  //   );
-  //   return next(error);
-  // }
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Logging in failed, please try again later." });
+    return;
+  }
 
-  // if (!existingUser) {
-  //   const error = new HttpError(
-  //     "Invalid credentials, could not log you in.",
-  //     403
-  //   );
-  //   return next(error);
-  // }
+  if (!existingUser) {
+    res.status(403).send({ message: "no user exists in db to update" });
+    return;
+  }
 
   let isValidPassword = false;
-  // try {
+  try {
     isValidPassword = await bcrypt.compare(password, existingUser.password);
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     "Could not log you in, please check your credentials and try again.",
-  //     500
-  //   );
-  //   return next(error);
-  // }
+  } catch (err) {
+    res.status(500).send({
+      message:
+        "Could not log you in, please check your credentials and try again.",
+    });
+    return;
+  }
 
-  // if (!isValidPassword) {
-    // const error = new HttpError(
-    //   "Invalid credentials, could not log you in.",
-    //   403
-    // );
-    // return next(error);
-  // }
+  if (!isValidPassword) {
+    res.status(400).send({ message: "users param are required" });
+  }
 
   let token;
-  // try {
+  try {
     token = jwt.sign(
       { userId: existingUser.id, email: existingUser.email },
       "supersecret_dont_share",
       { expiresIn: "1h" }
     );
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     "Logging in failed, please try again later.",
-  //     500
-  //   );
-  //   return next(error);
-  // }
+  } catch (err) {
+    res
+      .status(500)
+      .send({ message: "Logging in failed, please try again later." });
+    return;
+  }
 
   res.json({
     userId: existingUser.id,

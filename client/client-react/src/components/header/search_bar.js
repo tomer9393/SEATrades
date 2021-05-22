@@ -7,19 +7,18 @@ import {
   // DatePicker,
   // mergeStyleSets,
 } from "@fluentui/react";
- import { homePageSearch } from "../../api/EventAPI";
- import { useHistory } from "react-router-dom";
+import { homePageSearch } from "../../api/EventAPI";
+import { useHistory } from "react-router-dom";
 // import {Link} from "react-router-dom";
 
-function SearchBar (){
-
+function SearchBar() {
   const [text, setSearchText] = useState(undefined);
   const [category, setSelectedCategory] = useState(undefined);
   const [location, setselectedLocation] = useState(undefined);
   const history = useHistory();
 
   const dropdownOptions1 = [
-    { key: "emptyOption", text: "Select a category" },
+    { key: "undefined", text: "Select a category" },
     ...categories.map((category) => ({
       key: category,
       text: category,
@@ -27,64 +26,77 @@ function SearchBar (){
   ];
 
   const dropdownOptions2 = [
-    { key: "emptyOption", text: "Select a Location" },
+    { key: "undefined", text: "Select a Location" },
     ...locations.map((location) => ({
       key: location,
       text: location,
     })),
   ];
 
-    return (
-      <>
+  return (
+    <>
       <section className="hero set-bg" data-setbg="/img/hero/bg-homePage.jpg">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div className="hero__text">
-                <div className="section-title" style={{textShadow: '2px 3px #000000'}}>
-                  <h2 >Look for tickets to your favorite shows!</h2>
+                <div
+                  className="section-title"
+                  style={{ textShadow: "2px 3px #000000" }}
+                >
+                  <h2>Look for tickets to your favorite shows!</h2>
                 </div>
                 <div className="hero__search__form">
-                  <form action="/Search">
-                  <input type="text"  
-                  placeholder="Enter Artist or Event name..." 
-                  onChange={(text) => setSearchText(text.target.value || "")}/>
-                    <div className="select__option" >
-                     <Dropdown 
-                      placeholder="Select a category"
-                      options={dropdownOptions1}
-                      onChange={(_, item) => {
-                        setSelectedCategory(item.key);
+                  <form>
+                    <input
+                      type="text"
+                      placeholder="Enter Artist or Event name..."
+                      onChange={(text) =>
+                        setSearchText(text.target.value || "")
+                      }
+                    />
+                    <div className="select__option" style={{borderRadius: '5px'}}>
+                      <Dropdown style={{borderRadius: '5px'}}
+                        placeholder="Select a category"
+                        options={dropdownOptions1 }
+                        onChange={(_, item) => {
+                          setSelectedCategory(item.key);
                         }}
                       />
                     </div>
                     <div className="select__option">
-                    <Dropdown 
-                      placeholder="Select a location"
-                      options={dropdownOptions2}
-                      onChange={(_, item) => {
-                        setselectedLocation(item.key);
+                      <Dropdown
+                        placeholder="Select a location"
+                        options={dropdownOptions2}
+                        onChange={(_, item) => {
+                          setselectedLocation(item.key);
                         }}
                       />
                     </div>
                     {/* <button onClick={() => homePageSearch(text ,text ,category, location)}type="submit">Search</button> */}
-                    <button onSubmit={() => homePageSearch(text ,text ,category, location)
-                      .then((res) => res.data)
-                      .then((res) => {
-                       clearFields(
-                      setSearchText,
-                      setSelectedCategory,
-                      setselectedLocation
-                  );
-                  console.log(text);
-                  console.log(category);
-                  console.log(location);
-                  history.push({
-                    pathname: "/Search",
-                    state: { events: res },
-                  });
-                  })} type="submit">Search</button>
                   </form>
+                  <button className="hero__search__button"
+                    onClick={() =>
+                      homePageSearch(text, text, category, location)
+                        .then((res) => res.data)
+                        .then((res) => {
+                          clearFields(
+                            setSearchText,
+                            setSelectedCategory,
+                            setselectedLocation
+                          );
+                          console.log(text);
+                          console.log(category);
+                          console.log(location);
+                          history.push({
+                            pathname: "/Search",
+                            state: { events: res },
+                          });
+                        })
+                    }
+                  >
+                    Search
+                  </button>
                 </div>
                 <ul className="hero__categories__tags">
                   <li>
@@ -118,14 +130,14 @@ function SearchBar (){
           </div>
         </div>
       </section>
-      </>
-    );
+    </>
+  );
 }
 
 const clearFields = (
   setSearchText,
   setSelectedCategory,
-  setSelectedLocation,
+  setSelectedLocation
 ) => {
   setSearchText(undefined);
   setSelectedCategory(undefined);

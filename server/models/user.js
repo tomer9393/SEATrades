@@ -31,6 +31,12 @@ const User = new Schema({
         type: String,
         required: true
     },
+    code: {
+        type: String
+    },
+    QRcode: {
+        type: String
+    },
     tickets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Ticket"

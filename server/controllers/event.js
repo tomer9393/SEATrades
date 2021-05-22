@@ -101,7 +101,7 @@ const updateEvent = async (req, res) => {
     res.status(400).json("id is required");
   }
 
-  const event = await eventService.updateEvent(req.params.id, req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location);
+  const event = await eventService.updateEvent(req.params.id, req.body.name, req.body.category, req.body.artist, req.body.imgUrl, req.body.date, req.body.location, req.body.minPrice, req.body.totalTickets, req.body.soldTickets, req.body.soldOut);
   if (!event) {
     return res.status(404).json('Event not found');
   }
@@ -157,6 +157,23 @@ const homePageSearch = async (req, res) => {
   res.json(events);
 };
 
+const getSumOfEventsByCategory = async (req, res) => {
+  const numOfCategory = await eventService.getSumOfEventsByCategory();
+  if (!numOfCategory) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(numOfCategory);
+};
+
+const getSoldTicketsByEvent = async (req, res) => {
+  const soldTicketsEvent = await eventService.getSoldTicketsByEvent();
+  if (!soldTicketsEvent) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(soldTicketsEvent);
+};
+
+
 module.exports = {
   createEvent,
   getEventById,
@@ -170,5 +187,7 @@ module.exports = {
   getNumOfEvents,
   getEventsByArtist,
   homePageSearch,
-  getEventsByName
+  getEventsByName,
+  getSumOfEventsByCategory,
+  getSoldTicketsByEvent
 };

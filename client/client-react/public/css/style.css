@@ -131,6 +131,12 @@ ol {
 .set-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: bottom;
+}
+
+.set-bg2 {
+	background-repeat: no-repeat;
+	background-size: cover;
 	background-position: center;
 }
 
@@ -435,9 +441,9 @@ ol {
 }
 
 .hero__search__form {
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 	background: rgba(255, 255, 255, 0.1);
-	padding: 20px;
+	padding: 10px;
 	border-radius: 5px;
 }
 
@@ -447,8 +453,13 @@ ol {
 	font-size: 15px;
 	color: #A8A8A8;
 	padding-left: 30px;
-	height: 54px;
+	height: 32px;
 	border: none;
+	border-radius: 5px;
+}
+
+.title-54{
+	border-radius: 5px;
 }
 
 .hero__search__form form input::-webkit-input-placeholder {
@@ -475,7 +486,7 @@ ol {
 	position: relative;
 	width: 22.5%;
 	float: left;
-	height: 54px;
+	height: 32px;
 }
 
 .hero__search__form form .select__option:before {
@@ -493,7 +504,7 @@ ol {
 	width: 100%;
 	border: none;
 	border-radius: 0;
-	height: 54px;
+	height: 32px;
 	line-height: 56px;
 }
 
@@ -519,15 +530,27 @@ ol {
 	top: 40%;
 }
 
-.hero__search__form form button {
+/* .hero__search__form form button {
 	width: 15%;
-	height: 54px;
+	height: 54x;
 	border: none;
 	font-size: 14px;
 	font-weight: 700;
 	background: #f03250;
 	color: #ffffff;
 	text-transform: uppercase;
+} */
+
+.hero__search__button {
+	width: 15%;
+	height: 32px;
+	border: none;
+	font-size: 14px;
+	font-weight: 700;
+	background: #f03250;
+	color: #ffffff;
+	text-transform: uppercase;
+	border-radius: 5px;
 }
 
 /*---------------------
@@ -2132,7 +2155,8 @@ ol {
 	font-size: 40px;
 	color: #ffffff;
 	font-weight: 700;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
+	text-shadow: 2px 1px #000000;
 	/* text-decoration: underline; */
 }
 
@@ -2587,14 +2611,17 @@ ol {
 	line-height: 50px;
 	margin-top: 25px;
 	margin-bottom: 15px;
+	text-shadow: 2px 1px #000000;
 }
 
 .blog__hero__text ul li {
 	list-style: none;
 	display: inline-block;
 	font-size: 15px;
-	color: #a8a8a8;
+	color: #ffffff;
 	margin-right: 30px;
+	text-shadow: 2px 1px #000000;
+
 }
 
 .blog__hero__text ul li:last-child {
@@ -3096,6 +3123,7 @@ ol {
 	color: #000000;
 	font-size: 22px;
 	font-weight: 600;
+	float: center;
 }
 .event-grid {
 	border-right: 1px solid #CCCCCC;
@@ -3115,6 +3143,15 @@ font-weight: 700;
 text-align: center;
 margin: .4em 0;
 }
+
+.large-text-grid {
+	color: #0a0a0a;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	margin: .4em 0;
+}
+
 .event-grid.text-button{
 	border-right: none;
 }
@@ -3136,7 +3173,8 @@ margin: .4em 0;
 	margin: 0;
 }
 .event-grid ul li.yellow a{
-	padding: 10px 13px;
+	float: right;
+	padding: 10px 50px;
 	background: #FAAE0B;
 	font-size: 14px;
 	border-radius: 5px;
@@ -3144,6 +3182,7 @@ margin: .4em 0;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	-ms-border-radius: 5px;
+	
 }
 .event-grids:hover div.event-grid ul li.yellow a{
 	background:#CCCCCC;
@@ -3166,8 +3205,12 @@ margin: .4em 0;
 .event-grids {
 	border-bottom: 1px solid #CCCCCC;
 	padding: 1.6em 0;
+	width: 90%;
 }
 
+.disabledCursor { 
+	cursor: default;
+  }
 
 /*---- Show's Breadcrumb ----*/
 
