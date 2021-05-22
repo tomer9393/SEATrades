@@ -3915,6 +3915,51 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	font-size: 20px;
   }
 
+/*---- SEAT MAP ---------*/
+  .Seatmap {
+	background-color: #4FC3F7;
+	height: 35px;
+	width: 35px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px; }
+  
+  .Seatmap--enabled {
+	cursor: pointer; }
+	.Seatmap--enabled:hover {
+	  background-color: #03A9F4; }
+  
+  .Seatmap--selected {
+	cursor: pointer;
+	background-color: #4CAF50; }
+  
+  .Seatmap--reserved {
+	cursor: not-allowed;
+	background-color: #E0E0E0; }
+  
+  .Seatmap_Row {
+	font-family: "Helvetica";
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center; }
+  
+  .Seatmap_Row--enabled:hover {
+	background-color: #F5F5F5; }
+  
+  .Seatmap_Row--selected {
+	background-color: #F5F5F5; }
+  
+  .Seatmap_RowNumber {
+	font-weight: normal;
+	width: 35px;
+	text-align: center;
+	color: #9E9E9E; }
+  
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1400px) and (max-width: 1920px) {

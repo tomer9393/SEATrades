@@ -44,40 +44,72 @@ export default function RegisterPage() {
   const [userId, setUserId] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [isUnvalidEmail, setIsUnvalidEmail] = useState();
+  const [isUnvalidPhone, setIsUnvalidPhone] = useState();
+  const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState();
+  const [isExistingUser, setIsExistingUser] = useState();
 
+  const emailPattern = new RegExp(
+    /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+  );
+  const PhonePattern= new RegExp(/^[0-9\b]+$/);
+
+  
   const authSubmitHandler = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
+    setIsExistingUser(false);
+    setIsUnvalidEmail(false);
+    setIsUnvalidPhone(false);
+    setIsPasswordsMatch(false);
 
-    try {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: firstName,
-          lastName: lastName,
-          userId: userId,
-          email: email,
-          password: password,
-          phoneNumber: phoneNumber,
-        }),
-      };
-      fetch("http://localhost:8081/users/signup", requestOptions)
-        .then((response) => response.json())
-        .then((response) => {
-          auth.login(response.userId, response.token);
-          history.push("/");
-          window.location.reload();
-        });
-    } catch (err) {
-      console.log("ERRORR!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      console.log(err);
+    const isEmailValid = emailPattern.test(email);
+    if (!isEmailValid) {
+      setIsUnvalidEmail(true);
+    }
+
+    const isPhoneValid = PhonePattern.test(phoneNumber);
+    if (!isPhoneValid) {
+      setIsUnvalidPhone(true);
+    }
+    const isSamePasswords = password === confirmPassword;
+    setIsPasswordsMatch(isSamePasswords);
+
+    if (isSamePasswords && isEmailValid && isPhoneValid) {
+      try {
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            userId: userId,
+            email: email,
+            password: password,
+            phoneNumber: phoneNumber,
+          }),
+        };
+        fetch("http://localhost:8081/users/signup", requestOptions)
+          .then((response) => {
+            if (response.status === 422) {
+              setIsExistingUser(true);
+            }
+            return response.json();
+          })
+          .then((response) => {
+            if (response.userId && response.token) {
+              auth.login(response.userId, response.token);
+              history.push("/");
+            }
+          });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
   return (
-    // <div className="breadcrumb-area set-bg" style={{backgroundImage: `url(/img/breadcrumb/breadcrumb-profile.jpg)`}}>
-    // <div className="container">
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -137,6 +169,11 @@ export default function RegisterPage() {
                 autoComplete="email"
                 onChange={(event) => setEmail(event.target.value)}
               />
+              {isUnvalidEmail && (
+                <div style={{ color: "red" }}>
+                  Please enter valid email address
+                </div>
+              )}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -148,9 +185,30 @@ export default function RegisterPage() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(event) => setPassword(event.target.value)}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  setConfirmPassword;
+                }}
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="confirm password"
+                type="password"
+                id="confirmPassword"
+                autoComplete="current-password"
+                onChange={(event) => setConfirmPassword(event.target.value)}
+              />
+            </Grid>
+            {!isPasswordsMatch && (
+              <div style={{ color: "red" }}>
+                Password does not match. Try again
+              </div>
+            )}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -162,6 +220,11 @@ export default function RegisterPage() {
                 autoComplete="lname"
                 onChange={(event) => setPhoneNumber(event.target.value)}
               />
+               {isUnvalidPhone && (
+                <div style={{ color: "red" }}>
+                  Please enter valid phone number
+                </div>
+              )}
             </Grid>
           </Grid>
           <Button
@@ -173,17 +236,18 @@ export default function RegisterPage() {
           >
             Sign Up
           </Button>
+          {isExistingUser && (
+            <div style={{ color: "red" }}>User already exists</div>
+          )}
           <Grid container justify="flex-start">
             <Grid item>
-              <a href="/SignIn" variant="body2" style={{ color: "blue" }}>
+              <Link href="/SignIn" variant="body2" style={{ color: "blue" }}>
                 Already have an account? Sign in
-              </a>
+              </Link>
             </Grid>
           </Grid>
         </form>
       </div>
     </Container>
-    // </div>
-    // </div>
   );
 }
