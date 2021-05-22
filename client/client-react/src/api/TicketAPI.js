@@ -16,21 +16,17 @@ export const getTicketsByUserId = async (userId) => {
     } catch (error) { throw new Error(error); }
 }
 
-export const createTicket = async (user, event, section, row, seat) => {
-
-    var code = "";
-    var QRcode = "";
+export const createTicket = async (user, event, section, row, seat, price) => {
 
     try {
         const newTicket = {
 
             user: user,
-            code: code,
-            QRcode: QRcode,
             event: event,
             section: section,
             row: row,
             seat: seat,
+            price: price,
             forTrade: false
         };
 
@@ -38,5 +34,3 @@ export const createTicket = async (user, event, section, row, seat) => {
         return ticket;
     } catch (error) { throw new Error(error); }
 }
-
-
