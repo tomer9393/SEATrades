@@ -48,6 +48,28 @@ const getTicketById = async (id) => {
     return await Ticket.findById(id);
 };
 
+const getTicketByTicketId = async (ticketId) => {
+    var query = [{
+        $lookup: {
+            from: 'events',
+            localField: 'event',
+            foreignField: '_id',
+            as: 'event'
+        }
+    }, {
+        $unwind: {
+            path: "$event"
+        }
+    }, {
+        $match: {
+            _id: ObjectId(ticketId)
+        }
+    }];
+    
+        
+    return await Ticket.aggregate(query);
+};
+
 const getTickets = async () => {
     return await Ticket.find({});
 };
@@ -208,6 +230,7 @@ const getNumOfTickets = async () => {
 module.exports = {
     createTicket,
     getTicketById,
+    getTicketByTicketId,
     getTickets,
     getTicketsByEventId,
     getTicketsByUserId,
