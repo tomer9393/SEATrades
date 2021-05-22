@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Swap = new Schema({
+const Trade = new Schema({
     user1: {                                     //request_User
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -20,10 +20,10 @@ const Swap = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Ticket"
     },
-    swap_Status: {                            // ( 1 - swapped , 0 -  rejected )
+    trade_Status: {                            // ( 1 - trade , 0 -  rejected )
         type: Boolean  
     }
 });
 
 
-module.exports = mongoose.model('Swap', Swap);
+module.exports = mongoose.model('Trade', Trade);

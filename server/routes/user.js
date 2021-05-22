@@ -65,5 +65,7 @@ router.route('/:id')
     .delete(userController.deleteUser) //V
     .patch(userController.updateUser); //V
 
+router.route("/update/TicketOfUser")
+    .patch(userController.updateTicketOfUser);
 
 module.exports = router;
