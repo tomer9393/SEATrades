@@ -178,7 +178,7 @@ const updateTicket = async (id, body) => {
     return ticket;
 };
 
-const updateTicketBySwap = async (id, userObjectId) => {
+const updateTicketByTrade = async (id, userObjectId) => {
     const ticket = await getTicketById(id);
     if (!ticket){
         return null;
@@ -235,7 +235,7 @@ module.exports = {
     getTicketsByEventId,
     getTicketsByUserId,
     updateTicket,
-    updateTicketBySwap,
+    updateTicketByTrade,
     deleteTicket,
     getNumOfTickets
 }

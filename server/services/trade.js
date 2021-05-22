@@ -1,32 +1,32 @@
-const eventService = require('../services/event');
-const ticketService = require('../services/ticket');
-const serviceUser = require('../services/user');
+const eventService = require('./event');
+const ticketService = require('./ticket');
+const serviceUser = require('./user');
 const Ticket = require('../models/ticket');
-const Swap = require('../models/swap');
+const Trade = require('../models/trade');
 const { events } = require('../models/ticket');
 const { json } = require('body-parser');
 const { request } = require('http');
 const { ObjectId } = require('mongodb');
 const { Object } = require('mongodb');
 
-const createSwap = async (body) => {
-    const swap = new Swap({
+const createTrade = async (body) => {
+    const trade = new Trade({
         user1 : body.user1,
         user2 : body.user2,
         ticket1 : body.ticket1,
         ticket2 : body.ticket2,
-        swap_Status : body.swap_Status
+        trade_Status : body.trade_Status
     });
 
 
     try {
-        return await swap.save();
+        return await trade.save();
     } catch (error) {
         return null;
     }
 };
 
-const getTicketsForSwap = async ( ticketId ) => {
+const getTicketsForTrade = async ( ticketId ) => {
 
     var ticket = await ticketService.getTicketById(ticketId);
     if(!ticket){
@@ -92,7 +92,7 @@ const getTicketsForSwap = async ( ticketId ) => {
     return await Ticket.aggregate(query);
 };
 
-const ticketForSwap = async (ticketId) => {
+const ticketForTrade = async (ticketId) => {
     var ticket = await ticketService.getTicketById(ticketId);
     if (!ticket){
         return null;
@@ -112,7 +112,7 @@ const ticketForSwap = async (ticketId) => {
 };
 
 module.exports = {
-    createSwap,
-    getTicketsForSwap,
-    ticketForSwap
+    createTrade,
+    getTicketsForTrade,
+    ticketForTrade
 }
