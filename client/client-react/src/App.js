@@ -13,11 +13,13 @@ import PageNotFound from './components/404PageNotFound/404PageNotFound';
 import SignInPage from "./components/signInPage/signInPage";
 import SignUpPage from "./components/signUp/signUpPage";
 import ProfilePage from "./components/profilePage/profilePage";
+import CheckoutPage from "./components/checkoutPage/checkout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useAuth } from "./components/hooks/auth-hook";
 import { AuthContext } from "./components/context/auth-context";
 import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
 import "../src/App.css"
+
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -38,6 +40,9 @@ function App() {
       </Route>
       <Route path="/HowItWorks">
         <HowItWorks />
+      </Route>
+      <Route path="/Checkout" exact>
+        <CheckoutPage />
       </Route>
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="/Profile" exact>
