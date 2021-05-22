@@ -23,5 +23,6 @@ module.exports = {
         "react/prop-types": "off",
         "no-unused-vars": "off",
         "react-hooks/exhaustive-deps": "warn",
+        "no-mixed-spaces-and-tabs": 0, // disable rule
     }
 };
