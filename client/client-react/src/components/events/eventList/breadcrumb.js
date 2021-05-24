@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import {Link} from "react-router-dom";
 //import { getEventsByName } from "../../../api/EventAPI";
 //import { format } from "date-fns";
 
@@ -17,8 +18,8 @@ function Breadcrumb(props) {
             <h2 >{name}</h2>
             </div>
             <div className="breadcrumb__option">
-              <a href="/"><i className="fa fa-home"></i> Home</a>
-              <a href={'/Category/' + event.category}><i ></i> {event.category}</a>
+              <Link to="/"><i className="fa fa-home"></i> Home</Link>
+              <Link to={'/Category/' + event.category}><i ></i> {event.category}</Link>
               <span>{name}</span>
           </div>
         </div>

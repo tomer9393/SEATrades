@@ -1,5 +1,5 @@
-//import styles from "./AppTicket.module.css";
 import React from "react";
+import {Link} from "react-router-dom";
 import { format } from "date-fns";
 import { useEffect, useState, useContext } from "react";
 import Popup from '../tradePage/Popup';
@@ -67,8 +67,8 @@ function singleTicket(props) {
             </section>
             {
             forTrade==false
-            ? <a href="#">Trade</a>
-            : <a href="#">Show Seats</a>
+            ? <Link to="#">Trade</Link>
+            : <Link to="#">Show Seats</Link>
             }
             </section>
             {/* <section className="tickets_card-cont">

@@ -23,7 +23,7 @@ function EventDetails() {
     <>
     <Breadcrumb event={event}/>
       <section className="about spad">
-        <SeatMap></SeatMap>
+        {/* <SeatMap></SeatMap> */}
       </section>
       </>
   );

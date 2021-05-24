@@ -21,7 +21,18 @@ const createEvent = async (name, category, artist, imgUrl, date, location, minPr
 };
 
 const getEventById = async (id) => {
-    return await Event.findById(id);
+    //return await Event.findById(id);
+    try {
+        let data = await Event.findById(id);
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
 };
 
 const getEvents = async () => {
@@ -71,7 +82,19 @@ const getLatestEvents = async (numOfevents) => {
 };
 
 const getTicketsByEventId = async (id) => {
-    return await Event.findById(id, { '_id': 0, 'tickets': 1 });
+    //return await Event.findById(id, { '_id': 0, 'tickets': 1 });
+    try {
+        let data = await Event.findById(id, { '_id': 0, 'tickets': 1 });
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
+    
 };
 
 const isSoldOut = async (eventId) => {
@@ -143,7 +166,7 @@ const removeEventTicket = async (ticket, ticketId) => {
 
 
 const deleteEvent = async (id) => {
-    const event = await Event.findById(id);;
+    const event = await Event.findById(id);
 
     if (!event)
         return null;

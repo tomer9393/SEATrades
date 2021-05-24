@@ -21,10 +21,8 @@ function SingleCategoryPost(props) {
             </div>
           </div>
           <div className="listing__item__text__info">
-          <Link to={`/EventsList/${event._id}`}>
-          <a className="listing__item__text__info__center">
-            <img src="img/hero/tickets.png" alt="" /> See Tickets
-            </a>
+          <Link className="listing__item__text__info__center" to={`/EventsList/${event._id}`}>
+            <img src="img/hero/tickets.png" alt=""></img> See Tickets
             </Link>
           </div>
         </div>

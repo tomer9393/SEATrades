@@ -1,10 +1,11 @@
 import SingleCategoryPost from "./singleCategoryPost";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import { getDistincEventsByCategory } from "../../api/EventAPI";
 import React, { useEffect, useState } from "react";
 
-function CategoryListPage() {
-  const { name } = useParams();
+function CategoryListPage(props) {
+  const name = props.name;
+  console.log(name);
   const [events, setEvents] = useState(undefined);
 
   useEffect(() => {

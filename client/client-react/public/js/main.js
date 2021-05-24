@@ -19,21 +19,21 @@
         $("#preloder").delay(200).fadeOut("slow");
     });
 
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    // /*------------------
+    //     Background Set
+    // --------------------*/
+    // $('.set-bg').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
 
-    /*------------------
-        Background Set2
-    --------------------*/
-    $('.set-bg2').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    // /*------------------
+    //     Background Set2
+    // --------------------*/
+    // $('.set-bg2').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
 
     /*------------------
 		Navigation

@@ -447,6 +447,11 @@ ol {
 	display: none;
 }
 
+#mobile-menu {
+	display: none;
+}
+
+
 /*---------------------
   Hero
 -----------------------*/
@@ -1648,7 +1653,15 @@ ol {
 .listing__item__text__info__center {
 	float: center;
 	font-size: 14px;
-	color: #50D437;
+	color: #3769d4;
+	font-weight: 700;
+	padding-top: 4px;
+}
+
+.listing__item__text__info__center:hover {
+	float: center;
+	font-size: 14px;
+	color: #d43737;
 	font-weight: 700;
 	padding-top: 4px;
 }
@@ -3960,6 +3973,9 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	color: #9E9E9E; }
   
 
+.logout .primary-btn{
+	display: none;
+}
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1400px) and (max-width: 1920px) {
@@ -4344,6 +4360,15 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 		margin-bottom: 20px;
 		text-align: right;
 		font-size: 80%;
+	}
+
+	.js #web-menu {
+		display:none;
+	}
+
+	.logout .primary-btn{
+		display: flex;
+		justify-content: space-around;
 	}
 }
 

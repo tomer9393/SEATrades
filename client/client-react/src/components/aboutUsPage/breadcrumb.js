@@ -1,9 +1,9 @@
 import React from "react";
-
+//data-setbg="/img/breadcrumb/breadcrumb-about-us.jpg"
 class Breadcrumb extends React.Component {
   render() {
     return (
-      <div className="breadcrumb-area set-bg2" data-setbg="img/breadcrumb/breadcrumb-about-us.jpg">
+      <div className="breadcrumb-area set-bg2" style={{backgroundImage: 'url(/img/breadcrumb/breadcrumb-about-us.jpg)'}}>
       <div className="container">
           <div className="row">
               <div className="col-lg-12 text-center">

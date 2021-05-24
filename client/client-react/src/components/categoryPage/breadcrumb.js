@@ -1,11 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-function Breadcrumb() {
-  const { name } = useParams();
+function Breadcrumb(props) {
+  const name = props.name;
     return (
       <>
-      <div className="breadcrumb-area set-bg" data-setbg="/img/hero/bg-homePage.jpg">
+      <div className="breadcrumb-area set-bg" style={{backgroundImage: 'url(/img/hero/bg-homePage.jpg)'}}>
       <div className="container">
       <div className="col-lg-12 text-center">
             <div className="breadcrumb__text">
@@ -18,29 +19,29 @@ function Breadcrumb() {
               <div className="hero__text">
                 <ul className="hero__categories__tags">
                   <li>
-                    <a href="/Category/Concerts">
+                    <Link to="/Category/Concerts">
                       <img src="img/hero/cat-1.png" alt="" /> Concerts
-                    </a>
+                    </Link >
                   </li>
                   <li>
-                    <a href="/Category/Festivals">
+                    <Link to="/Category/Festivals">
                       <img src="img/hero/cat-2.png" alt="" /> Festivals
-                    </a>
+                    </Link >
                   </li>
                   <li>
-                    <a href="/Category/Sport">
+                    <Link to="/Category/Sport">
                       <img src="img/hero/cat-3.png" alt="" /> Sport
-                    </a>
+                    </Link >
                   </li>
                   <li>
-                    <a href="/Category/StandUp">
+                    <Link to="/Category/StandUp">
                       <img src="img/hero/cat-4.png" alt="" /> StandUp
-                    </a>
+                    </Link >
                   </li>
                   <li>
-                    <a href="/Category/Theatre">
+                    <Link to="/Category/Theatre">
                       <img src="img/hero/cat-5.png" alt="" /> Theatre
-                    </a>
+                    </Link >
                   </li>
                 </ul>
               </div>

@@ -40,8 +40,8 @@ function eventGrid(props) {
           <ul >
           {
           soldOut==true
-          ? <Link to="/" className="disabledCursor" onClick={ (e) => e.preventDefault() }><li className="button yellow"><a>{ticketsAvailable} tickets Available</a></li></Link>
-          : <Link to={`/EventDetails/${event._id}`} className="notDisabled"><li className="button yellow"><a>{ticketsAvailable} tickets Available</a></li></Link>
+          ? <li className="button yellow"><Link to="/" className="disabledCursor" onClick={ (e) => e.preventDefault() }>{ticketsAvailable} tickets Available</Link></li>
+          : <li className="button yellow"><Link to={`/EventDetails/${event._id}`} className="notDisabled">{ticketsAvailable} tickets Available</Link></li>
           }
           </ul>
           <div className="clearfix"> </div>

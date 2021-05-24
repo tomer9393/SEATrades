@@ -27,7 +27,17 @@ export const signUp = async (
   }
 };
 
-export const getOnlyUserById = async (id) => {
+// export const getOnlyUserById = async (id) => {
+//   //without ticket, tust user detail
+//   try {
+//     const user = await axios.get(`${baseUrl}/getUserById/${id}`);
+//     return user;
+//   } catch (error) {
+//     return ERROR;
+//   }
+// };
+
+export const getUserById = async (id) => {
   //without ticket, tust user detail
   try {
     const user = await axios.get(`${baseUrl}/getUserById/${id}`);
