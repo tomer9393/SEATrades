@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm build",
     "server": "cd server && npm start",
     "server-react": "concurrently \"npm run server\" \"npm run client-react\"",
     "server-linux": "cd server && npm start-linux",

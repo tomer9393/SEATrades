@@ -1,54 +1,97 @@
 import React, { useContext , useState , useEffect } from "react";
 import { AuthContext } from "../context/auth-context";
-import { getOnlyUserById } from "../../api/UserAPI";
+import { getUserById } from "../../api/UserAPI";
 import { useProfile } from "../hooks/profile-hook";
+import {Link} from "react-router-dom";
 
 
-const MyProfile = React.memo(function UserProfile (){
+export function UserProfile (props){
   const auth = useContext(AuthContext);
-  const user = useProfile(auth.userId);
-  console.log(user);
-  return user ? (
+  const [userProfile, setUser] = useState();
+  const userId=props.Id;
+  console.log(userId);
+  useEffect(() => {
+    getUserById(userId).then((res) => {
+      setUser(res.data);
+    });
+  }, [userId]);
+  //const user = userProfile;
+  // console.log(auth)
+  // const userId = props.Id;
+   console.log(userProfile)
+  // const user = useProfile(userId);
+  // console.log(user);
+  return (
     <>
     <ul>
-    <li><a style={{textTransform: 'capitalize'}}>{user.firstName + ' ' + user.lastName}</a>
+    {/* <li><a style={{textTransform: 'capitalize'}}>{userProfile.firstName + ' ' + userProfile.lastName}</a> */}
+    <li><a style={{textTransform: 'capitalize'}}>My Profile</a>
     <ul className="dropdown">
-      <li><a className="fa fa-user"></a><a href="/Profile">My Profile</a></li>
-      <li><a className="fa fa-ticket"></a><a href="/MyTickets">My Tickets</a></li>
-      <li><a className="fa fa-sign-out"></a><a href="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }}>Log out</a></li>
+      <li><a className="fa fa-user"></a><Link to="/Profile">My Profile</Link></li>
+      <li><a className="fa fa-ticket"></a><Link to="/MyTickets">My Tickets</Link></li>
+      <li><a className="fa fa-sign-out"></a><Link to="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }}>Log out</Link></li>
     </ul>
   </li>
   </ul>
   </>
-  ) : (
+    );
+}
+
+export function SignIn (props){
+  return (
     <>
       <ul>
-          <li><a href="/SignIn" className="login-btn"><i className="fa fa-user-o" /> Sign In </a>
+          <li><Link to="/SignIn" className="login-btn"><i className="fa fa-user-o" /> Sign In </Link>
           </li>
       </ul>
     </>
     );
-});
+}
 
+export function LoginButton (props){
+  const Id = props.Id;
+  console.log(Id)
+  if(Id == false){
+      return <SignIn></SignIn>
+  }else {
+    return <UserProfile Id={Id}></UserProfile>
+  }
+}
 
 class Nav extends React.Component{
-  shouldComponentUpdate() {
-    console.log('Nav - shouldComponentUpdate lifecycle');
 
-    return false;
+  // shouldComponentUpdate() {
+  //   console.log('Nav - shouldComponentUpdate lifecycle');
+
+  //   return false;
+  // }
+
+  constructor(props) {
+    super(props);
   }
+  //var auth = userProfile
+
   render() {
+  var isLoggedIn = this.props.token;
+  console.log(this.props.token)
   console.log('NAV Render lifecycle')
+  console.log(isLoggedIn)
+  if(isLoggedIn == false){
+    var Id = false
+  }else {
+    Id = this.props.userId;
+    console.log(Id)
+  }
   return (
     <>
       <nav  className="header__menu mobile-menu">
       <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/AboutUs">About Us</a></li>
-          <li><a href="/Contact">Contact Us</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/AboutUs">About Us</Link></li>
+          <li><Link to="/Contact">Contact Us</Link></li>
       </ul>
       <div id="vl" className="header__menu_vl"></div>
-      <MyProfile></MyProfile>
+      <LoginButton Id={Id}></LoginButton>
     </nav>
     </>
     );

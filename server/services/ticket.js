@@ -45,7 +45,18 @@ const createTicket = async (body) => {
 };
 
 const getTicketById = async (id) => {
-    return await Ticket.findById(id);
+    //return await Ticket.findById(id);
+    try {
+        let data = await Ticket.findById(id);
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
 };
 
 const getTicketByTicketId = async (ticketId) => {

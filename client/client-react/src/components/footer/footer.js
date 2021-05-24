@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class Footer extends React.Component {
   render() {
@@ -9,9 +10,9 @@ class Footer extends React.Component {
             <div className="col-lg-3 col-md-6">
               <div className="footer__about">
                 <div className="footer__about__logo">
-                  <a href="/">
+                  <Link to="/">
                     <img src="img/footer-logo2.png" alt="" />
-                  </a>
+                  </Link>
                 </div>
                 <p>
                 Helping you book an event ticket in a safe way.
@@ -37,15 +38,15 @@ class Footer extends React.Component {
                   <li>
                     <span>Connect Us:</span>
                     <div className="footer__social">
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-facebook" />
-                      </a>
-                      <a href="#">
+                      </Link>
+                      <Link to="#">
                         <i className="fa fa-instagram" />
-                      </a>
-                      <a href="#">
+                      </Link>
+                      <Link to="#">
                         <i className="fa fa-twitter" />
-                      </a>
+                      </Link>
                     </div>
                   </li>
                 </ul>
@@ -55,21 +56,21 @@ class Footer extends React.Component {
               <div className="footer__widget">
                 <ul>
                   <li>
-                    <a href="/">Home</a>
+                    <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <a href="#">Sign In</a>
+                    <Link to="#">Sign In</Link>
                   </li>
                 </ul>
                 <ul>
                   <li>
-                    <a href="/AboutUs">About Us</a>
+                    <Link to="/AboutUs">About Us</Link>
                   </li>
                   <li>
-                    <a href="/HowItWorks">How it Works</a>
+                    <Link to="/HowItWorks">How it Works</Link>
                   </li>
                   <li>
-                    <a href="/Contact">Contact Us</a>
+                    <Link to="/Contact">Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -86,9 +87,9 @@ class Footer extends React.Component {
                   </p>
                 </div>
                 <div className="footer__copyright__links">
-                  <a href="#">Terms</a>
-                  <a href="#">Privacy Policy</a>
-                  <a href="#">Cookie Policy</a>
+                  <Link to="#">Terms</Link>
+                  <Link to="#">Privacy Policy</Link>
+                  <Link to="#">Cookie Policy</Link>
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class AboutUs extends React.Component {
   render() {
@@ -12,9 +13,9 @@ class AboutUs extends React.Component {
                   Welcome to
                   <br /> SEATrades!
                 </h2>
-                <a href="/Contact" className="primary-btn">
+                <Link to="/Contact" className="primary-btn">
                   Contact Us
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-lg-7 col-md-7">
@@ -33,9 +34,9 @@ class AboutUs extends React.Component {
                   Do you want to know how we do it? 
                   
                 </h5>
-                <span><a href="/HowItWorks" className="primary-btn">
+                <span><Link to="/HowItWorks" className="primary-btn">
                   How It Works
-                </a></span>
+                </Link></span>
 
               </div>
               </div>

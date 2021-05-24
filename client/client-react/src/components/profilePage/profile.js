@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import { useEffect, useState } from "react";
-import { getOnlyUserById, updateUser } from "../../api/UserAPI";
+import { getUserById, updateUser } from "../../api/UserAPI";
 import QRCode from "react-qr-code";
-
+import {Link} from "react-router-dom";
 
 const images = [
   {
@@ -123,7 +123,7 @@ export default function ProfilePage(props) {
 
   const [user, setUser] = useState();
   useEffect(() => {
-    getOnlyUserById(auth.userId).then((res) => {
+    getUserById(auth.userId).then((res) => {
       setUser(res.data);
     });
   }, [auth]);
@@ -174,8 +174,9 @@ export default function ProfilePage(props) {
       </section>
 
       <div className={classes.root}>
+      
         {images.map((image) => (
-          <ButtonBase href="/MyTickets"
+          <ButtonBase 
             focusRipple
             key={image.title}
             // onclick={window.parent.location = "/"}
@@ -185,7 +186,8 @@ export default function ProfilePage(props) {
               width: image.width,
               margin:70,
             }}
-          >
+            >
+            <Link to='MyTickets'>
             <span
               className={classes.imageSrc}
               style={{
@@ -204,10 +206,14 @@ export default function ProfilePage(props) {
                 <span className={classes.imageMarked} />
               </Typography>
             </span>
-            
+            </Link>
           </ButtonBase>
         ))}
       </div>
+      <section className="logout">
+      <hr className="logout" style={{width: '70%'}}></hr>
+      <Link to="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }} className="primary-btn">Logout</Link>
+      </section>
     </>
   );
 }
