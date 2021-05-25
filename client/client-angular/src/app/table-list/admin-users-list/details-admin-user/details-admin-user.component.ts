@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminUser } from '../../../models/admin-user';
-import { UsersService } from '../../../services/users.service';
+import { AdminUsersService } from '../../../services/admin-users.service';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
 
@@ -14,7 +14,7 @@ export class DetailsAdminUserComponent implements OnInit {
   loggedAdminUser: AdminUser;
   adminUser: AdminUser = null;
   
-    constructor(private usersService : UsersService, private router:Router, private activatedRoute:ActivatedRoute, private loginService : LoginService
+    constructor(private adminUsersService : AdminUsersService, private router:Router, private activatedRoute:ActivatedRoute, private loginService : LoginService
       ) {
       //this.router.getCurrentNavigation().extras.state;
     }
@@ -36,7 +36,7 @@ export class DetailsAdminUserComponent implements OnInit {
     }
     
     onDelete(){
-      this.usersService.deleteUser(this.adminUser._id).subscribe(data => {
+      this.adminUsersService.deleteAdminUser(this.adminUser._id).subscribe(data => {
         this.router.navigate(['/table-list']);
       }, err => {
         window.alert(err.error);

@@ -6,6 +6,7 @@ import { Category } from '../../../models/category';
 import { CategoriesService } from '../../../services/categories.service';
 import { Ticket } from '../../../models/ticket';
 import { tick } from '@angular/core/testing';
+import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-event',
@@ -30,17 +31,19 @@ export class EditEventComponent implements OnInit
     this.event=history.state;
   }
 
-  onUpdate(name: String, category: String, artist: String, img: String, date: Date, location: String, tickets: Ticket[])
+  onUpdate(name: String, category: String, artist: String, imgUrl: String, date: Date, location: String, minPrice: Number, totalTickets: Number, tickets: Ticket[])
   {
-    if(name === '' || category === '' || artist === '' || img === '' || location === '')
+    if(name === '' || category === '' || artist === '' || imgUrl === '' || location === '' || minPrice === null || totalTickets === null)
       window.alert('Please fill all fields');
     else{
       this.event.name = name;
       this.event.category = category;
       this.event.artist = artist;
-      this.event.img = img;
+      this.event.imgUrl = imgUrl;
       this.event.date = date;
       this.event.location = location;
+      this.event.minPrice = minPrice;
+      this.event.totalTickets = totalTickets;
       this.event.tickets = tickets;
       this.eventsService.updateEvent(this.event).subscribe(data => {
         this.event = data;

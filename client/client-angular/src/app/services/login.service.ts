@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { User } from '../models/user';
+import { AdminUser } from '../models/admin-user';
 import { environment } from '../../environments/environment';
 
 
@@ -14,8 +14,8 @@ export class LoginService
   private token = '';
   public isLogin = new BehaviorSubject(false);
   public showLoginComponent = new BehaviorSubject(false);
-  public loginUserDetails = new Subject<User>();
-  private connectedUser: User;
+  public loginUserDetails = new Subject<AdminUser>();
+  private connectedUser: AdminUser;
   private usersUrl = environment.usersUrl;
   error;
 

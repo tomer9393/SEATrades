@@ -34,11 +34,11 @@ export class CreateEventComponent implements OnInit
     }
   }
 
-  onCreate(name: String, category: String, artist: String, img: String, date: Date, location: String){
-    if(name === '' || category === '' || artist === '' || img === ''||date == undefined || location === '')
+  onCreate(name: String, category: String, artist: String, img: String, date: Date, location: String, minPrice: Number, totalTickets: Number){
+    if(name === '' || category === '' || artist === '' || img === ''||date == undefined || location === '' || minPrice === null || totalTickets === null)
       window.alert('Please fill all fields');
     else{
-      this.eventsService.addEvent(name, category, artist, img, date, location).subscribe(data => {
+      this.eventsService.addEvent(name, category, artist, img, date, location, minPrice, totalTickets).subscribe(data => {
         this.event = data;
         this.router.navigate(['/events-list']);
       }, err => {

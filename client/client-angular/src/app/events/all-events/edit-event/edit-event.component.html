@@ -38,40 +38,21 @@
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input #img value={{event.img}} matInput placeholder="Image Url" />
+                    <input #imgUrl value={{event.imgUrl}} matInput placeholder="Image Url" />
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input #img value={{event.date}} matInput placeholder="Image Url" />
+                    <input #date value={{event.date}} matInput placeholder="Date" />
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <textarea
-                      #date
-                      value={{event.date}}
-                      rows="3"
-                      matInput
-                      placeholder="Date"
-                    ></textarea>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="example-full-width">
-                    <textarea
-                      #location
-                      value={{event.location}}
-                      rows="30"
-                      matInput
-                      placeholder="Location"
-                    ></textarea>
+                    <input #location value={{event.location}} matInput placeholder="Location" />
                   </mat-form-field>
                 </div>
               </div>
@@ -94,7 +75,7 @@
                     name.value,
                     category.value,
                     artist.value,
-                    img.value,
+                    imgUrl.value,
                     date.value,
                     location.value,
                     tickets.value
