@@ -1,4 +1,4 @@
-export interface User 
+export interface AdminUser 
 {
     _id: string;
     isAdmin: boolean;

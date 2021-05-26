@@ -12,7 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { TableListModule } from '../../table-list/table-list.module';
-// import { GraphsComponent } from '../../graphs/graphs.component';
+import { GraphsComponent } from '../../graphs/graphs.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { HighlightDirective } from '../../graphs/highlight.directive';
@@ -40,7 +40,7 @@ import { EventsListModule } from '../../events/event-list.module';
   declarations: [
     UserProfileComponent,
     // DashboardComponent,
-    // GraphsComponent,
+    GraphsComponent,
     // concertEventsListComponent,
     HighlightDirective,
   ]

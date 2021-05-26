@@ -34,19 +34,21 @@ export class EventsService
 
   getEventesByCategory(category: String): Observable<any> 
   {
-    const url = `${this.eventsUrl}/${category}`;
+    const url = `${this.eventsUrl}/category/${category}`;
     return this.http.get<any>(url);
   }
 
-  addEvent(name: String, category: String, artist: String ,img: String, date: Date, location: String): Observable<any> 
+  addEvent(name: String, category: String, artist: String ,imgUrl: String, date: Date, location: String, minPrice: Number, totalTickets: Number): Observable<any> 
   {
     return this.http.post<any>(this.eventsUrl, { 
       name: name, 
       category: category, 
       artist: artist, 
-      img: img,
+      imgUrl: imgUrl,
       date: date,
-      location: location });
+      location: location,
+      minPrice: minPrice,
+      totalTickets: totalTickets });
 
   }
 
@@ -63,7 +65,7 @@ export class EventsService
       name: event.name, 
       category: event.category, 
       artist: event.artist,
-      img: event.img,
+      imgUrl: event.imgUrl,
       date: event.date,
       location: event.location,
       tickets: event.tickets });

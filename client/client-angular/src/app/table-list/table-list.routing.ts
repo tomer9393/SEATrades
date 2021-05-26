@@ -1,17 +1,16 @@
 import { Routes } from '@angular/router';
 
-
-import { CreateTicketComponent } from './tickets-list/create-ticket/create-ticket.component';
-import { EditTicketComponent } from './tickets-list/edit-ticket/edit-ticket.component';
-import { DetailsTicketComponent } from './tickets-list/details-ticket/details-ticket.component';
-
 import { CreateCategoryComponent } from './categories-list/create-category/create-category.component';
 import { EditCategoryComponent } from './categories-list/edit-category/edit-category.component';
 import { DetailsCategoryComponent } from './categories-list/details-category/details-category.component';
 
-import { CreateUserComponent } from './users-list/create-user/create-user.component';
-import { EditUserComponent } from './users-list/edit-user/edit-user.component';
-import { DetailsUserComponent } from './users-list/details-user/details-user.component';
+// import { CreateUserComponent } from './users-list/create-user/create-user.component';
+// import { EditUserComponent } from './users-list/edit-user/edit-user.component';
+// import { DetailsUserComponent } from './users-list/details-user/details-user.component';
+
+import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/create-admin-user.component';
+import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
+import { DetailsAdminUserComponent } from './admin-users-list/details-admin-user/details-admin-user.component';
 
 
 export const TableListRoutes: Routes = [
@@ -58,17 +57,17 @@ export const TableListRoutes: Routes = [
     //     }]
     // }
 
-     { path: 'CreateTicket',      component: CreateTicketComponent },
-     { path: 'EditTicket',      component: EditTicketComponent },
-     { path: 'DetailsTicket',      component: DetailsTicketComponent },
      { path: 'CreateCategory',      component: CreateCategoryComponent },
      { path: 'EditCategory',      component: EditCategoryComponent },
      { path: 'DetailsCategory',      component: DetailsCategoryComponent },
 
-     { path: 'CreateUser',      component: CreateUserComponent },
-     { path: 'EditUser',      component: EditUserComponent },
-     { path: 'DetailsUser',      component: DetailsUserComponent },
+    //  { path: 'CreateUser',      component: CreateUserComponent },
+    //  { path: 'EditUser',      component: EditUserComponent },
+    //  { path: 'DetailsUser',      component: DetailsUserComponent },
 
+     { path: 'CreateAdminUser',      component: CreateAdminUserComponent },
+     { path: 'EditAdminUser',      component: EditAdminUserComponent },
+     { path: 'DetailsAdminUser',      component: DetailsAdminUserComponent },
 
     // { path: 'user-profile',   component: UserProfileComponent },
     // { path: 'table-list',     component: TableListComponent },
