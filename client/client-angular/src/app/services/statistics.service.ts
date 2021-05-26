@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class StatisticsService 
 {
 
-    adminGraphUrl : 'http://localhost:8081/adminGraph';
+  private adminGraphUrl = environment.adminGraphUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class StatisticsService
   }
   getTicketsStatistic(): Observable<any>
   {
-    const url = `${this.adminGraphUrl}/soldTicketsByEvent`;
+    const url = `${this.adminGraphUrl}/SoldTicketsByEvent`;
     return this.http.get<any>(url);
   }
 }

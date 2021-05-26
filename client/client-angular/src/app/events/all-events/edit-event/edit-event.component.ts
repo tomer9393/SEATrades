@@ -31,7 +31,7 @@ export class EditEventComponent implements OnInit
     this.event=history.state;
   }
 
-  onUpdate(name: String, category: String, artist: String, imgUrl: String, date: Date, location: String, minPrice: Number, totalTickets: Number, tickets: Ticket[])
+  onUpdate(name: String, category: String, artist: String, imgUrl: String, date: Date, location: String, minPrice: Number, totalTickets: Number)
   {
     if(name === '' || category === '' || artist === '' || imgUrl === '' || location === '' || minPrice === null || totalTickets === null)
       window.alert('Please fill all fields');
@@ -44,13 +44,12 @@ export class EditEventComponent implements OnInit
       this.event.location = location;
       this.event.minPrice = minPrice;
       this.event.totalTickets = totalTickets;
-      this.event.tickets = tickets;
       this.eventsService.updateEvent(this.event).subscribe(data => {
         this.event = data;
-        this.router.navigate(['/events-list']);
+        this.router.navigate(['/events']);
       }, err => {
         window.alert(err.error);
-        this.router.navigate(['/events-list']);
+        this.router.navigate(['/events']);
       });
     }
   }

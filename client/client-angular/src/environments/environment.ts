@@ -8,8 +8,9 @@ export const environment = {
   eventsUrl : 'http://localhost:8081/events',
   categoriesUrl : 'http://localhost:8081/categories',
   ticketsUrl : 'http://localhost:8081/tickets',
-  adminGraphUrl : 'http://localhost:8081/adminGraph',
+  adminGraphUrl : 'http://localhost:8081/events/adminGraph',
   usersAdminUrl : 'http://localhost:8081/admin',
   usersUrl : 'http://localhost:8081/users',
+  filtersUrl : 'http://localhost:8081/filters',
   contactsUrl : 'http://localhost:8081/contacts'
 };
