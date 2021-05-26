@@ -23,7 +23,7 @@ function EventDetails(props) {
     <>
     <Breadcrumb event={event}/>
       <section className="about spad">
-        <SeatMap></SeatMap>
+        <SeatMap event={event}></SeatMap>
       </section>
       </>
   );

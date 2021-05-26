@@ -2,8 +2,8 @@ import React, { useContext , useState , useEffect } from "react";
 import SeatPicker from "./seatPicker2.js";
 
 
-function SeatMap(){
-
+function SeatMap(props){
+  const event = props.event;
   //render() {
   console.log('SeatMap Render lifecycle')
 
@@ -13,13 +13,13 @@ function SeatMap(){
               <div className="seatChart_row">
                 <div className="col-lg-12">
                   <div className="seatChart_img">
-                  <img src="/img/seating-map.jpg"/>
+                  <img src="/img/seating-map2.jpg"/>
                   </div>
                 </div>
               </div>
         
             <div className="seatChart_right">
-                <SeatPicker></SeatPicker>
+                <SeatPicker event={event}></SeatPicker>
             </div>
         </div>
     </>
