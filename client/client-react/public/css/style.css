@@ -3005,6 +3005,24 @@ ol {
 	color: #ffffff;
 }
 
+/*----------------------
+ Event Detailes
+ ----------------------*/
+
+ .event_details_item {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.event_details_item img {
+	border-radius: 20px;
+	max-width: 150%;
+    border: ridge;
+    border-color: antiquewhite;
+}
+
+
+
 /*---------------------
   Contact
 -----------------------*/
@@ -4370,6 +4388,12 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 		display: flex;
 		justify-content: space-around;
 	}
+
+	.event_details_item img {
+		max-width: 100%;
+		margin-top: 20px;
+	}
+	
 }
 
 /* Small Device = 320px */

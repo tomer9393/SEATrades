@@ -7,10 +7,10 @@ import EventList from "../eventList/eventList";
 import SeatMap from "./seatMap.js"
 
 
-function EventDetails() {
+function EventDetails(props) {
 
   const { id } = useParams();
-  const [event, setEvents] = useState();
+  const [event, setEvents] = useState(undefined);
   useEffect(() => {
     getEventById(id).then((res) => {
       setEvents(res.data);
@@ -23,7 +23,7 @@ function EventDetails() {
     <>
     <Breadcrumb event={event}/>
       <section className="about spad">
-        {/* <SeatMap></SeatMap> */}
+        <SeatMap></SeatMap>
       </section>
       </>
   );

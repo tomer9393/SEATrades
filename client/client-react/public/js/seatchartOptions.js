@@ -15,9 +15,9 @@
             seats: [1, 2, 3, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21],
         },
         disabled: {
-            seats: [0, 8],
+            seats: [],
             rows: [4],
-            columns: [4]
+            columns: []
         }
     },
     types: [
