@@ -4,7 +4,7 @@ const baseUrl = 'http://localhost:8081/tickets';
 
 export const getTicketsByEventId = async (eventId) => {
     try {
-        const tickets = await axios.get(`${baseUrl}/event/${eventId}`);
+        const tickets = await axios.get(`${baseUrl}/ByEvent/${eventId}`);
         return tickets;
     } catch (error) { throw new Error(error); }
 }
@@ -34,3 +34,17 @@ export const createTicket = async (user, event, section, row, seat, price) => {
         return ticket;
     } catch (error) { throw new Error(error); }
 }
+
+export const boolTicket = async (eventId, section, row, seat) => { 
+
+    // check if exist ticket according to params - return true=no exist or false = exist
+
+    try {
+        const boolTicket = await axios.get(`${baseUrl}/boolTicket/${eventId}/${section}/${row}/${seat}`);
+        return boolTicket;
+    } catch (error) { throw new Error(error); }
+}
+
+
+
+
