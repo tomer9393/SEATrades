@@ -3774,6 +3774,40 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	font-size: 13px;
 }
 
+/* Seat map css */
+
+.seatChart_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.seatChart_img img {
+    width: 100%;
+    height: 560;
+    /* frame-border: 0; */
+    /* style={{ border: 0 }} */
+    /* allowFullScreen; */
+    /* aria-hidden: false;
+    tab-index: 0 ; */
+}
+.seatChart_row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.seatChart_right {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
 
 @media screen and (max-width: 860px)
 {
@@ -3853,7 +3887,7 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	color: #323232;
 	line-height: 54px;
 	margin-bottom: 26px;
-	text-align: center;
+	text-align: right;
 	text-decoration: underline;
 	width: 350px;
 }
@@ -3992,6 +4026,10 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
   
 
 .logout .primary-btn{
+	display: none;
+}
+
+.logout .hr{
 	display: none;
 }
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
@@ -4308,6 +4346,7 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 
 	.profile__title h2{
 		width: 100%;
+		text-align: center;
 	}
 
 	.work__item {
@@ -4389,11 +4428,20 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 		justify-content: space-around;
 	}
 
+	.logout .hr{
+		display: flex;
+		justify-content: space-around;
+	}
+
 	.event_details_item img {
 		max-width: 100%;
 		margin-top: 20px;
 	}
 	
+	.seatChart_content {
+		display: block;
+		margin-top: 0px;
+	}
 }
 
 /* Small Device = 320px */

@@ -3,8 +3,26 @@
 .seatChart_content {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 40px;
+}
+
+.seatChart_img img {
+    width: 100%;
+    height: 560;
+    /* frame-border: 0; */
+    /* style={{ border: 0 }} */
+    /* allowFullScreen; */
+    /* aria-hidden: false;
+    tab-index: 0 ; */
+}
+.seatChart_row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
 .seatChart_right {

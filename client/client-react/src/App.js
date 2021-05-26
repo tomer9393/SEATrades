@@ -20,7 +20,6 @@ import { UserProfile, UserNull } from "./components/hooks/profile-hook";
 import { AuthContext } from "./components/context/auth-context";
 import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
 import "../src/App.css"
-import { getUserById } from "./api/UserAPI";
 
 
 function App() {
