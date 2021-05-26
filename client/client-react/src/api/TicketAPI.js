@@ -47,4 +47,13 @@ export const boolTicket = async (eventId, section, row, seat) => {
 
 
 
+export const getSeatsArrayForRow = async (eventId, section, row) => { 
+
+    // get row Array that occupied seat is - 1
+
+    try {
+        const seatsArray = await axios.get(`${baseUrl}/mapOfEvent/${eventId}/${section}/${row}`);
+        return seatsArray;
+    } catch (error) { throw new Error(error); }
+}
 
