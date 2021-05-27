@@ -12,17 +12,17 @@ import { homePageSearch } from "../../../api/EventAPI";
 import {getSeatsArrayForRow} from "../../../api/TicketAPI";
 import { useHistory } from "react-router-dom";
 import { initializeIcons } from '@fluentui/react/lib/Icons';
-import {GetSeatList} from "../../hooks/seat-hook";
+import SingleTicket from './singleTicket';
 
 function SeatPicker(props) {
   const event = props.event;
   const eventId = event._id;
   const [section,  setSelectedSection] = useState("A");
-  const [row,  setSelectedRow] = useState(undefined);
+  const [row,  setSelectedRow] = useState("A");
   const [seat,  setSelectedSeat] = useState(undefined);
-  //const [sectionList,  setSelectedSection] = useState(undefined);
-  //const [rowList,  setRows] = useState(undefined);
-  //const [seatList,  setSeats] = useState(undefined);
+  var [numOfTickets,  setNumOfTickets] = useState(1);
+  const [seatList,  setSeats] = useState(undefined);
+  const [tickets, setTickets] = useState(undefined);
   const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
 
@@ -31,52 +31,73 @@ function SeatPicker(props) {
     setSelectedRow,
     setSelectedSeat
   ) => {
-      setSelectedSection(undefined);
-      setSelectedRow(undefined);
+      setSelectedSection("A");
+      setSelectedRow("A");
       setSelectedSeat(undefined);
   };
 
   const sections = [
-    "A",
     "B",
     "VIP",
   ];
   
   const rows = [
-    "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"
+    "B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"
   ];
 
-  const seatsTemp = [
-
-  ];
-
-
-
-  function HandleSeats(key) {
-    console.log(key);
-    setSelectedRow(key);
-    //console.log(row);
-    console.log(eventId);
-    console.log(section);
-    var seatlist = GetSeatList(eventId, section, key)
-    console.log(seatlist);
-    // const Seats = seatList?.map((seat) => {
-    //   var num=0;
-    //   if(seat==0){
-    //     num++;
-    //     return num;
-    //   }else{
-    //     num++;
-    //   }
-    // }
-    // );
-    // console.log(Seats);
-    // return Seats;
-  }
+   
+  useEffect(() => {
+    getSeatsArrayForRow(eventId, section, row).then((res) => {
+      setSeats(res.data);
+    });
+  }, [eventId, section, row]);
   
 
+  // useEffect(() => {
+  //   <SingleTicket event={event} section={section} row={row} seat={seat}/>.then((res) => {
+  //     setTickets(res.data);
+  //   });
+  // }, [id]);
+
+  // useEffect(() => {
+  //   //let ticket;
+  //   setTickets(section,row,seat);
+  // }, [section,row,seat]);
+
+
+  // function CreateTicket(section,row,seat){
+  //   return <SingleTicket event={event} section={section} row={row} seat={seat}/>;
+  // }
+  // const chosenTickets2 = tickets?.map((ticket) => (
+  //   <SingleTicket key={ticket._id} event={event} section={ticket.section} row={ticket.row} seat={ticket.seat}/>
+  // ));
+  console.log(tickets)
+  const chosenTickets3 = tickets?.map((ticket) => (
+    <SingleTicket key={numOfTickets=numOfTickets+numOfTickets} event={event} section={ticket[1]} row={ticket[2]} seat={ticket[2]}/>
+  ));
+
+  console.log(tickets)
+  console.log(chosenTickets3)
+
+  var chosenTickets;
+  
+  var Seats=[],num=1,i=0;
+  if(seatList){
+      seatList.forEach((s) => {
+        if(s==0){
+          Seats[i]=num;
+          num++;
+          i++;
+        }
+        else{
+          num++;
+        }
+      }
+    );
+  }
+
   const dropdownSection = [
-    { key: "undefined", text: "Select Section" },
+    { key: "A", text: "A" },
     ...sections.map((section) => ({
       key: section,
       text: section,
@@ -84,19 +105,40 @@ function SeatPicker(props) {
   ];
 
   const dropdownRow = [
-    { key: "undefined", text: "Select Row" },
+    { key: "A", text: "A" },
     ...rows.map((row) => ({
       key: row,
       text: row,
     })),
   ];
+
   const dropdownSeat = [
     { key: "undefined", text: "Select Seat" },
-    ...seatsTemp.map((seat) => ({
+    ...Seats.map((seat) => ({
       key: seat,
       text: seat,
     })),
   ];
+
+
+  function HandelClick(){
+    setTickets([numOfTickets,section,row,seat]);
+    setNumOfTickets(numOfTickets+1);
+    //chosenTickets=CreateTicket(section, row, seat)
+    // .then((res) => res.data)
+    // .then((res) => {
+      clearFields(
+         setSelectedSection,
+         setSelectedRow,
+         setSelectedSeat
+      );
+      console.log(section);
+      console.log(row);
+      console.log(seat);
+      //console.log(chosenTickets);
+      
+    // })
+  }
 
   return (
     <>
@@ -104,16 +146,19 @@ function SeatPicker(props) {
           <div className="row">
             <div className="col-lg-12">
               <div className="seatChart__text">
-                <div
-                  className="section-title"
-                >
-                  <h2>List Of Available Tickets</h2>
+                <div className="section-title">
+                  <h2>List Of Available Seats</h2>
+                </div>
+                <div className="section-title select-seat">
+                  <h5>Section</h5>
+                  <h5>Row</h5>
+                  <h5>Seat</h5>
                 </div>
                 <div className="seatChart__search__form">
                   <form>
                   <div className="select__option" >
                       <Dropdown 
-                        placeholder="Select Section"
+                        placeholder="A"
                         options={dropdownSection}
                         onChange={(_, item) => {
                            setSelectedSection(item.key);
@@ -122,10 +167,10 @@ function SeatPicker(props) {
                     </div>
                     <div className="select__option" >
                       <Dropdown 
-                        placeholder="Select Row"
+                        placeholder="A"
                         options={dropdownRow}
                         onChange={(_, item) => {
-                          HandleSeats(item.key);
+                          setSelectedRow(item.key);
                         }}
                       />
                     </div>
@@ -141,30 +186,25 @@ function SeatPicker(props) {
                     </div>
                   </form>
                   <button className="seatChart__add__button"
-                    onClick={() =>
-                      homePageSearch(section, row, seat)
-                        .then((res) => res.data)
-                        .then((res) => {
-                          clearFields(
-                             setSelectedSection,
-                             setSelectedRow,
-                             setSelectedSeat
-                          );
-                          console.log(section);
-                          console.log(row);
-                          console.log(seat);
-                          history.push({
-                            pathname: "/Search",
-                            state: { events: res },
-                          });
-                        })
-                    }
+                    onClick={HandelClick}
                   >
                     + Add Seat
                   </button>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="col-lg-12 col-md-12">
+            <div className="event__title">
+            <h1>Your List Of Chosen Seats</h1>
+            </div>
+            <div className="col-lg-12 col-md-12">
+              <div className="tickets_row">
+              {chosenTickets3}
+              </div>
+          </div>
           </div>
         </div>
     </>

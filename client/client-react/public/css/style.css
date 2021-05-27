@@ -3901,6 +3901,17 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	text-transform: uppercase;
 	border-radius: 5px;
 }
+.select-seat {
+	display: flex;
+	margin-right: 100px;
+	margin-bottom: 0px;
+	justify-content: space-around;
+}
+
+.select-seat h5 {
+	font-size: 16px;
+	font-weight: bold;
+}
 
 @media screen and (max-width: 860px)
 {
