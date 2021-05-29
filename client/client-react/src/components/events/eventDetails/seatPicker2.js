@@ -1,14 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useState, useEffect , } from "react";
-//import { categories, locations } from "../utils";
-import {
-  // TextField,
-  Dropdown,
-  // DatePicker,
-  // mergeStyleSets,
-} from "@fluentui/react";
-import { homePageSearch } from "../../../api/EventAPI";
+import {Dropdown} from "@fluentui/react";
 import {getSeatsArrayForRow} from "../../../api/TicketAPI";
 import { useHistory } from "react-router-dom";
 import { initializeIcons } from '@fluentui/react/lib/Icons';
@@ -18,72 +11,36 @@ function SeatPicker(props) {
   const event = props.event;
   const eventId = event._id;
   const [section,  setSelectedSection] = useState("A");
-  const [row,  setSelectedRow] = useState("A");
-  const [seat,  setSelectedSeat] = useState(undefined);
-  var [numOfTickets,  setNumOfTickets] = useState(1);
-  const [seatList,  setSeats] = useState(undefined);
-  const [tickets, setTickets] = useState(undefined);
+  const [row,  setSelectedRow] = useState("E");
+  const [seat,  setSelectedSeat] = useState();
+  const [numOfTickets,  setNumOfTickets] = useState(0);
+  const [seatList,  setSeatList] = useState(undefined);
+  const [dropdownRow,  setDropdownRow] = useState(undefined);
+  const [tickets, setTickets] = useState();
+  const [TempChosenTickets, setChosenTickets] = useState([]);
   const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
 
-  const clearFields = (
-    setSelectedSection,
-    setSelectedRow,
-    setSelectedSeat
-  ) => {
-      setSelectedSection("A");
-      setSelectedRow("A");
-      setSelectedSeat(undefined);
-  };
+  //const sections = ["B", "VIP"];
+  //const rows = ["B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"];
+  //const rowsA = ["F","G","H","I","J","K","L","M","N","O","P","Q","R"];
 
-  const sections = [
-    "B",
-    "VIP",
-  ];
-  
-  const rows = [
-    "B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"
-  ];
+  console.log("Current Section:");
+  console.log(section);
+  console.log("Current row:");
+  console.log(row);
 
-   
   useEffect(() => {
     getSeatsArrayForRow(eventId, section, row).then((res) => {
-      setSeats(res.data);
+      setSeatList(res.data);
     });
   }, [eventId, section, row]);
-  
 
-  // useEffect(() => {
-  //   <SingleTicket event={event} section={section} row={row} seat={seat}/>.then((res) => {
-  //     setTickets(res.data);
-  //   });
-  // }, [id]);
-
-  // useEffect(() => {
-  //   //let ticket;
-  //   setTickets(section,row,seat);
-  // }, [section,row,seat]);
-
-
-  // function CreateTicket(section,row,seat){
-  //   return <SingleTicket event={event} section={section} row={row} seat={seat}/>;
-  // }
-  // const chosenTickets2 = tickets?.map((ticket) => (
-  //   <SingleTicket key={ticket._id} event={event} section={ticket.section} row={ticket.row} seat={ticket.seat}/>
-  // ));
-  console.log(tickets)
-  const chosenTickets3 = tickets?.map((ticket) => (
-    <SingleTicket key={numOfTickets=numOfTickets+numOfTickets} event={event} section={ticket[1]} row={ticket[2]} seat={ticket[2]}/>
-  ));
-
-  console.log(tickets)
-  console.log(chosenTickets3)
-
-  var chosenTickets;
-  
-  var Seats=[],num=1,i=0;
-  if(seatList){
-      seatList.forEach((s) => {
+  let TempSeatList = seatList;
+  var Seats=[];
+  var num=1,i=0;
+  if(TempSeatList){
+    TempSeatList.forEach((s) => {
         if(s==0){
           Seats[i]=num;
           num++;
@@ -98,47 +55,123 @@ function SeatPicker(props) {
 
   const dropdownSection = [
     { key: "A", text: "A" },
-    ...sections.map((section) => ({
-      key: section,
-      text: section,
-    })),
+    { key: "B", text: "B" },
+    { key: "VIP", text: "VIP" }
+    // ...sections.map((section) => ({
+    //   key: section,
+    //   text: section,
+    // })),
   ];
 
-  const dropdownRow = [
-    { key: "A", text: "A" },
-    ...rows.map((row) => ({
-      key: row,
-      text: row,
-    })),
-  ];
+  // const dropdownRowA = [
+  //   { key: "E", text: "E" },
+  //   ...rowsA.map((row) => ({
+  //     key: row,
+  //     text: row,
+  //   })),
+  // ];
+  // const dropdownRowB = [
+  //   { key: "A", text: "A" },
+  //   { key: "B", text: "B" },
+  //   { key: "C", text: "C" }
+  //   // ...rows.map((row) => ({
+  //   //   key: row,
+  //   //   text: row,
+  //   // })),
+  // ];
+  // const dropdownRowVIP = [
+  //   { key: "A", text: "A" },
+  //   { key: "B", text: "B" },
+  //   { key: "C", text: "C" },
+  //   { key: "D", text: "D" }
+  //   // ...rows.map((row) => ({
+  //   //   key: row,
+  //   //   text: row,
+  //   // })),
+  // ];
+
+  useEffect(() => {
+    let TempDropdownRow = [];
+    const rowsA = ["F","G","H","I","J","K","L","M","N","O","P","Q","R"];
+    const dropdownRowA = [
+      { key: "E", text: "E" },
+      ...rowsA.map((row) => ({
+        key: row,
+        text: row,
+      })),
+    ];
+    const dropdownRowB = [
+      { key: "A", text: "A" },
+      { key: "B", text: "B" },
+      { key: "C", text: "C" }
+    ];
+    const dropdownRowVIP = [
+      { key: "A", text: "A" },
+      { key: "B", text: "B" },
+      { key: "C", text: "C" },
+      { key: "D", text: "D" }
+    ];
+    if(section=='A'){TempDropdownRow = dropdownRowA;}
+    else if(section=='B'){TempDropdownRow = dropdownRowB;}
+    else if(section=='VIP'){TempDropdownRow = dropdownRowVIP;}
+    setDropdownRow(TempDropdownRow);
+  }, [section]);
+  
+  // var dropdownRow=[];
+  // if(section=='A'){
+  //   dropdownRow = dropdownRowA;
+  // }
+  // else if(section=='B'){
+  //   dropdownRow = dropdownRowB;
+  // }else{
+  //   dropdownRow = dropdownRowVIP;
+  // }
 
   const dropdownSeat = [
-    { key: "undefined", text: "Select Seat" },
+    { key: 0, text: "Select Seat" },
     ...Seats.map((seat) => ({
       key: seat,
       text: seat,
     })),
   ];
 
-
-  function HandelClick(){
-    setTickets([numOfTickets,section,row,seat]);
-    setNumOfTickets(numOfTickets+1);
-    //chosenTickets=CreateTicket(section, row, seat)
-    // .then((res) => res.data)
-    // .then((res) => {
-      clearFields(
-         setSelectedSection,
-         setSelectedRow,
-         setSelectedSeat
-      );
-      console.log(section);
-      console.log(row);
-      console.log(seat);
-      //console.log(chosenTickets);
-      
-    // })
+  var RowPlaceholder;
+  if (section=="A") {
+    RowPlaceholder = "E";
+  } else{
+    RowPlaceholder = "A";
   }
+  console.log("Current row:");
+  console.log(row);
+
+  function HandelSectionClick(key){
+    setSelectedSection(key);
+    //setTickets([section,row,key]);
+  }
+  function HandelRowClick(key){
+    setSelectedRow(key);
+    //setTickets([section,row,key]);
+  }
+
+  function HandelSeatClick(key){
+    setSelectedSeat(key);
+    setTickets([section,row,key]);
+  }
+
+  function HandelAddClick(){
+    setChosenTickets(TempChosenTickets => TempChosenTickets.concat([tickets]))
+    let chosen = {...TempSeatList[seat-1]};
+    chosen.name = 1;
+    TempSeatList[seat-1] = chosen;
+    setSeatList(TempSeatList);
+    setNumOfTickets(numOfTickets+1);
+    setSelectedSeat(0);
+    //setTickets([section,row,seat+1]);
+  }
+
+  const ChosenTickets = TempChosenTickets?.map((ticket) => (
+  <SingleTicket key={ticket[2]} event={event} section={ticket[0]} row={ticket[1]} seat={ticket[2]}/>
+  ));
 
   return (
     <>
@@ -158,19 +191,19 @@ function SeatPicker(props) {
                   <form>
                   <div className="select__option" >
                       <Dropdown 
-                        placeholder="A"
+                        placeholder={section}
                         options={dropdownSection}
                         onChange={(_, item) => {
-                           setSelectedSection(item.key);
+                          HandelSectionClick(item.key);
                         }}
                       />
                     </div>
                     <div className="select__option" >
                       <Dropdown 
-                        placeholder="A"
+                        placeholder={RowPlaceholder}
                         options={dropdownRow}
                         onChange={(_, item) => {
-                          setSelectedRow(item.key);
+                          HandelRowClick(item.key);
                         }}
                       />
                     </div>
@@ -179,17 +212,25 @@ function SeatPicker(props) {
                         placeholder="Select Seat"
                         options={dropdownSeat}
                         onChange={(_, item) => {
-                           setSelectedSeat(item.key);
+                          HandelSeatClick(item.key);
                         }}
-                        
                       />
                     </div>
                   </form>
-                  <button className="seatChart__add__button"
-                    onClick={HandelClick}
-                  >
-                    + Add Seat
-                  </button>
+                  {
+                  seat==undefined || seat==0 || numOfTickets==4
+                  ? <button className="seatChart__add__button disabledCursor"  onClick={(e) => e.preventDefault() }>+ Add Seat</button>
+                  
+                  : <button className="seatChart__add__button notDisabled" onClick={HandelAddClick}>+ Add Seat</button>
+                  }
+                  {
+                  numOfTickets == 4 &&
+                  <div style={{ color: "red" }}>The Maximum Allowed Seats To Reserve Is 4</div>
+                  }
+                  {
+                  seat==0 && numOfTickets!=4 &&
+                  <div style={{ color: "red" }}>Select A New Seat</div>
+                  }
                 </div>
               </div>
             </div>
@@ -202,7 +243,7 @@ function SeatPicker(props) {
             </div>
             <div className="col-lg-12 col-md-12">
               <div className="tickets_row">
-              {chosenTickets3}
+              {ChosenTickets}
               </div>
           </div>
           </div>
@@ -210,7 +251,5 @@ function SeatPicker(props) {
     </>
   );
 }
-
-
 
 export default SeatPicker;

@@ -3203,7 +3203,7 @@ ol {
 	padding:0;
 	margin:0;
 }
-.pic{
+.event_grid_pic{
 	background:url(../img/event/1.png) no-repeat 0px 0px;
 	width:35px;
 	height:35px;
@@ -3649,6 +3649,38 @@ display: block
 	-ms-transition: .5s all;
 }
 
+.tickets_card-list .trade_tickets_card a
+{
+    background-color: #D8DDE0;
+    color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px 50px;
+    /* background: #FAAE0B; */
+    font-size: 14px;
+	font-weight: bold;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    text-align: center;
+    color: black;
+}
+
+.tickets_card-list .trade_tickets_card a:hover{
+	background:#CCCCCC;
+	color:#FFF;
+	text-decoration:none;
+	transition: .5s all;
+	-webkit-transition: .5s all;
+	-moz-transition: .5s all;
+	-o-transition: .5s all;
+	-ms-transition: .5s all;
+}
+
 .forTrade
 {
     /* display: table-caption; */
@@ -3906,11 +3938,21 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	margin-right: 100px;
 	margin-bottom: 0px;
 	justify-content: space-around;
+	text-decoration: underline;
 }
 
 .select-seat h5 {
 	font-size: 16px;
 	font-weight: bold;
+}
+
+.seat_chart_pic{
+	background:url(../img/seatChart/seat.png) no-repeat 0px 0px;
+	width: 65px;
+    height: 65px;
+	display:block;
+	float: left;
+	margin-right: 1.2em;
 }
 
 @media screen and (max-width: 860px)

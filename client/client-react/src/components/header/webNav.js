@@ -23,6 +23,7 @@ function Nav (props){
           <ul className="dropdown">
           <li><a className="fa fa-user"></a><Link to="/Profile">My Profile</Link></li>
             <li><a className="fa fa-ticket"></a><Link to="/MyTickets">My Tickets</Link></li>
+            <li><a className="fa fa-ticket"></a><Link to="/mySEATrades">My SEATrades</Link></li>
             <li><a className="fa fa-sign-out"></a><Link to="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }}>Log out</Link></li>
           </ul>
         </li>

@@ -1,10 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import { format } from "date-fns";
-import { useEffect, useState, useContext } from "react";
 
 function singleTicket(props) {
-  //const ticket = props.ticket;
   const section=props.section
   const row=props.row 
   const seat=props.seat

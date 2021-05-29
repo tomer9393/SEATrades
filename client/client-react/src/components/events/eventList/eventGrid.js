@@ -13,7 +13,7 @@ function eventGrid(props) {
       <>
       <div className="event-grids">
         <div className="col-md-3 event-grid">
-          <div className="pic"> </div>
+          <div className="event_grid_pic"> </div>
           <ul>
             <li className="hedding">{formattedDate}</li>
           </ul>
@@ -40,7 +40,7 @@ function eventGrid(props) {
           <ul >
           {
           soldOut==true
-          ? <li className="button yellow"><Link to="/" className="disabledCursor" onClick={ (e) => e.preventDefault() }>{ticketsAvailable} tickets Available</Link></li>
+          ? <li className="button yellow"><Link to="/" className="disabledCursor" onClick={ (e) => e.preventDefault() }>0 tickets Available</Link></li>
           : <li className="button yellow"><Link to={`/EventDetails/${event._id}`} className="notDisabled">{ticketsAvailable} tickets Available</Link></li>
           }
           </ul>
