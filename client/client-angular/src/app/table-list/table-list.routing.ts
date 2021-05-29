@@ -6,7 +6,7 @@ import { DetailsCategoryComponent } from './categories-list/details-category/det
 
 // import { CreateUserComponent } from './users-list/create-user/create-user.component';
 // import { EditUserComponent } from './users-list/edit-user/edit-user.component';
-// import { DetailsUserComponent } from './users-list/details-user/details-user.component';
+import { DetailsUserComponent } from './users-list/details-user/details-user.component';
 
 import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/create-admin-user.component';
 import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
@@ -63,7 +63,7 @@ export const TableListRoutes: Routes = [
 
     //  { path: 'CreateUser',      component: CreateUserComponent },
     //  { path: 'EditUser',      component: EditUserComponent },
-    //  { path: 'DetailsUser',      component: DetailsUserComponent },
+     { path: 'DetailsUser',      component: DetailsUserComponent },
 
      { path: 'CreateAdminUser',      component: CreateAdminUserComponent },
      { path: 'EditAdminUser',      component: EditAdminUserComponent },
