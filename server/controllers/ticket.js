@@ -58,6 +58,16 @@ const getTicketsByEventId = async (req, res) => {
     res.json(tickets);
 };
 
+const getTicketsByEvent = async (req, res) => {
+    const tickets = await ticketService.getTicketsByEvent(req.params.eventId)
+
+    if (!tickets) {
+        return res.status(500).json("Tickets not found");
+    }
+
+    res.json(tickets);
+};
+
 const getTicketsByUserId = async (req, res) => {
     const tickets = await ticketService.getTicketsByUserId(req.params.userId);
     if (!tickets) {
@@ -124,6 +134,28 @@ const getNumOfTickets = async (req, res) => {
     res.json(count);
 };
 
+const boolTicket = async (req, res) => {
+
+    const eventId = req.params.eventId;
+    const section = req.params.section;
+    const row = req.params.row;
+    const seat = req.params.seat;
+
+    const boolTicket = await ticketService.boolTicket(eventId, section, row, seat);
+    
+    return res.send(boolTicket);
+};
+
+const getMApOfEvent = async (req, res) => {
+
+    const eventId = req.params.eventId;
+    const section = req.params.section;
+    const row = req.params.row;
+
+    const map = await ticketService.getMApOfEvent(eventId, section, row);
+    
+    return res.send(map);
+};
 
 module.exports = {
     createTicket,
@@ -131,8 +163,11 @@ module.exports = {
     getTicketByTicketId,
     getTickets,
     getTicketsByEventId,
+    getTicketsByEvent,
     getTicketsByUserId,
     updateTicket,
     deleteTicket,
-    getNumOfTickets
+    getNumOfTickets,
+    boolTicket,
+    getMApOfEvent
 }

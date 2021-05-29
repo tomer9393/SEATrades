@@ -20,8 +20,14 @@ const Trade = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Ticket"
     },
-    trade_Status: {                            // ( 1 - trade , 0 -  rejected )
-        type: Boolean  
+    active: {                            // ( 1 - active , 0 -  inactive )
+        type: Boolean,
+        default: true    
+    },
+    trade_Status: {                            // ( 1 - accept , 2 -  waiting , 3 - rejected )
+        type: String,
+        enum: ['Accept', 'Waiting', 'Rejected'],
+        default: "Waiting"  
     }
 });
 

@@ -10,12 +10,12 @@ const { ObjectId } = require('mongodb');
 const { Object } = require('mongodb');
 
 const createTrade = async (body) => {
+    
     const trade = new Trade({
         user1 : body.user1,
         user2 : body.user2,
         ticket1 : body.ticket1,
         ticket2 : body.ticket2,
-        trade_Status : body.trade_Status
     });
 
 
@@ -24,6 +24,62 @@ const createTrade = async (body) => {
     } catch (error) {
         return null;
     }
+};
+
+const getTradeById = async (id) => {
+
+    try {
+        let trade = await Trade.findById(id);
+        if(!trade) {
+          throw new Error('no document found');
+        }
+        return trade;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
+};
+
+const acceptTrade = async (id) => {
+
+    try {
+        let trade = await Trade.findById(id);
+        if(!trade) {
+          throw new Error('no document found');
+        }
+
+        trade.active = false;
+        trade.trade_Status = 'Accept';
+    
+        await trade.save();
+        return trade;
+
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
+
+};
+
+const rejectTrade = async (id) => {
+
+    try {
+        let trade = await Trade.findById(id);
+        if(!trade) {
+          throw new Error('no document found');
+        }
+
+        trade.active = false;
+        trade.trade_Status = 'Rejected';
+    
+        await trade.save();
+        return trade;
+
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
+
 };
 
 const getTicketsForTrade = async ( ticketId ) => {
@@ -113,6 +169,9 @@ const ticketForTrade = async (ticketId) => {
 
 module.exports = {
     createTrade,
+    getTradeById,
+    acceptTrade,
+    rejectTrade,
     getTicketsForTrade,
     ticketForTrade
 }
