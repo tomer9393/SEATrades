@@ -212,6 +212,7 @@ const updateTicketByTrade = async (id, userObjectId) => {
     ticket.user = user;
     ticket.code = user.code;
     ticket.QRcode = user.QRcode;
+    ticket.forTrade = false;
 
     await ticket.save();
 
