@@ -36,9 +36,7 @@ function App() {
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>
-      <Route path="/Contact">
-        <ContactPage />
-      </Route>
+      <Route path="/Contact" component={(props) => <ContactPage {...props}/>}/>
       <Route path="/HowItWorks">
         <HowItWorks />
       </Route>

@@ -38,8 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+export default function YourSelection(props) {
   const classes = useStyles();
+
+  props.setDisableNext(false);
 
   return (
     <React.Fragment>
