@@ -12,6 +12,10 @@ import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/c
 import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
 import { DetailsAdminUserComponent } from './admin-users-list/details-admin-user/details-admin-user.component';
 
+import { CreateContactComponent } from './contacts-list/create-contact/create-contact.component';
+import { EditContactComponent } from './contacts-list/edit-contact/edit-contact.component';
+import { DetailsContactComponent } from './contacts-list/details-contact/details-contact.component';
+
 
 export const TableListRoutes: Routes = [
     // {
@@ -68,6 +72,10 @@ export const TableListRoutes: Routes = [
      { path: 'CreateAdminUser',      component: CreateAdminUserComponent },
      { path: 'EditAdminUser',      component: EditAdminUserComponent },
      { path: 'DetailsAdminUser',      component: DetailsAdminUserComponent },
+
+     { path: 'CreateContact',      component: CreateContactComponent },
+     { path: 'EditContact',      component: EditContactComponent },
+     { path: 'DetailsContact',      component: DetailsContactComponent },
 
     // { path: 'user-profile',   component: UserProfileComponent },
     // { path: 'table-list',     component: TableListComponent },
