@@ -11,7 +11,6 @@ export default function MyTickets() {
   const auth = useContext(AuthContext);
   const id = auth.userId;
   const [tickets, setTickets] = useState(undefined);
-  //const [tickets2, setTickets2] = useState(undefined);
 
   useEffect(() => {
     getTicketsByUserId(id).then((res) => {

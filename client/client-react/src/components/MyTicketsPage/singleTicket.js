@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import { format } from "date-fns";
 import { useEffect, useState, useContext } from "react";
 import Popup from '../tradePage/Popup';
-import SeatMap from "../events/eventDetails/seatMap3.js"
+import SeatMap from "./seatMap.js"
 
 
 // function TradeButton() {
@@ -115,11 +115,11 @@ function SingleTicket(props) {
               </section>
             </section> */}
         </article>
-        {
-                          showSeats==false
-                          ? <div></div>
-                          : <SeatMap event={event}></SeatMap>
-                          } 
+          {
+          showSeats==false
+          ? <div></div>
+          : <SeatMap event={event}></SeatMap>
+          } 
                           
     </>
     )
