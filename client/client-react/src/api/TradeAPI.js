@@ -21,21 +21,47 @@ export const boolTicketForTrade = async (ticketId) => {
     } catch (error) { throw ERROR; }
 }
 
-export const createTrade = async (user1, user2, ticket1, ticket2, trade_Status) => {
-
-    // לחשוב על דחייה (ברגע שהסטאטוס הוא פולס) מה נחזיר למשתמש ונעשה את זה כאן
+export const createTrade = async (user1, user2, ticket1, ticket2) => {
 
     try {
         const newTrade = {
-
-            user1: user1,
-            user2: user2,
-            ticket1: ticket1,
-            ticket2: ticket2,
-            trade_Status: trade_Status
+            user1: user1, // request User
+            user2: user2, // response User
+            ticket1: ticket1, //ticket of user1
+            ticket2: ticket2 // ticket of user2
         };
 
         const trade = await axios.post(`${baseUrl}/`, newTrade);
         return trade;
     } catch (error) { throw new Error(error); }
+}
+
+export const acceptTrade = async (tradeId) => {
+
+    // make trade !!!
+
+    try {
+        const trade = await axios.patch(`${baseUrl}/acceptTrade/${tradeId}`);
+        return trade;
+    } catch (error) { throw ERROR; }
+}
+
+export const acceptTrade = async (tradeId) => {
+
+    // update trade to rejected.
+
+    try {
+        const trade = await axios.patch(`${baseUrl}/rejectTrade/${tradeId}`);
+        return trade;
+    } catch (error) { throw ERROR; }
+}
+
+export const MyAlertsTrades = async (userId) => {
+
+    //return user Alert trades
+
+    try {
+        const trades = await axios.get(`${baseUrl}/MyAlertsTrades/${userId}`);
+        return trades;
+    } catch (error) { throw ERROR; }
 }
