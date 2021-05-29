@@ -4,7 +4,9 @@ const TradeController = require ('../controllers/trade');
 
 
 router.route('/')
+    .get(TradeController.getTrades)
     .post(TradeController.createTrade);
+
 
 router.route('/id/:id')
     .get(TradeController.getTradeById);
@@ -20,5 +22,8 @@ router.route('/ticketForTrade/:ticketId')
 
 router.route('/boolTrade/:ticketId')
     .patch(TradeController.ticketForTrade);
+
+router.route('/MyAlertsTrades/:userId')
+    .get(TradeController.MyAlertsTrades);
 
 module.exports = router;

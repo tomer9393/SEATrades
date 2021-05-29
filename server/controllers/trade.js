@@ -117,6 +117,14 @@ const rejectTrade = async (req, res) => {
     res.json(trade);
 };
 
+const getTrades = async (req, res) => {
+    const trades = await tradeService.getTrades();
+    if (!trades) {
+      return res.status(500).json("Trades not found");
+    }
+    res.json(trades);
+};
+
 const getTicketsForTrade = async (req, res) => {
     const tickets = await tradeService.getTicketsForTrade( req.params.ticketId);
     if (!tickets) {
@@ -135,11 +143,22 @@ const ticketForTrade = async (req, res) => {
     res.json(ticket);
 };
 
+const MyAlertsTrades = async (req, res) => {
+    const trades = await tradeService.MyAlertsTrades(req.params.userId);
+    if (!trades) {
+        return res.status(500).json("Trades not found");
+    }
+
+    res.json(trades);
+};
+
 module.exports = {
     createTrade,
     getTradeById,
     acceptTrade,
     rejectTrade,
+    getTrades,
     getTicketsForTrade,
-    ticketForTrade
+    ticketForTrade,
+    MyAlertsTrades
 }
