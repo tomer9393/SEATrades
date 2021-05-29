@@ -14,6 +14,7 @@ import PageNotFound from './components/404PageNotFound/404PageNotFound';
 import SignInPage from "./components/signInPage/signInPage";
 import SignUpPage from "./components/signUp/signUpPage";
 import ProfilePage from "./components/profilePage/profilePage";
+import CheckoutPage from "./components/checkoutPage/checkout";
 import { BrowserRouter, Route, Switch , Redirect} from "react-router-dom";
 import { useAuth  } from "./components/hooks/auth-hook";
 import { UserProfile, UserNull } from "./components/hooks/profile-hook";
@@ -21,6 +22,7 @@ import { AuthContext } from "./components/context/auth-context";
 import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
 import "../src/App.css"
 import { getUserById } from "./api/UserAPI";
+
 
 
 function App() {
@@ -37,11 +39,12 @@ function App() {
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>
-      <Route path="/Contact">
-        <ContactPage />
-      </Route>
+      <Route path="/Contact" component={(props) => <ContactPage {...props}/>}/>
       <Route path="/HowItWorks">
         <HowItWorks />
+      </Route>
+      <Route path="/Checkout" exact>
+        <CheckoutPage />
       </Route>
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="/Profile" exact>
