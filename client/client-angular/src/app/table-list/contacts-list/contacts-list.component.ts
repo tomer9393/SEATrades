@@ -47,16 +47,16 @@ export class ContactsListComponent implements OnInit {
   }
 
   onCreate(){
-    //this.currentArticleService.changeCurrentArticle(article);
     this.router.navigateByUrl('/CreateContact');
   }
 
-  onEdit(contact : Contact){
-    //this.currentArticleService.changeCurrentArticle(article);
+  onEdit(contact : Contact)
+  {
     this.router.navigateByUrl('/EditContact', { state: contact });
   }
-  onDelete(contact : Contact){
-    //this.currentArticleService.changeCurrentArticle(article);
+
+  onDelete(contact : Contact)
+  {
     this.contactsService.deleteContact(contact._id).subscribe(data => {
       this.contacts.splice(this.contacts.indexOf(contact),1);
     }, err => {
@@ -64,12 +64,14 @@ export class ContactsListComponent implements OnInit {
       this.contacts.splice(this.contacts.indexOf(contact),1);
     });
   }
-  onDetails(contact : Contact){
-    //this.currentArticleService.changeCurrentArticle(article);
+
+  onDetails(contact : Contact)
+  {
     this.router.navigateByUrl('/DetailsContact', { state: contact });
   }
 
-  handlePanel(action : string){
+  handlePanel(action : string)
+  {
     this.loadAll();
   }
 }

@@ -19,6 +19,8 @@ import { TableListRoutes } from './table-list.routing';
 import { EditCategoryComponent } from './categories-list/edit-category/edit-category.component';
 import { CreateCategoryComponent } from './categories-list/create-category/create-category.component';
 import { DetailsCategoryComponent } from './categories-list/details-category/details-category.component';
+import { ContactsListComponent } from './contacts-list/contacts-list.component';
+
 
 // import { CreateUserComponent } from './users-list/create-user/create-user.component';
 // import { EditUserComponent } from './users-list/edit-user/edit-user.component';
@@ -28,6 +30,10 @@ import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/c
 import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
 import { DetailsAdminUserComponent } from './admin-users-list/details-admin-user/details-admin-user.component';
 
+import { CreateContactComponent } from './contacts-list/create-contact/create-contact.component';
+import { EditContactComponent } from './contacts-list/edit-contact/edit-contact.component';
+import { DetailsContactComponent } from './contacts-list/details-contact/details-contact.component';
+
 
 
 @NgModule({
@@ -36,9 +42,13 @@ import { DetailsAdminUserComponent } from './admin-users-list/details-admin-user
     CategoriesListComponent,
     UsersListComponent,
     AdminUsersListComponent,
+    ContactsListComponent,
     EditCategoryComponent,
     CreateCategoryComponent,
     DetailsCategoryComponent,
+    CreateContactComponent,
+    EditContactComponent,
+    DetailsContactComponent,
     // CreateUserComponent,
     // EditUserComponent,
     DetailsUserComponent,
