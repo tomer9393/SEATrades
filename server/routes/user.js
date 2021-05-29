@@ -51,7 +51,7 @@ router.route('/getUserByEmail/:email')
  * http://localhost:8081/users/getUserById/:id
  */
 router.route('/getUserById/:id')
-    .get(userController.getOnlyUserById) //V
+    .get(userController.getUserById) //V
 
 
 /**
@@ -65,5 +65,7 @@ router.route('/:id')
     .delete(userController.deleteUser) //V
     .patch(userController.updateUser); //V
 
+router.route("/update/TicketOfUser")
+    .patch(userController.updateTicketOfUser);
 
 module.exports = router;

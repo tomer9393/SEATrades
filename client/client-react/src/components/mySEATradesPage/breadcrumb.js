@@ -9,12 +9,12 @@ function Breadcrumb() {
       <div className="container">
         <div className="col-lg-12 text-center">
             <div className="breadcrumb__text">
-            <h2 style={{textShadow: '2px 1px #000000'}}>My Tickets</h2>
+            <h2 style={{textShadow: '2px 1px #000000'}}>My Seat Trades</h2>
             </div>
             <div className="breadcrumb__option">
               <Link to="/"><i className="fa fa-home"></i> Home</Link>
               <Link to="/Profile"><i ></i> My Profile</Link>
-              <span>My Tickets</span>
+              <span>My Seat Trades</span>
           </div>
         </div>
         </div>

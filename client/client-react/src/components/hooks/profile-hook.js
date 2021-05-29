@@ -1,18 +1,40 @@
 import React, { useContext , useState , useEffect } from "react";
 import { AuthContext } from "../context/auth-context";
-import { getOnlyUserById } from "../../api/UserAPI";
+import { getUserById } from "../../api/UserAPI";
 
 
-export function useProfile (userId){
-  //const auth = useContext(AuthContext);
-  //const userId = auth.userId;
-  const [userProfile, setUser] = useState();
+// export function useProfile (Id){
+//   //const auth = useContext(AuthContext);
+//   //const userId = Id;
+//   const [userProfile, setUser] = useState();
+//   console.log(Id);
+//   useEffect(() => {
+//     getUserById(Id).then((res) => {
+//       setUser(res.data);
+//     });
+//   }, [Id]);
+//   const user = userProfile;
+//   console.log(userProfile);
+//   console.log(user);
+//   return user;
+// }
 
-  useEffect(() => {
-    getOnlyUserById(userId).then((res) => {
-      setUser(res.data);
-    });
-  }, [userId]);
-  const user = userProfile;
-  return userProfile;
-}
+export function UserProfile (Id){
+    const [user, setUser] = useState(undefined);
+    console.log(Id);
+    useEffect(() => {
+      getUserById(Id).then((res) => {
+        setUser(res.data);
+      });
+    }, [Id]);
+    console.log(user);
+    return user;
+  }
+
+  export  function UserNull() {
+    var [userNull, setuserNull] = useState(null);
+    useEffect(() => {
+      setuserNull(userNull);
+      }
+  ,  [userNull])
+  }

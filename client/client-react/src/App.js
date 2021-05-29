@@ -1,4 +1,5 @@
 import React from "react";
+import { useState , useEffect } from "react";
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import HomePage from './components/homePage/homePage';
@@ -16,9 +17,10 @@ import ProfilePage from "./components/profilePage/profilePage";
 import CheckoutPage from "./components/checkoutPage/checkout";
 import { BrowserRouter, Route, Switch , Redirect} from "react-router-dom";
 import { useAuth  } from "./components/hooks/auth-hook";
-import { useProfile } from "./components/hooks/profile-hook";
+import { UserProfile, UserNull } from "./components/hooks/profile-hook";
 import { AuthContext } from "./components/context/auth-context";
 import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
+import  MySEATradesPage  from "./components/mySEATradesPage/mySEATradesPage";
 import "../src/App.css"
 
 
@@ -50,6 +52,7 @@ function App() {
       <Route path="/SignIn"><Redirect to="Profile" /></Route>
       <Route path="/SignUp"><Redirect to="Profile" /></Route>
       <Route path="/MyTickets" component={(props) => <MyTicketsPage {...props}/>} />
+      <Route path="/mySEATrades" component={(props) => <MySEATradesPage {...props}/>} />
       <Route path="*">
         <PageNotFound />
       </Route>
@@ -83,12 +86,22 @@ function App() {
       <Route path="/MyTickets" exact>
         <SignInPage />
       </Route>
+      <Route path="/mySEATrades" exact>
+        <SignInPage />
+      </Route>
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="*">
         <PageNotFound />
       </Route>
     </Switch>
   );
+
+  if(!!token === true){
+    var userProfile = UserProfile(userId);
+  }else{
+    UserNull();
+  }
+  
 
   return (
     <>
@@ -103,7 +116,7 @@ function App() {
       >
         <BrowserRouter basename="/">
           
-          <Header />
+          <Header user={userProfile} />
           <main>{routes}</main>
           <hr style={{width: '70%'}}></hr> 
           <Footer />

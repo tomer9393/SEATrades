@@ -31,7 +31,7 @@ function SearchListPage(props) {
           </div>
           <hr style={{width: '70%'}}></hr> 
           <div className="container  search-title">
-          < p>You can try and run a new <a href="/" style={{color: '#ec171e'}}>search</a></ p>
+          < p>You can try and run a new <Link to="/" style={{color: '#ec171e'}}>search</Link></ p>
           < p>In the meanwhile you can take a look at our most popular events down here</ p>
           
       </div>

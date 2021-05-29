@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getEventById } from "../../../api/EventAPI.js";
 import EventList from "../eventList/eventList";
-import SeatMap from "./seatMap.js"
+import SeatMap from "./seatMap3.js"
 
 
-function EventDetails() {
+function EventDetails(props) {
 
   const { id } = useParams();
-  const [event, setEvents] = useState();
+  const [event, setEvents] = useState(undefined);
   useEffect(() => {
     getEventById(id).then((res) => {
       setEvents(res.data);
@@ -23,7 +23,7 @@ function EventDetails() {
     <>
     <Breadcrumb event={event}/>
       <section className="about spad">
-        <SeatMap></SeatMap>
+        <SeatMap event={event}></SeatMap>
       </section>
       </>
   );

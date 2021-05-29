@@ -45,7 +45,18 @@ const createTicket = async (body) => {
 };
 
 const getTicketById = async (id) => {
-    return await Ticket.findById(id);
+    //return await Ticket.findById(id);
+    try {
+        let data = await Ticket.findById(id);
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
 };
 
 const getTicketByTicketId = async (ticketId) => {
@@ -79,6 +90,9 @@ const getTicketsByEventId = async (id) => {
     return await Ticket.find({'event' : [id]});
 };
 
+const getTicketsByEvent = async (id) => {
+    return await Ticket.find({'event' : [id]}, {'section':1, 'row':2, 'seat':3 });
+};
 
 
 const getTicketsByUserId = async (userId) => {
@@ -178,7 +192,7 @@ const updateTicket = async (id, body) => {
     return ticket;
 };
 
-const updateTicketBySwap = async (id, userObjectId) => {
+const updateTicketByTrade = async (id, userObjectId) => {
     const ticket = await getTicketById(id);
     if (!ticket){
         return null;
@@ -225,6 +239,55 @@ const getNumOfTickets = async () => {
     return await Ticket.countDocuments();
 };
 
+const boolTicket = async (eventId, section, row, seat) => {
+
+    const ticket = await Ticket.aggregate(
+        [{
+            $match: {
+                event: ObjectId(eventId),
+                section: section,
+                row: row,
+                seat: seat
+            }
+        }]
+    );
+
+    if (!ticket[0]){
+
+        return true;
+    }
+
+    return false;
+};
+
+
+
+
+
+const getMApOfEvent = async (eventId, section, row ) => {
+
+    var map = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] ;
+
+    const tickets = await Ticket.aggregate(
+        [{
+            $match: {
+                event: ObjectId(eventId),
+                section: section,
+                row: row
+            }
+        }]
+    );
+
+    for (let i = 0; i < tickets.length; i++) {
+        
+        map[tickets[i].seat - 1] = 1;
+    }
+
+    console.log(map);
+
+    return map;
+};
+
 
 
 module.exports = {
@@ -233,9 +296,12 @@ module.exports = {
     getTicketByTicketId,
     getTickets,
     getTicketsByEventId,
+    getTicketsByEvent,
     getTicketsByUserId,
     updateTicket,
-    updateTicketBySwap,
+    updateTicketByTrade,
     deleteTicket,
-    getNumOfTickets
+    getNumOfTickets,
+    boolTicket,
+    getMApOfEvent
 }

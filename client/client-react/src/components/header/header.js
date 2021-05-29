@@ -1,10 +1,7 @@
 import React from "react";
-import Nav from "./nav";
-// import { useContext , useState , useEffect } from "react";
-// import { AuthContext } from "../context/auth-context";
-// import { getOnlyUserById } from "../../api/UserAPI";
-// import { useProfile } from "../hooks/profile-hook";
-
+import Nav from "./webNav";
+import Mnav from "./mobileNav";
+import {Link} from "react-router-dom";
 
 class Header extends React.Component{
 
@@ -16,6 +13,10 @@ class Header extends React.Component{
     this.setState({ loggedin: true });
   }
 
+  constructor(props) {
+    super(props);
+  }
+
    render() {
     return (
       <header className="header">
@@ -23,14 +24,17 @@ class Header extends React.Component{
           <div className="row">
               <div className="col-lg-3 col-md-3">
                   <div className="header__logo">
-                      <a href="/">
+                      <Link to="/">
                         <img src="img/logo-trans2.png" alt=""/>
-                        </a>
+                        </Link>
                   </div>
               </div>
               <div className="col-lg-9 col-md-9">
-                  <div className="header__nav">
-                    <Nav></Nav>
+                  <div id="web-menu" className="header__nav">
+                    <Nav user={this.props.user}></Nav>
+                  </div>
+                  <div id="mobile-menu" className="header__nav">
+                    <Mnav user={this.props.user}></Mnav>
                   </div>
               </div>
           </div>
@@ -42,54 +46,6 @@ class Header extends React.Component{
 }
 
 
-// class Header extends React.Component{
-//   //user = () => {useProfile()}
-//   //function Header(){
-//   //const user = props.userProfile;
-//   //const auth = useContext(AuthContext);
-//   // const [user, setUser] = useState();
-//   // useEffect(() => {
-//   //   getOnlyUserById(auth.userId).then((res) => {
-//   //     setUser(res.data);
-//   //   });
-//   // }, [auth]);
-//   //console.log(auth);
-//   //const user = useProfile(auth.userId);
-//   //console.log(user);
-//   //console.log(User());
-//   state = {
-//     loggedin: false,
-//   };
 
-//   componentDidMount() {
-//     this.setState({ loggedin: true });
-//   }
-
-
-//   render() {
-//     console.log('HEADER Render lifecycle')
-//     return (
-//       <header className="header">
-//       <div className="container-fluid">
-//           <div className="row">
-//               <div className="col-lg-3 col-md-3">
-//                   <div className="header__logo">
-//                       <a href="/">
-//                         <img src="img/logo-trans2.png" alt=""/>
-//                         </a>
-//                   </div>
-//               </div>
-//               <div className="col-lg-9 col-md-9">
-//                   <div className="header__nav">
-//                     <Nav ></Nav>
-//                   </div>
-//               </div>
-//           </div>
-//           <div id="mobile-menu-wrap"></div>
-//       </div>
-//     </header>
-//     );
-//   }
-// }
 
 export default Header;

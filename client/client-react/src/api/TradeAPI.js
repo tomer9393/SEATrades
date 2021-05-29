@@ -1,19 +1,19 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8081/swaps';
+const baseUrl = 'http://localhost:8081/trades';
 const ERROR = -1;
 
 
 export const getTicketsForSwap = async (ticketId) => {
     try {
-        const tickets = await axios.get(`${baseUrl}/ticketForSwap/${ticketId}`);
+        const tickets = await axios.get(`${baseUrl}/ticketForTrade/${ticketId}`);
         return tickets;
     } catch (error) { throw ERROR; }
 }
 
 export const boolTicketForSwap = async (ticketId) => {
     try {
-        const ticket = await axios.patch(`${baseUrl}/boolSwap/${ticketId}`);
+        const ticket = await axios.patch(`${baseUrl}/boolTrade/${ticketId}`);
         return ticket;
     } catch (error) { throw ERROR; }
 }

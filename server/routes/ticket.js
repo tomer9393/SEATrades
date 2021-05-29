@@ -24,4 +24,14 @@ router.route('/id/:id')
 router.route('/byId/:ticketId')
     .get(ticketController.getTicketByTicketId);
 
+
+router.route('/boolTicket/:eventId/:section/:row/:seat')
+    .get(ticketController.boolTicket);
+
+router.route('/mapOfEvent/:eventId/:section/:row')
+    .get(ticketController.getMApOfEvent);
+
+router.route('/ByEvent/:eventId')
+    .get(ticketController.getTicketsByEvent);
+
 module.exports = router;

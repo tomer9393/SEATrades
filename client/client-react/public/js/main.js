@@ -19,22 +19,35 @@
         $("#preloder").delay(200).fadeOut("slow");
     });
 
+    // /*------------------
+    //     Background Set
+    // --------------------*/
+    // $('.set-bg').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
+    // /*------------------
+    //     SEAT CHART
+    // --------------------*/
+    // $('.set-options').each(function () {
+    //     var options = $(this).data('options');
+    //     $(this).seatchart(sc = new Seatchart(options));
+    //     //var sc = new Seatchart(options);
+    // });
+    // /*------------------
+    //     Background Set2
+    // --------------------*/
+    // $('.set-bg2').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
     /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-
-    /*------------------
-        Background Set2
-    --------------------*/
-    $('.set-bg2').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-
+		SEAT CHART2
+	--------------------*/
+    // $(".seat-chart").seatchart({
+    //     prependTo: '#seat-chart-wrap',
+    //     allowParentLinks: true
+    // });
     /*------------------
 		Navigation
 	--------------------*/
