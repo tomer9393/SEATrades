@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TableListComponent } from './table-list.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
-// import { UsersListComponent } from './users-list/users-list.component';
+import { UsersListComponent } from './users-list/users-list.component';
 import { AdminUsersListComponent } from './admin-users-list/admin-users-list.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { DetailsCategoryComponent } from './categories-list/details-category/det
 
 // import { CreateUserComponent } from './users-list/create-user/create-user.component';
 // import { EditUserComponent } from './users-list/edit-user/edit-user.component';
-// import { DetailsUserComponent } from './users-list/details-user/details-user.component';
+import { DetailsUserComponent } from './users-list/details-user/details-user.component';
 
 import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/create-admin-user.component';
 import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
@@ -34,14 +34,14 @@ import { DetailsAdminUserComponent } from './admin-users-list/details-admin-user
   declarations: [
     TableListComponent,
     CategoriesListComponent,
-    // UsersListComponent,
+    UsersListComponent,
     AdminUsersListComponent,
     EditCategoryComponent,
     CreateCategoryComponent,
     DetailsCategoryComponent,
     // CreateUserComponent,
     // EditUserComponent,
-    // DetailsUserComponent,
+    DetailsUserComponent,
     CreateAdminUserComponent,
     EditAdminUserComponent,
     DetailsAdminUserComponent,

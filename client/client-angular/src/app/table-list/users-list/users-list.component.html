@@ -2,10 +2,6 @@
   <div class="card">
     <div class="card-header card-header-danger">
       <h4 class="card-title">Users Table</h4>
-      <a class="" (click)="onCreate()" href="javascript:void(0)">
-        <i class="material-icons">add_box</i>
-        <!-- <p class="card-category">ADD NEW CATEGORY</p> -->
-      </a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -18,21 +14,10 @@
           </thead>
           <tbody>
             <tr *ngFor="let user of users">
-              <td>{{ user.firstname + ' ' + user.lastname }}</td>
+              <td>{{ user.firstName + ' ' + user.lastName }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user.phone }}</td>
+              <td>{{ user.phoneNumber }}</td>
               <td>
-                <a class="" href="javascript:void(0)" (click)="onEdit(user)">
-                  <i class="material-icons">edit</i>
-                </a>
-                <a
-                  *ngIf="isLoggedIn(user)"
-                  class=""
-                  href="javascript:void(0)"
-                  (click)="onDelete(user)"
-                >
-                  <i class="material-icons">delete</i>
-                </a>
                 <a
                   class=""
                   href="javascript:void(0)"

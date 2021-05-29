@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { UsersComponent } from './components/users/users.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -31,7 +32,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8081', options: {} };
     AppComponent,
     AdminLayoutComponent,
     AdminUsersComponent,
-    // UsersComponent
+    UsersComponent,
     LoginComponent,
     ContainerComponent,  
   ],

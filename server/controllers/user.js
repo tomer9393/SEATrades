@@ -116,8 +116,20 @@ const login = async (req, res) => {
 };
 
 const getUsers = async (req, res) => {
-  const users = await userService.getUsers();
-  res.json(users);
+  const fetchUsers = User.find();
+  fetchUsers.then(documents => {
+      res.status(200).json({
+          message: "users fetch successfuly",
+          users: documents
+      })
+  }).catch(error => {
+      res.status(500).json({
+          message: 'user fetching failed!',
+          error: error
+      })
+  })
+  // const users = await userService.getUsers();
+  // res.json(users);
 };
 
 const countUsers = async (req, res) => {
