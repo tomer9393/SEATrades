@@ -2,6 +2,9 @@ const Event = require('../models/event');
 const Ticket = require('../models/ticket')
 
 const createEvent = async (name, category, artist, imgUrl, date, location, minPrice, totalTickets) => {
+    
+    totalTickets = 396;
+    
     const event = new Event({
         name: name,
         category: category,
