@@ -3,11 +3,12 @@ import Breadcrumb from './breadcrumb';
 import Tickets from './MyTickets';
 
 function MyTicketsPage() {
+
     return (
         
         <>
-        {/* <Breadcrumb/> */}
-        <Tickets />
+        <Breadcrumb/>
+        <Tickets  />
         </>
     );
 }

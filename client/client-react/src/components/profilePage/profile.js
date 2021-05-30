@@ -1,29 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 import { makeStyles } from "@material-ui/core/styles";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import { Link, Typography } from "@material-ui/core";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import PersonIcon from "@material-ui/icons/Person";
-import PeopleIcon from "@material-ui/icons/People";
-import BrandingWatermarkIcon from "@material-ui/icons/BrandingWatermark";
-import PhoneIcon from "@material-ui/icons/Phone";
+import { Typography } from "@material-ui/core";
 import ButtonBase from "@material-ui/core/ButtonBase";
-// import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
-import SaveIcon from "@material-ui/icons/Save";
 import { useEffect, useState } from "react";
-import { getOnlyUserById, updateUser } from "../../api/UserAPI";
-
+import { getUserById, updateUser } from "../../api/UserAPI";
+import QRCode from "react-qr-code";
+import {Link} from "react-router-dom";
 
 const images = [
   {
@@ -123,189 +106,77 @@ const useStyles = makeStyles((theme) => ({
     left: "calc(50% - 9px)",
     transition: theme.transitions.create("opacity"),
   },
+  profileText: {
+    listStyle: 'none',
+    display: 'inline-block',
+    fontSize: '21px',
+    color: '#000000',
+    marginLeft: '10px',
+    fontFamily: '"Cairo", sans-serif',
+    fontWeight: 'bold',
+  },
 }));
 
 export default function ProfilePage(props) {
   const auth = useContext(AuthContext);
   const classes = useStyles();
-  const [user, setUser] = useState(undefined);
-  const [email, setEmail] = useState(undefined);
-  const [firstName, setFirstName] = useState(undefined);
-  const [lastName, setLastName] = useState(undefined);
-  const [userId, setUserId] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-  const [phoneNumber, setPhoneNumber] = useState(undefined);
 
-  useEffect(
-    () =>
-      getOnlyUserById(auth.userId)
-        .then((res) => res.data)
-        .then((res) => {
-          setUser(res);
-          setEmail(res.email);
-          setFirstName(res.firstName);
-          setLastName(res.lastName);
-          setUserId(res.userId);
-          setPhoneNumber(res.phoneNumber);
-        }),
-    [auth]
-  );
+  const [user, setUser] = useState();
+  useEffect(() => {
+    getUserById(auth.userId).then((res) => {
+      setUser(res.data);
+    });
+  }, [auth]);
 
+  
   return !user ? (
     <div>Loading</div>
   ) : (
     <>
-      <Typography align="center">
-        <TextField
-          className={classes.margin}
-          onChange={(event) => setFirstName(event.target.value)}
-          id="input-with-icon-textfield"
-          label="First Name"
-          defaultValue={user.firstName} //TODO
-          InputProps={{
-           readOnly:true,
-            style: { fontSize: 15 },
-            startAdornment: (
-              <InputAdornment position="start">
-                <PersonIcon />
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-      </Typography>
-
-      <Typography align="center">
-        <TextField
-          className={classes.margin}
-          onChange={(event) => setLastName(event.target.value)}
-          id="input-with-icon-textfield"
-          label="Last Name"
-          defaultValue={user.lastName} //TODO
-          value={lastName}
-          InputProps={{
-            readOnly:true,
-            style: { fontSize: 15 },
-            startAdornment: (
-              <InputAdornment position="start">
-                <PeopleIcon />
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-      </Typography>
-
-      <Typography align="center">
-        <TextField
-          className={classes.margin}
-          onChange={(event) => setUserId(event.target.value)}
-          id="input-with-icon-textfield"
-          label="ID"
-          defaultValue={user.userId} //TODO
-          value={userId}
-          InputProps={{
-            readOnly:true,
-            style: { fontSize: 15 },
-            startAdornment: (
-              <InputAdornment position="start">
-                <BrandingWatermarkIcon />
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-      </Typography>
-
-      <Typography align="center">
-        <TextField
-          className={classes.margin}
-          onChange={(event) => setEmail(event.target.value)}
-          id="input-with-icon-textfield"
-          label="Email"
-          defaultValue={user.email} //TODO
-          value={email}
-          InputProps={{
-            readOnly:true,
-            style: { fontSize: 15 },
-            startAdornment: (
-              <InputAdornment position="start">
-                <MailOutlineIcon />
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-      </Typography>
-
-      {/* <Typography align="center">
-        <TextField
-          className={classes.margin}
-          onChange={(event) => setPassword(event.target.value)}
-          id="input-with-icon-textfield"
-          label="Password"
-          defaultValue={user.password} //TODO
-          value={password}
-          InputProps={{
-            style: { fontSize: 15 },
-            startAdornment: (
-              <InputAdornment position="start">
-                <VpnKeyIcon />
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-      </Typography> */}
-
-      <Typography align="center">
-        <TextField
-          className={classes.margin}
-          onChange={(event) => setPhoneNumber(event.target.value)}
-          id="input-with-icon-textfield"
-          label="Phone Number"
-          defaultValue={user.phoneNumber} //TODO
-          value={phoneNumber}
-          InputProps={{
-            readOnly:true,
-            style: { fontSize: 15 },
-            startAdornment: (
-              <InputAdornment position="start">
-                <PhoneIcon />
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-      </Typography>
-      {/* <Typography align="center">
-        <Button
-          onClick={() => {
-            updateUser(
-              auth.userId,
-              email,
-              userId,
-              firstName,
-              lastName,
-              phoneNumber
-            );
-            window.location.reload();
-          }}
-          variant="contained"
-          color="primary"
-          size="large"
-          className={classes.button}
-          startIcon={<SaveIcon />}
-        >
-          Save
-        </Button>
-      </Typography> */}
-
-     
+        <section className="profile_spad">
+        <div className="profile__container">
+          <div className="profile__row">
+            <div className="col-lg-4 col-md-4">
+              <div className="profile__title">
+                <h2>
+                Profile Details
+                </h2>
+                <div className="col-lg-7 col-md-7">
+                    <div className="profile__text">
+                    <ul>
+                        <li><i className="fa fa-user" ></i>FullName:<a className={classes.profileText} style={{textTransform: 'capitalize'}}>{user.firstName + ' ' + user.lastName}</a></li>
+                        <li><i className="fa fa-id-card"></i> ID:<a className={classes.profileText}> {user.userId}</a></li>
+                        <li><i className="fa fa-envelope"></i>E-Mail: <a className={classes.profileText}>{user.email}</a></li>
+                        <li><i className="fa fa-phone"></i>Phone:<a className={classes.profileText}>{user.phoneNumber}</a></li>
+                    </ul>
+                    </div>
+                </div>
+              </div>
+              
+            </div>
+            <div className="profile_vl"></div>
+            <div className="col-lg-4 col-md-4">
+            <div className="profile__title">
+                <h2>
+                Event ID
+                </h2>
+                <div className="col-lg-10 col-md-10">
+                <div className="profile__div">
+              <div className="team__item">
+              <QRCode value={user.code} />
+              </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className={classes.root}>
+      
         {images.map((image) => (
-          <ButtonBase href="/MyTickets"
+          <ButtonBase 
             focusRipple
             key={image.title}
             // onclick={window.parent.location = "/"}
@@ -315,7 +186,8 @@ export default function ProfilePage(props) {
               width: image.width,
               margin:70,
             }}
-          >
+            >
+            <Link to='MyTickets'>
             <span
               className={classes.imageSrc}
               style={{
@@ -334,10 +206,14 @@ export default function ProfilePage(props) {
                 <span className={classes.imageMarked} />
               </Typography>
             </span>
-            
+            </Link>
           </ButtonBase>
         ))}
       </div>
+      <section className="logout">
+      <hr className="logout" style={{width: '70%'}}></hr>
+      <Link to="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }} className="primary-btn">Logout</Link>
+      </section>
     </>
   );
 }

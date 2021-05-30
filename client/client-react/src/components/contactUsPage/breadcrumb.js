@@ -1,16 +1,17 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class Breadcrumb extends React.Component {
   render() {
     return (
-      <div className="breadcrumb-area set-bg2" data-setbg="img/breadcrumb/breadcrumb-contact-us.jpg">
+      <div className="breadcrumb-area set-bg2" style={{backgroundImage: 'url(img/breadcrumb/breadcrumb-contact-us.jpg)'}}>
       <div className="container">
           <div className="row">
               <div className="col-lg-12 text-center">
                   <div className="breadcrumb__text">
                       <h2>Contact Us</h2>
                       <div className="breadcrumb__option">
-                          <a href="/"><i className="fa fa-home"></i> Home</a>
+                          <Link to="/"><i className="fa fa-home"></i> Home</Link>
                           <span>Contact Us</span>
                       </div>
                   </div>

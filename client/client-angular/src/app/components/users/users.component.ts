@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   emailSearch = '';
 
 
-  constructor(private usersService: UsersService) { }
+  constructor(private UsersService: UsersService) { }
 
   ngOnInit(): void {
   }

@@ -10,7 +10,7 @@ const ticketRoutes = require('./routes/ticket');
 const userRoutes = require('./routes/user');
 const userAdminRoutes = require('./routes/userAdmin');
 const contactRoutes = require('./routes/contact');
-const swapRoutes = require('./routes/swap');
+const tradeRoutes = require('./routes/trade');
 
 
 
@@ -32,7 +32,7 @@ app.use('/tickets',ticketRoutes);
 app.use('/users',userRoutes);
 app.use('/admin',userAdminRoutes);
 app.use('/contacts', contactRoutes);
-app.use('/swaps', swapRoutes);
+app.use('/trades', tradeRoutes);
 
 const server = http.createServer(app);
 

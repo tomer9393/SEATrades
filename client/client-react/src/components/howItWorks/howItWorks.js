@@ -1,27 +1,31 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-class Work extends React.Component {
-  render() {
+
+function Headline(props) {
+  const name = props.name;
+  if (name=='home'){
     return (
+    <div className="row">
+    <div className="col-lg-12">
+      <div className="section-title">
+        <h2>How It Works</h2>
+      </div>
+    </div>
+    </div>
+    )
+  }
+  return ( <div></div>)
+}
+
+
+function Work(props) {
+  return (
+      <>
       <section className="work spad">
         <div className="container">
-          <div className="row">
-            {/* <div className="col-lg-12">
-                <div className="how-it-works">
-                <h2>Have you ever bought an event ticket and could not attend  ? </h2>
-                <h2>Bought a ticket to the Champions League final and suddenly find out that your best friend is getting married that day  ?</h2>
-                <h2>You and your friends are going to see your favorite artist perform but you found out that your tickets are not in the same area  ?</h2>
-                <h2>Have a ticket for a show but suddenly there is a rush at work and you prefer to go at a different time  ?</h2>
-                <h2>We are happy to introduce to you – </h2>
-                <h1>SEATrades! </h1>
-                <p>
-                  A platform that centralizes the customer the options of buying and trading event tickets
-                 in a unique, convenient and user-friendly interface. 
-                </p>
-                </div>
-            </div> */}
-          </div>
-          <div className="row">
+          <Headline name={props.name}/>
+          <div className="how-it-works__row">
             <div className="col-lg-4 col-md-6">
               <div className="work__item">
                 <div className="work__item__number">01.</div>
@@ -62,8 +66,8 @@ class Work extends React.Component {
           </div>
         </div>
       </section>
+      </>
     );
-  }
 }
 
 export default Work;

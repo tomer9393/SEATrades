@@ -1,6 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { useState } from "react";
-import { categories, locations } from "../utils";
+//import { categories, locations } from "../utils";
 import {
   // TextField,
   Dropdown,
@@ -9,13 +10,26 @@ import {
 } from "@fluentui/react";
 import { homePageSearch } from "../../api/EventAPI";
 import { useHistory } from "react-router-dom";
-// import {Link} from "react-router-dom";
+import { initializeIcons } from '@fluentui/react/lib/Icons';
 
 function SearchBar() {
   const [text, setSearchText] = useState(undefined);
   const [category, setSelectedCategory] = useState(undefined);
   const [location, setselectedLocation] = useState(undefined);
   const history = useHistory();
+  initializeIcons(undefined, { disableWarnings: true });
+  const categories = [
+    "Concerts",
+    "Festivals",
+    "Sport",
+    "StandUp",
+    "Theatre",
+  ];
+  
+  const locations = [
+    "Tel-Aviv",
+    "Jeruslaem",
+  ];
 
   const dropdownOptions1 = [
     { key: "undefined", text: "Select a category" },
@@ -32,10 +46,11 @@ function SearchBar() {
       text: location,
     })),
   ];
+  
 
   return (
     <>
-      <section className="hero set-bg" data-setbg="/img/hero/bg-homePage.jpg">
+      <section className="hero set-bg" style={{backgroundImage: 'url(/img/hero/bg-homePage.jpg)'}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -100,29 +115,29 @@ function SearchBar() {
                 </div>
                 <ul className="hero__categories__tags">
                   <li>
-                    <a href="/Category/Concerts">
+                    <Link to="/Category/Concerts">
                       <img src="img/hero/cat-1.png" alt="" /> Concerts
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/Category/Festivals">
+                    <Link to="/Category/Festivals">
                       <img src="img/hero/cat-2.png" alt="" /> Festivals
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/Category/Sport">
+                    <Link to="/Category/Sport">
                       <img src="img/hero/cat-3.png" alt="" /> Sport
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/Category/StandUp">
+                    <Link to="/Category/StandUp">
                       <img src="img/hero/cat-4.png" alt="" /> StandUp
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/Category/Theatre">
+                    <Link to="/Category/Theatre">
                       <img src="img/hero/cat-5.png" alt="" /> Theatre
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

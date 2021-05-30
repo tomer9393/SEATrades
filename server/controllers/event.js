@@ -157,6 +157,23 @@ const homePageSearch = async (req, res) => {
   res.json(events);
 };
 
+const getSumOfEventsByCategory = async (req, res) => {
+  const numOfCategory = await eventService.getSumOfEventsByCategory();
+  if (!numOfCategory) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(numOfCategory);
+};
+
+const getSoldTicketsByEvent = async (req, res) => {
+  const soldTicketsEvent = await eventService.getSoldTicketsByEvent();
+  if (!soldTicketsEvent) {
+    return res.status(404).json({ errors: ['events not found'] });
+  }
+  res.json(soldTicketsEvent);
+};
+
+
 module.exports = {
   createEvent,
   getEventById,
@@ -170,5 +187,7 @@ module.exports = {
   getNumOfEvents,
   getEventsByArtist,
   homePageSearch,
-  getEventsByName
+  getEventsByName,
+  getSumOfEventsByCategory,
+  getSoldTicketsByEvent
 };

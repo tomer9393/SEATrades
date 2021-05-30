@@ -2,7 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import {Link} from "react-router-dom";
 
-function SingleEventPost(props) {
+function SinglePopularPost(props) {
   const event = props.event; 
   var bg = event.imgUrl;
   var date = new Date(event.date);
@@ -32,10 +32,8 @@ function SingleEventPost(props) {
             </ul>
           </div>
           <div className="listing__item__text__info">
-          <Link to={`/EventDetails/${event._id}`}>
-          <a className="listing__item__text__info__center">
-            <img src="img/hero/tickets.png" alt="" /> Buy Tickets
-            </a>
+          <Link className="listing__item__text__info__center" to={`/EventDetails/${event._id}`}>
+            <img src="img/hero/tickets.png" alt=""></img> Buy Tickets
             </Link>
           </div>
         </div>
@@ -45,4 +43,4 @@ function SingleEventPost(props) {
     );
   }
 
-export default SingleEventPost;
+export default SinglePopularPost;

@@ -19,29 +19,21 @@
         $("#preloder").delay(200).fadeOut("slow");
     });
 
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    // /*------------------
+    //     Background Set
+    // --------------------*/
+    // $('.set-bg').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
 
-    /*------------------
-        Background Set2
-    --------------------*/
-    $('.set-bg2').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
-
-    /*------------------
-        Artwork Set
-    --------------------*/
-    $('.artwork-image').each(function () {
-        var bg = $(this).data('.artworkImage');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    // /*------------------
+    //     Background Set2
+    // --------------------*/
+    // $('.set-bg2').each(function () {
+    //     var bg = $(this).data('setbg');
+    //     $(this).css('background-image', 'url(' + bg + ')');
+    // });
 
     /*------------------
 		Navigation
@@ -50,6 +42,14 @@
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
     });
+
+    // /*------------------
+	// 	SeatChart
+	// --------------------*/
+    // $(".mobile-menu").slicknav({
+    //     prependTo: '#mobile-menu-wrap',
+    //     allowParentLinks: true
+    // });
     
     /*--------------------------
     Testimonial Slider

@@ -1,6 +1,10 @@
 const Event = require('../models/event');
+const Ticket = require('../models/ticket')
 
 const createEvent = async (name, category, artist, imgUrl, date, location, minPrice, totalTickets) => {
+    
+    totalTickets = 396;
+    
     const event = new Event({
         name: name,
         category: category,
@@ -20,7 +24,18 @@ const createEvent = async (name, category, artist, imgUrl, date, location, minPr
 };
 
 const getEventById = async (id) => {
-    return await Event.findById(id);
+    //return await Event.findById(id);
+    try {
+        let data = await Event.findById(id);
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
 };
 
 const getEvents = async () => {
@@ -70,7 +85,19 @@ const getLatestEvents = async (numOfevents) => {
 };
 
 const getTicketsByEventId = async (id) => {
-    return await Event.findById(id, { '_id': 0, 'tickets': 1 });
+    //return await Event.findById(id, { '_id': 0, 'tickets': 1 });
+    try {
+        let data = await Event.findById(id, { '_id': 0, 'tickets': 1 });
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
+    
 };
 
 const isSoldOut = async (eventId) => {
@@ -142,7 +169,7 @@ const removeEventTicket = async (ticket, ticketId) => {
 
 
 const deleteEvent = async (id) => {
-    const event = await Event.findById(id);;
+    const event = await Event.findById(id);
 
     if (!event)
         return null;
@@ -198,6 +225,46 @@ const homePageSearch = async (name, artist, category, location) => {
     ]);
 };
 
+const getSumOfEventsByCategory = async () => {
+    return await Event.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+};
+
+
+const getSoldTicketsByEvent = async () => {
+    return await Ticket.aggregate([{
+        $lookup: {
+            from: 'events',
+            localField: 'event',
+            foreignField: '_id',
+            as: 'event'
+        }
+    }, {
+        $unwind: {
+            path: '$event'
+        }
+    }, {
+        $group: {
+            _id: "$event.name",
+            soldTickets: {
+                $sum: 1
+            }
+        }
+    }, {
+        $limit: 4
+    }, {
+        $sort: {
+            "soldTickets": -1
+        }
+    }]);
+};
+
 
 module.exports = {
     createEvent,
@@ -217,5 +284,7 @@ module.exports = {
     getNumOfEvents,
     getEventsByArtist,
     homePageSearch,
-    getEventsByName
+    getEventsByName,
+    getSumOfEventsByCategory,
+    getSoldTicketsByEvent
 }

@@ -1,42 +1,51 @@
 import React from "react";
-import Nav from "./nav";
-import LoginButton from "./loginButton";
+import Nav from "./webNav";
+import Mnav from "./mobileNav";
+import {Link} from "react-router-dom";
 
-class Header extends React.Component {
-  render() {
+class Header extends React.Component{
+
+  state = {
+    loggedin: false,
+  };
+
+  componentDidMount() {
+    this.setState({ loggedin: true });
+  }
+
+  constructor(props) {
+    super(props);
+  }
+
+   render() {
     return (
-      
       <header className="header">
-        <div className="container-fluid">
+      <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-2 col-md-2">
-              <div className="header__logo">
-                <a >
-                  <img src="img/logo-trans.png" alt="" />
-                </a>
+              <div className="col-lg-3 col-md-3">
+                  <div className="header__logo">
+                      <Link to="/">
+                        <img src="img/logo-trans2.png" alt=""/>
+                        </Link>
+                  </div>
               </div>
-            </div>
-            <div className="col-lg-5 col-md-5">
-              <div className="header__nav">
-                <Nav></Nav>
+              <div className="col-lg-9 col-md-9">
+                  <div id="web-menu" className="header__nav">
+                    <Nav user={this.props.user}></Nav>
+                  </div>
+                  <div id="mobile-menu" className="header__nav">
+                    <Mnav user={this.props.user}></Mnav>
+                  </div>
               </div>
-            </div>
-            <div className="col-lg-5 col-md-5">
-              <div className="header__nav_login">
-              <LoginButton></LoginButton>
-              {/* <div className="header__menu__right">
-                <a href="/" className="login-btn">
-                  <i className="fa fa-user" />
-                </a>
-              </div> */}
-              </div>
-            </div>
           </div>
-          <div id="mobile-menu-wrap" />
-        </div>
-      </header>
+          <div id="mobile-menu-wrap"></div>
+      </div>
+    </header>
     );
   }
 }
+
+
+
 
 export default Header;

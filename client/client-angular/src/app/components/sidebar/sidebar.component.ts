@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../models/user';
+import { AdminUser } from '../../models/admin-user';
 import { LoginService } from '../../services/login.service';
 
 declare const $: any;
@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
     { path: '/events', title: 'Events',  icon:'bubble_chart', class: '' },
     { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    // { path: '/graphs', title: 'Graphs',  icon:'bubble_chart', class: '' },
+    { path: '/graphs', title: 'Graphs',  icon:'bubble_chart', class: '' },
 ];
 
 @Component({
@@ -25,7 +25,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
-  loggedUser: User;
+  loggedUser: AdminUser;
 
   constructor(private router: Router, private login: LoginService) { }
 

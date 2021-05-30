@@ -86,7 +86,18 @@ const getUserByEmail = async (email) => {
 
 
 const getUserById = async (id) => {
-    return await User.findById(id);
+    //return await User.findById(id);
+    try {
+        let data = await User.findById(id);
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`getUserById findById error--> ${error}`);
+        return error;
+    }
 };
 
 
@@ -97,7 +108,18 @@ const removeUserTicket = async (ticketId) => {
 
 
 const getOnlyUserById = async (id) => {
-    return await User.findById(id,{'email':1, 'password':2, 'userId':3, 'firstName':4, 'lastName':5, 'phoneNumber':6});
+    //return await User.findById(id,{'email':1, 'password':2, 'userId':3, 'firstName':4, 'lastName':5, 'phoneNumber':6, 'QRcode':7, 'code':8});
+    try {
+        let data = await User.findById(id,{'email':1, 'password':2, 'userId':3, 'firstName':4, 'lastName':5, 'phoneNumber':6, 'QRcode':7, 'code':8});
+        //console.log(`findById success--> ${data}`);
+        if(!data) {
+          throw new Error('no document found');
+        }
+        return data;
+    } catch (error) {
+        console.log(`getOnlyUserById findById error--> ${error}`);
+        return error;
+    }
 };
 
 
