@@ -211,7 +211,7 @@ export default function ProfilePage(props) {
         ))}
       </div>
       <section className="logout">
-      <hr className="logout" style={{width: '70%'}}></hr>
+      <hr className="logout hr" style={{width: '70%'}}></hr>
       <Link to="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }} className="primary-btn">Logout</Link>
       </section>
     </>

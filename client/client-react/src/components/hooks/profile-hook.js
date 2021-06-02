@@ -21,13 +21,11 @@ import { getUserById } from "../../api/UserAPI";
 
 export function UserProfile (Id){
     const [user, setUser] = useState(undefined);
-    console.log(Id);
     useEffect(() => {
       getUserById(Id).then((res) => {
         setUser(res.data);
       });
     }, [Id]);
-    console.log(user);
     return user;
   }
 

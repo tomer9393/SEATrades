@@ -115,6 +115,7 @@ const getTicketsByUserId = async (userId) => {
     {
         $project: {
             "_id": 1,
+            "event._id": 2,
             "event.name": 2,
             "event.location": 3,
             "event.date": 4,
