@@ -6,11 +6,13 @@ import { getTicketsByUserId } from "../../api/TicketAPI.js";
 import Popup from "../tradePage/Popup.js";
 import moment from "moment";
 
-export default function MyTickets() {
+export default function MySeatTrades(props) {
+  const ticket=props.ticket;
   const now = moment()
   const auth = useContext(AuthContext);
   const id = auth.userId;
   const [tickets, setTickets] = useState(undefined);
+  //const [tickets2, setTickets2] = useState(undefined);
 
   useEffect(() => {
     getTicketsByUserId(id).then((res) => {
@@ -54,7 +56,7 @@ export default function MyTickets() {
         <div className="container">
           <div className="col-lg-12 col-md-12">
             <div className="event__title">
-            <h1>List Of Upcoming Events</h1>
+            <h1>My Seat Trade Alerts</h1>
             </div>
             <div className="col-lg-12 col-md-12">
               <div className="tickets_row">
@@ -66,7 +68,7 @@ export default function MyTickets() {
         <div className="container">
           <div className="col-lg-12 col-md-12">
             <div className="event__title">
-            <h1>History</h1>
+            <h1>My Seat Trade Requests</h1>
             </div>
             <div className="col-lg-12 col-md-12">
               <div className="tickets_row">
