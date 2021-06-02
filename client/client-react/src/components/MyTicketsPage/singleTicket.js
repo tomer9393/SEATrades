@@ -5,31 +5,6 @@ import { useEffect, useState, useContext } from "react";
 import Popup from '../tradePage/Popup';
 import SeatMap from "./seatMap.js"
 
-
-// function TradeButton() {
-//   const [isOpen, setIsOpen] = useState(false);
- 
-//   const togglePopup = () => {
-//     setIsOpen(!isOpen);
-//   }
- 
-//   return <div>
-//     <input
-//       type="button"
-//       value="TRADE"
-//       onClick={togglePopup}
-//     />
-//     {isOpen && <Popup
-//       content={<>
-//         <b>Are you sure you want to set this SEAT for TRADE?</b>
-//         <p></p>
-//         <button>I&apos;m Sure</button>
-//       </>}
-//       handleClose={togglePopup}
-//     />}
-//   </div>
-// }
-
 function SingleTicket(props) {
   const ticket = props.ticket;
   const event = props.ticket.event;
@@ -38,7 +13,6 @@ function SingleTicket(props) {
   var date = new Date(event.date);
   var formattedDate = format(date, "dd/MM/yyyy");
   const [showSeats, setShowSeats] = useState(false);
-
 
   function HandelShowSeatsClick(){
       if(showSeats==false){
@@ -49,30 +23,6 @@ function SingleTicket(props) {
       }
   }
 
-  function ShowSeatsOptions(){
-    <article className="tickets_card">
-    <section className="tickets_seat">
-      <section>
-        <ul>
-        <li>section:</li>
-        <li className="section">{ticket.section}</li>
-        <li>row: {ticket.row}</li>
-        <li>seat: {ticket.seat}</li>
-        </ul>
-      </section>
-    </section>
-    <section className="tickets_card-cont">
-    <h2>{event.name}</h2>
-    <section className="tickets_card-list">
-        <ul>
-        <li ><i className="fa fa-calendar" /><span>{formattedDate}</span></li>
-        <li><i className="fa  fa-clock-o" /><span>20:30pm</span></li>
-        <li><i className="fa fa-map-marker" /><span>{event.location}</span></li>
-        </ul>
-    </section>
-    </section>
-    </article>
-  }
 
   if (happened==false){
     return (
@@ -105,7 +55,7 @@ function SingleTicket(props) {
             {
             forTrade==false
             ? <Link to="#">Trade</Link>
-            : <Link onClick={HandelShowSeatsClick}>Show Seats</Link>
+            : <Link to="#" onClick={HandelShowSeatsClick}>Show Seats</Link>
             }
             </section>
             {/* <section className="tickets_card-cont">
@@ -118,7 +68,7 @@ function SingleTicket(props) {
           {
           showSeats==false
           ? <div></div>
-          : <SeatMap event={event}></SeatMap>
+          : <SeatMap ticket={ticket}></SeatMap>
           } 
                           
     </>

@@ -15,7 +15,7 @@ function SeatPicker(props) {
   const [seat,  setSelectedSeat] = useState();
   const [numOfTickets,  setNumOfTickets] = useState(0);
   const [seatList,  setSeatList] = useState(undefined);
-  const [dropdownRow,  setDropdownRow] = useState(undefined);
+  const [dropdownRow,  setDropdownRow] = useState([]);
   const [tickets, setTickets] = useState();
   const [TempChosenTickets, setChosenTickets] = useState([]);
   const history = useHistory();
@@ -24,11 +24,12 @@ function SeatPicker(props) {
   //const sections = ["B", "VIP"];
   //const rows = ["B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R"];
   //const rowsA = ["F","G","H","I","J","K","L","M","N","O","P","Q","R"];
-
-  console.log("Current Section:");
-  console.log(section);
-  console.log("Current row:");
-  console.log(row);
+  // console.log("Current eventId:");
+  // console.log(eventId);
+  // console.log("Current Section:");
+  // console.log(section);
+  // console.log("Current row:");
+  // console.log(row);
 
   useEffect(() => {
     getSeatsArrayForRow(eventId, section, row).then((res) => {
@@ -91,30 +92,38 @@ function SeatPicker(props) {
   // ];
 
   useEffect(() => {
-    let TempDropdownRow = [];
-    const rowsA = ["F","G","H","I","J","K","L","M","N","O","P","Q","R"];
-    const dropdownRowA = [
+    //let TempDropdownRow = [];
+    //const rowsA = ["F","G","H","I","J","K","L","M","N","O","P","Q","R"];
+    if(section=='A'){
+      const rowsA = ["F","G","H","I","J","K","L","M","N","O","P","Q","R"];
+      const dropdownRowA = [
       { key: "E", text: "E" },
       ...rowsA.map((row) => ({
         key: row,
         text: row,
       })),
     ];
+    setDropdownRow(dropdownRowA);
+    }else if(section=='B'){
     const dropdownRowB = [
       { key: "A", text: "A" },
       { key: "B", text: "B" },
       { key: "C", text: "C" }
     ];
+    setDropdownRow(dropdownRowB);
+    }else if(section=="VIP"){
     const dropdownRowVIP = [
       { key: "A", text: "A" },
       { key: "B", text: "B" },
       { key: "C", text: "C" },
       { key: "D", text: "D" }
     ];
-    if(section=='A'){TempDropdownRow = dropdownRowA;}
-    else if(section=='B'){TempDropdownRow = dropdownRowB;}
-    else if(section=='VIP'){TempDropdownRow = dropdownRowVIP;}
-    setDropdownRow(TempDropdownRow);
+    setDropdownRow(dropdownRowVIP);
+    }
+    // if(section=='A'){TempDropdownRow = dropdownRowA;}
+    // else if(section=='B'){TempDropdownRow = dropdownRowB;}
+    // else if(section=='VIP'){TempDropdownRow = dropdownRowVIP;}
+    // setDropdownRow(TempDropdownRow);
   }, [section]);
   
   // var dropdownRow=[];
@@ -143,7 +152,7 @@ function SeatPicker(props) {
   }
   console.log("Current row:");
   console.log(row);
-
+  console.log(dropdownSeat);
   function HandelSectionClick(key){
     setSelectedSection(key);
     //setTickets([section,row,key]);
@@ -159,18 +168,39 @@ function SeatPicker(props) {
   }
 
   function HandelAddClick(){
+    console.log(TempChosenTickets);
     setChosenTickets(TempChosenTickets => TempChosenTickets.concat([tickets]))
+    console.log(TempChosenTickets);
     let chosen = {...TempSeatList[seat-1]};
     chosen.name = 1;
     TempSeatList[seat-1] = chosen;
     setSeatList(TempSeatList);
     setNumOfTickets(numOfTickets+1);
     setSelectedSeat(0);
-    //setTickets([section,row,seat+1]);
+    setTickets([section,row,seat+1]);
+  }
+
+  function HandelRemoveClick(removeTicket){
+    var seat=removeTicket[2];
+    console.log(seat);
+    console.log(removeTicket);
+    console.log(numOfTickets);
+    //console.log(TempChosenTickets);
+    setChosenTickets(TempChosenTickets.filter(ticket => ticket != removeTicket));
+    //setChosenTickets(TempChosenTickets => TempChosenTickets.concat([tickets]))
+    let chosen = {...TempSeatList[seat-1]};
+    console.log(chosen);
+    chosen.name = 0;
+    console.log(chosen);
+    TempSeatList[seat-1] = chosen;
+    setSeatList(TempSeatList);
+    setNumOfTickets(numOfTickets-1);
+    //setSelectedSeat(0);
   }
 
   const ChosenTickets = TempChosenTickets?.map((ticket) => (
-  <SingleTicket key={ticket[2]} event={event} section={ticket[0]} row={ticket[1]} seat={ticket[2]}/>
+  <div key={ticket[2]}><SingleTicket key={ticket[2]} event={event} row={ticket[1]} seat={ticket[2]}/>
+  <button  className="seatChart__delete__button" onClick={()=>{HandelRemoveClick(ticket)}}>- Remove Seat</button></div>
   ));
 
   return (

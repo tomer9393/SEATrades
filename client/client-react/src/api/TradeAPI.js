@@ -46,7 +46,7 @@ export const acceptTrade = async (tradeId) => {
     } catch (error) { throw ERROR; }
 }
 
-export const acceptTrade = async (tradeId) => {
+export const rejectTrade = async (tradeId) => {
 
     // update trade to rejected.
 

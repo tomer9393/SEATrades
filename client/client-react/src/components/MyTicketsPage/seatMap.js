@@ -3,7 +3,9 @@ import SeatPicker from "./seatPicker.js";
 
 
 function SeatMap(props){
-  const event = props.event;
+
+  const ticket = props.ticket;
+  const event = ticket.event;
   return (
     <>
         <div className="seatChart_content" >
@@ -16,7 +18,8 @@ function SeatMap(props){
               </div>
         
             <div className="seatChart_right">
-                <SeatPicker event={event}></SeatPicker>
+                <SeatPicker event={event} ticket={ticket}></SeatPicker>
+                
             </div>
         </div>
     </>
