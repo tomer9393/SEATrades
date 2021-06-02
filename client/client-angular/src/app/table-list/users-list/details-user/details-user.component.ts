@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { UsersService } from '../../../services/users.service';
+import { AdminUsersService } from '../../../services/admin-users.service';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
+import { AdminUser } from '../../../models/admin-user';
 
 @Component({
   selector: 'app-details-user',
@@ -11,7 +13,7 @@ import { LoginService } from '../../../services/login.service';
 })
 export class DetailsUserComponent implements OnInit {
   
-  loggedUser: User;
+  loggedUser: AdminUser;
   user: User = null;
   
     constructor(private usersService : UsersService, private router:Router, private activatedRoute:ActivatedRoute, private loginService : LoginService
@@ -29,8 +31,8 @@ export class DetailsUserComponent implements OnInit {
   
     }
 
-    isLoggedIn(user : User){
-      if(user._id === this.loggedUser._id)
+    isLoggedIn(adminUser : AdminUser){
+      if(adminUser._id === this.loggedUser._id)
         return false;
       return true;
     }

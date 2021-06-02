@@ -89,6 +89,32 @@
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
+                    <input
+                      #minPrice
+                      value="{{ event.minPrice }}"
+                      matInput
+                      placeholder="Min Price"
+                      disabled
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      #totalTickets
+                      value="{{ event.totalTickets }}"
+                      matInput
+                      placeholder="Total Tickets"
+                      disabled
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
                     <textarea
                       #tickets
                       value="{{ event.tickets }}"

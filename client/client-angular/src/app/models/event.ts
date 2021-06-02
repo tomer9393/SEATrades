@@ -6,7 +6,7 @@ export interface Event
     name: String,
     category: String,
     artist: String,
-    img: String,
+    imgUrl: String,
     date: Date,
     location: String,
     tickets: Ticket[],

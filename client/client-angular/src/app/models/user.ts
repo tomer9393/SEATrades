@@ -1,10 +1,15 @@
+import { Ticket } from "./ticket";
+
 export interface User 
 {
     _id: string;
-    isAdmin: boolean;
-    firstname: string;
-    lastname: string;
     email: string;
     password: string;
-    phone?: string;
+    userId: String;
+    firstname: string;
+    lastname: string;
+    phoneNumber: string;
+    code: String;
+    QRcode: String;
+    tickets: Ticket[];
 }
