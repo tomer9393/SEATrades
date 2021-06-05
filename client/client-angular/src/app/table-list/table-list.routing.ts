@@ -4,9 +4,9 @@ import { CreateCategoryComponent } from './categories-list/create-category/creat
 import { EditCategoryComponent } from './categories-list/edit-category/edit-category.component';
 import { DetailsCategoryComponent } from './categories-list/details-category/details-category.component';
 
-// import { CreateUserComponent } from './users-list/create-user/create-user.component';
-// import { EditUserComponent } from './users-list/edit-user/edit-user.component';
 import { DetailsUserComponent } from './users-list/details-user/details-user.component';
+
+import { DetailsTradeComponent } from './trades-list/details-trade/details-trade.component';
 
 import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/create-admin-user.component';
 import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
@@ -68,6 +68,8 @@ export const TableListRoutes: Routes = [
     //  { path: 'CreateUser',      component: CreateUserComponent },
     //  { path: 'EditUser',      component: EditUserComponent },
      { path: 'DetailsUser',      component: DetailsUserComponent },
+    
+     { path: 'DetailsTrade',      component: DetailsTradeComponent },
 
      { path: 'CreateAdminUser',      component: CreateAdminUserComponent },
      { path: 'EditAdminUser',      component: EditAdminUserComponent },

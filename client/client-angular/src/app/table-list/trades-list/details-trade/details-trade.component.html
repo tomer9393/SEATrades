@@ -1,0 +1,72 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Trades Details</h4>
+            <p class="card-category">Your trade details</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input #user1 matInput placeholder="Requester" value="{{ trade.user1 }}" disabled/>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input #user2 matInput placeholder="Receiver" value="{{ trade.user2 }}" disabled/>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input #ticket1 matInput placeholder="Ticket 1" value="{{ trade.ticket1 }}" disabled/>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input #ticket2 matInput placeholder="Ticket 2" value="{{ trade.ticket2 }}" disabled/>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input #active matInput placeholder="Active" value="{{ trade.active }}" disabled/>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input #trade_Status matInput placeholder="Trade Status" value="{{ trade.trade_Status }}" disabled/>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button
+                (click)="onEdit()"
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+              >
+                Edit
+              </button>
+              <button
+              *ngIf="isLoggedIn(user)"
+                (click)="onDelete()"
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+              >
+                Delete
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
