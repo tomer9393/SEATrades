@@ -152,6 +152,17 @@ const MyAlertsTrades = async (req, res) => {
     res.json(trades);
 };
 
+
+const MyRequestsTrades = async (req, res) => {
+    const trades = await tradeService.MyRequestsTrades(req.params.userId);
+    if (!trades) {
+        return res.status(500).json("Trades not found");
+    }
+
+    res.json(trades);
+};
+
+
 module.exports = {
     createTrade,
     getTradeById,
@@ -160,5 +171,6 @@ module.exports = {
     getTrades,
     getTicketsForTrade,
     ticketForTrade,
-    MyAlertsTrades
+    MyAlertsTrades,
+    MyRequestsTrades
 }

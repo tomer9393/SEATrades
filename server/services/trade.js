@@ -8,6 +8,7 @@ const { json } = require('body-parser');
 const { request } = require('http');
 const { ObjectId } = require('mongodb');
 const { Object } = require('mongodb');
+const { flatMap } = require('lodash');
 
 const createTrade = async (body) => {
     
@@ -52,14 +53,82 @@ const acceptTrade = async (id) => {
         trade.trade_Status = 'Accept';
     
         await trade.save();
+
+        // reject all other requests trade with this ticket 
+        var ticket = await ticketService.getTicketById(trade.ticket1);
+        if(!ticket){
+            throw new Error('no document found');
+        }
+
+        let x = await AcceptTradeExceptFrom( trade.user2, ticket.event, id);
+        if(!x){
+            throw new Error('no reject all other requests trade with this ticket');
+        }
+
         return trade;
 
     } catch (error) {
-        console.log(`findById error--> ${error}`);
+        console.log(`acceptTrade--> ${error}`);
         return error;
     }
 
 };
+
+const AcceptTradeExceptFrom = async (user2Id, eventId, acceptTrade) => {
+
+    var query = 
+        [{
+            $match: {
+                $and: [
+                    { active: { $eq: true } },
+                    { user2: { $eq: ObjectId(user2Id) } }
+                ]
+            }
+        }, {
+            $lookup: {
+                from: 'tickets',
+                localField: 'ticket1',
+                foreignField: '_id',
+                as: 'ticket1'
+            }
+        }, {
+            $unwind: {
+                path: '$ticket1'
+            }
+        }, {
+            $match: {
+                'ticket1.event': { $eq: ObjectId(eventId) }
+            }
+        }, {
+            $match: {
+                $nor: [
+                    { _id: ObjectId(acceptTrade) }
+                ]
+            }
+    }]; 
+    
+    try {
+        
+        let rejectTrades = await Trade.aggregate(query);
+
+        if(!rejectTrades) {
+          throw new Error('no document found');
+        }
+
+        for (let i = 0; i < rejectTrades.length; i++) {
+            console.log(rejectTrades.length);
+            await rejectTrade(rejectTrades[i]);
+        }
+
+        return true;
+
+    } catch (error) {
+        console.log(`rejectTrades error--> ${error}`);
+        return error;
+    }
+
+};
+
 
 const rejectTrade = async (id) => {
 
@@ -312,13 +381,108 @@ const MyAlertsTrades = async (userId) => {
 };
 
 
+const MyRequestsTrades = async (userId) => {
+
+    var query = [
+    {
+        $match: {
+            user1: { $eq: ObjectId(userId) }
+        }
+    }, {
+        $lookup: {
+            from: 'users',
+            localField: 'user2',
+            foreignField: '_id',
+            as: 'user2'
+        }
+    }, {
+        $unwind: {
+            path: '$user2'
+        }
+    }, {
+        $lookup: {
+            from: 'tickets',
+            localField: 'ticket1',
+            foreignField: '_id',
+            as: 'ticket1'
+        }
+    }, {
+        $unwind: {
+            path: '$ticket1'
+        }
+    }, {
+        $lookup: {
+            from: 'tickets',
+            localField: 'ticket2',
+            foreignField: '_id',
+            as: 'ticket2'
+        }
+    }, {
+        $unwind: {
+            path: '$ticket2'
+        }
+    }, {
+        $lookup: {
+            from: 'events',
+            localField: 'ticket1.event',
+            foreignField: '_id',
+            as: 'ticket1.event'
+        }
+    }, {
+        $unwind: {
+            path: '$ticket1.event'
+        }
+    }, {
+        $lookup: {
+            from: 'events',
+            localField: 'ticket2.event',
+            foreignField: '_id',
+            as: 'ticket2.event'
+        }
+    }, {
+        $unwind: {
+            path: '$ticket2.event'
+        }
+    }, {
+        $project: {
+            "user2.email": 1,
+            "ticket1.event.name": 2,
+            "ticket1.event.location": 2,
+            "ticket1.event.date": 2,
+            "ticket1.section": 3,
+            "ticket1.row": 4,
+            "ticket1.seat": 5,
+            "ticket2.event.name": 6,
+            "ticket2.event.location": 6,
+            "ticket2.event.date": 6,
+            "ticket2.section": 7,
+            "ticket2.row": 8,
+            "ticket2.seat": 9,
+            "trade_Status": 10
+        }
+    }, {
+        $project: {
+            "MyTicket": '$ticket1',
+            "TradeWith": '$user2.email',
+            "TradeTicket": '$ticket2',
+            "Status": '$trade_Status'
+    
+        }
+    }]; 
+
+    return await Trade.aggregate(query);
+};
+
+
 module.exports = {
     createTrade,
     getTradeById,
     acceptTrade,
+    AcceptTradeExceptFrom,
     rejectTrade,
     getTrades,
     getTicketsForTrade,
     ticketForTrade,
-    MyAlertsTrades
+    MyAlertsTrades,
+    MyRequestsTrades
 }

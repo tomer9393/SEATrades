@@ -26,4 +26,7 @@ router.route('/boolTrade/:ticketId')
 router.route('/MyAlertsTrades/:userId')
     .get(TradeController.MyAlertsTrades);
 
+router.route('/MyRequestsTrades/:userId')
+    .get(TradeController.MyRequestsTrades);
+
 module.exports = router;
