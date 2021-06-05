@@ -20,8 +20,8 @@ import { useAuth  } from "./components/hooks/auth-hook";
 import { UserProfile, UserNull } from "./components/hooks/profile-hook";
 import { AuthContext } from "./components/context/auth-context";
 import  MyTicketsPage  from "./components/MyTicketsPage/MyTicketsPage";
+import  MySEATradesPage  from "./components/mySEATradesPage/mySEATradesPage";
 import "../src/App.css"
-import { getUserById } from "./api/UserAPI";
 
 
 
@@ -53,6 +53,7 @@ function App() {
       <Route path="/SignIn"><Redirect to="Profile" /></Route>
       <Route path="/SignUp"><Redirect to="Profile" /></Route>
       <Route path="/MyTickets" component={(props) => <MyTicketsPage {...props}/>} />
+      <Route path="/mySEATrades" component={(props) => <MySEATradesPage {...props}/>} />
       <Route path="*">
         <PageNotFound />
       </Route>
@@ -84,6 +85,9 @@ function App() {
          <SignInPage />
       </Route>
       <Route path="/MyTickets" exact>
+        <SignInPage />
+      </Route>
+      <Route path="/mySEATrades" exact>
         <SignInPage />
       </Route>
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />

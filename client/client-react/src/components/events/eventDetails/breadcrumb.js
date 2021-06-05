@@ -24,7 +24,7 @@ function Breadcrumb(props) {
                     </div>
                 </div>
                 <div className="col-lg-3 col-md-6">
-              <div className="team__item">
+              <div className="event_details_item">
                 <img src={event.imgUrl} alt="" />
               </div>
             </div>
