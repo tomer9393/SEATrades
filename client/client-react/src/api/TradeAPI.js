@@ -72,3 +72,13 @@ export const MyAlertsTrades = async (userId) => {
         return trades;
     } catch (error) { throw ERROR; }
 }
+
+export const MyRequestsTrades = async (userId) => {
+
+    //return user requests trades
+
+    try {
+        const trades = await axios.get(`${baseUrl}/MyRequestsTrades/${userId}`);
+        return trades;
+    } catch (error) { throw ERROR; }
+}
