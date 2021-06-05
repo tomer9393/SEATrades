@@ -56,6 +56,13 @@ export const rejectTrade = async (tradeId) => {
     } catch (error) { throw ERROR; }
 }
 
+export const existTradeByTicket1Id = async (ticketId) => {
+    try {
+        const exist = await axios.get(`${baseUrl}/existTradeByTicket1Id/${ticketId}`);
+        return exist;
+    } catch (error) { throw ERROR; }
+}
+
 export const MyAlertsTrades = async (userId) => {
 
     //return user Alert trades
