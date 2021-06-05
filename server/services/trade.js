@@ -9,6 +9,8 @@ const { request } = require('http');
 const { ObjectId } = require('mongodb');
 const { Object } = require('mongodb');
 const { flatMap } = require('lodash');
+const { exists } = require('fs');
+const { cond } = require('lodash');
 
 const createTrade = async (body) => {
     
@@ -265,12 +267,50 @@ const ticketForTrade = async (ticketId) => {
         ticket.forTrade = true;
     }else{
         ticket.forTrade = false;
+        
+        var exist = await existTradeByTicket1Id(ticketId);
+        if(exist){
+
+            const trade = await Trade.find({ trade_Status: 'Waiting', ticket1: ticketId });
+            console.log(trade[0]._id);
+            await deleteTrade(trade[0]._id);
+        }
     }
 
     await ticket.save();
 
 
     return ticket;
+};
+
+const existTradeByTicket1Id = async (ticketId) => {
+
+    const trade = await Trade.find({ trade_Status: 'Waiting', ticket1: ticketId });
+    if(trade[0]){
+        return true;
+    }
+
+    return false;
+
+};
+
+const deleteTrade = async (id) => {
+
+    try {
+        let trade = await Trade.findById(id);
+        //console.log(`findById success--> ${trade}`);
+        if(!trade) {
+          throw new Error('no document found');
+        }
+
+        await trade.remove();
+
+        return trade;
+
+    } catch (error) {
+        console.log(`findById error--> ${error}`);
+        return error;
+    }
 };
 
 const MyAlertsTrades = async (userId) => {
@@ -484,5 +524,7 @@ module.exports = {
     getTicketsForTrade,
     ticketForTrade,
     MyAlertsTrades,
-    MyRequestsTrades
+    MyRequestsTrades,
+    existTradeByTicket1Id,
+    deleteTrade
 }
