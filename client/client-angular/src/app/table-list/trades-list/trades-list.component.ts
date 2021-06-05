@@ -40,11 +40,11 @@ export class TradesListComponent implements OnInit {
 
   loadAll()
   {
-    this.tradesService.getTrades().subscribe(data => {
-      this.trades = data.users;
-    }, err => {
-      window.alert(err.error);
-    });
+      this.tradesService.getTrades().subscribe(data => {
+        this.trades = data;
+      }, err => {
+        window.alert(err.error);
+      });  
   }
 
   isLoggedIn(adminUser : AdminUser)
