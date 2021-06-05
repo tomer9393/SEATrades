@@ -257,6 +257,7 @@ const getTicketsForTrade = async ( ticketId ) => {
 };
 
 const ticketForTrade = async (ticketId) => {
+
     var ticket = await ticketService.getTicketById(ticketId);
     if (!ticket){
         return null;
@@ -265,15 +266,27 @@ const ticketForTrade = async (ticketId) => {
     if(!ticket.forTrade)
     {
         ticket.forTrade = true;
-    }else{
+
+    }else{ //click on untrade
         ticket.forTrade = false;
         
         var exist = await existTradeByTicket1Id(ticketId);
-        if(exist){
+        if(exist){ 
+            // delete trades requests that ticket1 send to other
+            const req_trades = await Trade.find({ trade_Status: 'Waiting', ticket1: ticketId });
 
-            const trade = await Trade.find({ trade_Status: 'Waiting', ticket1: ticketId });
-            console.log(trade[0]._id);
-            await deleteTrade(trade[0]._id);
+            for (let i = 0; i < req_trades.length; i++) {
+                console.log(req_trades.length);
+                await deleteTrade(req_trades[i]._id);
+            }
+        }
+        // reject trades that waiting for this ticket
+        let res_trades =  await Trade.find({ trade_Status: 'Waiting', ticket2: ticketId });
+        if(res_trades[0]){
+            for (let i = 0; i < res_trades.length; i++) {
+                console.log(res_trades.length);
+                await rejectTrade(res_trades[i]._id);
+            }
         }
     }
 
