@@ -47,6 +47,7 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState();
   const [isUnvalidEmail, setIsUnvalidEmail] = useState();
   const [isUnvalidPhone, setIsUnvalidPhone] = useState();
+  const [isUnvalidId, setIsUnvalidId] = useState();
   const [isPasswordsMatch, setIsPasswordsMatch] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState();
   const [isExistingUser, setIsExistingUser] = useState();
@@ -54,14 +55,15 @@ export default function RegisterPage() {
   const emailPattern = new RegExp(
     /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
   );
-  const PhonePattern= new RegExp(/^[0-9\b]+$/);
-
+  const PhonePattern= new RegExp(/^[0][5][0|2|3|4|5|9]{1}[-]{0,1}[0-9]{7}$/g);
+  const idPattern= new RegExp(/^[0-9]{9}$/g);
   
   const authSubmitHandler = async (event) => {
     event.preventDefault(); 
     setIsExistingUser(false);
     setIsUnvalidEmail(false);
     setIsUnvalidPhone(false);
+    setIsUnvalidId(false);
     setIsPasswordsMatch(false);
 
     const isEmailValid = emailPattern.test(email);
@@ -73,10 +75,15 @@ export default function RegisterPage() {
     if (!isPhoneValid) {
       setIsUnvalidPhone(true);
     }
+
+    const isIdValid = idPattern.test(userId);
+    if (!isIdValid) {
+      setIsUnvalidId(true);
+    }
     const isSamePasswords = password === confirmPassword;
     setIsPasswordsMatch(isSamePasswords);
 
-    if (isSamePasswords && isEmailValid && isPhoneValid) {
+    if (isSamePasswords && isEmailValid && isPhoneValid &&isIdValid) {
       try {
         const requestOptions = {
           method: "POST",
@@ -156,7 +163,13 @@ export default function RegisterPage() {
                 name="id"
                 autoComplete="email" //TODO
                 onChange={(event) => setUserId(event.target.value)}
+                
               />
+              {isUnvalidId && (
+                  <div style={{ color: "red" }}>
+                    Please enter valid ID 
+                  </div>
+                )}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -167,7 +180,7 @@ export default function RegisterPage() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(event) => setEmail(event.target.value.toLowerCase())}
               />
               {isUnvalidEmail && (
                 <div style={{ color: "red" }}>
