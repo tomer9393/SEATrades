@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header card-header-danger">
+      <h4 class="card-title">Trades Table</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="text-primary">
+            <th>Requester</th> 
+            <th>Receiver</th>
+            <th>Ticket 1</th>
+            <th>Ticket 2</th>
+            <th>Active</th>
+            <th>Trade Status</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let trade of trades">
+              <td>{{ trade.user1}}</td>
+              <td>{{ trade.user2}}</td>
+              <td>{{ trade.ticket1}}</td>
+              <td>{{ trade.ticket2}}</td>
+              <td>{{ trade.active }}</td>
+              <td>{{ trade.trade_Status }}</td>
+              <td>
+                <a
+                  class=""
+                  href="javascript:void(0)"
+                  (click)="onDetails(trade)"
+                >
+                  <i class="material-icons">list</i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

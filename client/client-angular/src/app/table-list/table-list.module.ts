@@ -5,6 +5,8 @@ import { TableListComponent } from './table-list.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { AdminUsersListComponent } from './admin-users-list/admin-users-list.component';
+import { TradesListComponent } from './trades-list/trades-list.component';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -21,10 +23,9 @@ import { CreateCategoryComponent } from './categories-list/create-category/creat
 import { DetailsCategoryComponent } from './categories-list/details-category/details-category.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 
-
-// import { CreateUserComponent } from './users-list/create-user/create-user.component';
-// import { EditUserComponent } from './users-list/edit-user/edit-user.component';
 import { DetailsUserComponent } from './users-list/details-user/details-user.component';
+
+import { DetailsTradeComponent } from './trades-list/details-trade/details-trade.component';
 
 import { CreateAdminUserComponent } from './admin-users-list/create-admin-user/create-admin-user.component';
 import { EditAdminUserComponent } from './admin-users-list/edit-admin-user/edit-admin-user.component';
@@ -43,6 +44,7 @@ import { DetailsContactComponent } from './contacts-list/details-contact/details
     UsersListComponent,
     AdminUsersListComponent,
     ContactsListComponent,
+    TradesListComponent,
     EditCategoryComponent,
     CreateCategoryComponent,
     DetailsCategoryComponent,
@@ -55,6 +57,7 @@ import { DetailsContactComponent } from './contacts-list/details-contact/details
     CreateAdminUserComponent,
     EditAdminUserComponent,
     DetailsAdminUserComponent,
+    DetailsTradeComponent,
     ],
   imports: [
     CommonModule,
