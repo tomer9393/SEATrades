@@ -42,9 +42,10 @@ function App() {
       <Route path="/HowItWorks">
         <HowItWorks />
       </Route>
-      <Route path="/Checkout" exact>
+      {/* <Route path="/Checkout" component={(props) => <CheckoutPage {...props}/>} /> */}
+      {/* <Route path="/Checkout" exact>
         <CheckoutPage />
-      </Route>
+      </Route> */}
       <Route path="/Search" component={(props) => <SearchListPage {...props}/>} />
       <Route path="/Profile" exact>
         <ProfilePage />
@@ -64,7 +65,10 @@ function App() {
       </Route>
       <Route path="/Category/:name" component={(props) => <CategoryPage {...props}/>} />
       <Route path="/EventsList/:name" component={(props) => <EventsList {...props}/>} />
-      <Route path="/EventDetails/:id" component={(props) => <EventDetails {...props}/>} />
+      <Route path="/EventDetails/:id">
+        <SignInPage />
+      </Route>
+      {/* <Route path="/EventDetails/:id" component={(props) => <EventDetails {...props}/>} /> */}
       <Route path="/AboutUs">
         <AboutUsPage />
       </Route>

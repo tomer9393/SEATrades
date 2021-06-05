@@ -5,6 +5,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import { format } from "date-fns";
+import { selectProperties } from '@fluentui/utilities';
+
 
 const Event = [
   { name: 'Event', desc: 'Event name',desc2:'Location',desc3:'Date' },
@@ -40,8 +43,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function YourSelection(props) {
   const classes = useStyles();
-
+  const selectedSeats = props.FinalSeats;
+  const event = props.event;
+  var date = new Date(event.date);
+  var formattedDate = format(date, "dd/MM/yyyy");
   props.setDisableNext(false);
+  
+  var finalPrice=0;
+  selectedSeats?.forEach((s) => finalPrice = finalPrice + s[3])
+
+  const InfoRows = selectedSeats?.map((seat) => (
+    <ListItem className={classes.listItem} key={ seat[2]}>
+    <ListItemText primary={'Section:'} secondary={seat[0]}/>
+    <ListItemText primary={'Row:'} secondary={seat[1]} />
+    <ListItemText primary={'Seat:'} secondary={seat[2]} />
+    </ListItem>
+    ));
+
 
   return (
     <React.Fragment>
@@ -50,39 +68,40 @@ export default function YourSelection(props) {
       </Typography> */}
       <List disablePadding >
       <ListItem className={classes.listItem}>
-          <ListItemText primary="Event Name" />
+          <ListItemText primary="Event Name:" />
           <Typography variant="subtitle1" className={classes.total}>
-            Omer Adam Show
+            {event.name}
           </Typography>
         </ListItem>
         <ListItem className={classes.listItem}>
-          <ListItemText primary="Location" />
+          <ListItemText primary="Location:" />
           <Typography variant="subtitle1" className={classes.total}>
-            Tel Aviv
+          {event.location}
           </Typography>
         </ListItem>
         <ListItem className={classes.listItem}>
-          <ListItemText primary="Date" />
+          <ListItemText primary="Date and Time:" />
           <Typography variant="subtitle1" className={classes.total}>
-            06/04/2022
+          {formattedDate} 20:30
           </Typography>
         </ListItem>
             {/* <ListItemText primary={product.desc2} secondaryTypographyProps={"dddd"} />
             <ListItemText primary={product.desc3} secondary={"ddddd"} />
             <Typography variant="body2">{product.price}</Typography> */}
-             {LocationSeat.map((LocationSeat) => (
-          <ListItem className={classes.listItem} key={Location.name}>
-            <ListItemText primary={LocationSeat.desc} secondary={"ffff"} />
-            <ListItemText primary={LocationSeat.desc2} secondary={"222"} />
-            <ListItemText primary={LocationSeat.desc3} secondary={"dddd"} />
-            </ListItem>
-            ))}
+             {/* {LocationSeat.map((LocationSeat) => ( */}
+                {InfoRows}
+          {/* <ListItem className={classes.listItem} key={ 'Location'}>
+            <ListItemText primary={'Section'} secondary={"111"}/>
+            <ListItemText primary={'Row'} secondary={"222"} />
+            <ListItemText primary={'Seat'} secondary={"333"} />
+            </ListItem> */}
+            {/* ))} */}
 
-      
+            
         <ListItem className={classes.listItem}>
-          <ListItemText primary="Price" />
+          <ListItemText primary="Price:" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            ₪{finalPrice}
           </Typography>
         </ListItem>
       </List>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -15,6 +15,8 @@ import PaymentForm from "./paymentForm";
 import Review from "./review";
 import YourSelection from "./yourSelection";
 import { useState } from "react";
+import { AuthContext } from "../context/auth-context";
+import { createTicket } from "../../api/TicketAPI";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    marginTop: theme.spacing(20),
+    marginTop: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: "auto",
@@ -57,31 +59,77 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ["Your Selection", "Payment details", "Review your order"];
 
-const getStepContent = (step, setDisableNext) => {
+const getStepContent = (step, setDisableNext,FinalSeats,event) => {
   switch (step) {
     case 0:
-      return <YourSelection setDisableNext={setDisableNext} />;
+      return <YourSelection setDisableNext={setDisableNext} FinalSeats={FinalSeats} event={event}/>;
     case 1:
       return <PaymentForm setDisableNext={setDisableNext} />;
     case 2:
-      return <Review setDisableNext={setDisableNext}/>;
+      return <Review setDisableNext={setDisableNext}  FinalSeats={FinalSeats} event={event}/>;
     default:
       throw new Error("Unknown step");
   }
 };
 
-export default function Checkout() {
+function SetSeatsInfo(event, row ,seat){
+  var section;
+  var price = event.minPrice;
+  if(row=="A" || row=="B" || row=="C" || row=="D"){
+    if(row=="D"){
+      section="VIP"
+      price = price + 100;
+    }
+    if(row=="A" || row=="B"){
+      if(seat>4 && seat<19){
+        section="VIP"
+        price = price + 100;
+      }else {
+        section="B"
+        price = price + 40
+      }
+    }
+    if(row=="C"){
+      if(seat>2 && seat<21){
+        section="VIP"
+        price = price + 100;
+      }else {
+        section="B"
+        price = price + 40
+      }
+    }
+  }else {section = "A"}
+
+    const seatInfo = [section,row,seat,price];
+    return seatInfo;
+}
+
+export default function Checkout(props) {
+  const selectedSeats = props.selectedSeats;
+  const event = props.event;
+  const eventId = event._id;
+  const auth = useContext(AuthContext);
+  const userId = auth.userId;
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [disableNext, setDisableNext] = useState();
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    if(activeStep === steps.length-1){
+      FinalSeats?.forEach((seat) => {
+      const ticket = createTicket(userId, eventId, seat[0], seat[1], seat[2], seat[3]);
+    })}
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const FinalSeats = selectedSeats?.map((ticket) => (
+    SetSeatsInfo(event, ticket[0],ticket[1])
+  ));
+
 
   return (
     <React.Fragment>
@@ -112,7 +160,7 @@ export default function Checkout() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, setDisableNext)}
+                {getStepContent(activeStep, setDisableNext,FinalSeats,event)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>

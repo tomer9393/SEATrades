@@ -18,7 +18,8 @@ function Breadcrumb(props) {
                         <h2>{event.name}</h2>
                         <ul>
                             <li><i className="fa fa-user"></i> {event.artist}</li>
-                            <li><i className="fa fa-clock-o"></i>{formattedDate}</li>
+                            <li><i className="fa fa-calendar"></i>{formattedDate}</li>
+                            <li><i className="fa fa-clock-o"></i>20:30</li>
                             <li><i className="fa fa-location-arrow"></i> {event.location}</li>
                         </ul>
                     </div>
