@@ -1,23 +1,29 @@
 import React, { useContext , useState , useEffect } from "react";
+import SeatPicker from "./seatPicker.js";
 
-class SeatMap extends React.Component{
 
-  render() {
-  console.log('SeatMap Render lifecycle')
+function SeatMap(props){
+  const event = props.event;
+  // console.log('SeatMap Render lifecycle')
 
   return (
     <>
         <div className="seatChart_content" >
-            <div id="map-container"></div>
-
+              <div className="seatChart_row">
+                <div className="col-lg-12">
+                  <div className="seatChart_img">
+                  <img src="/img/seating-map2.jpg"/>
+                  </div>
+                </div>
+              </div>
+        
             <div className="seatChart_right">
-                <div id="cart-container"></div>
-                <div id="legend-container"></div>
+                <SeatPicker event={event} ></SeatPicker>
             </div>
         </div>
     </>
     );
-  }
+  //}
 }
 
 

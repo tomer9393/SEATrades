@@ -50,7 +50,7 @@ function SearchBar() {
 
   return (
     <>
-      <section className="hero set-bg" style={{backgroundImage: 'url(/img/hero/bg-homePage.jpg)'}}>
+      <section className="hero set-bg" style={{backgroundImage: 'url(/img/hero/bg-homepage.jpg)'}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

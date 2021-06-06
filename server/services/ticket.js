@@ -266,7 +266,7 @@ const boolTicket = async (eventId, section, row, seat) => {
 
 
 
-const getMApOfEvent = async (eventId, section, row ) => {
+const getMApOfEvent = async (eventId, row ) => {
 
     var map = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] ;
 
@@ -274,7 +274,6 @@ const getMApOfEvent = async (eventId, section, row ) => {
         [{
             $match: {
                 event: ObjectId(eventId),
-                section: section,
                 row: row
             }
         }]
