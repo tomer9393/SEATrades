@@ -28,7 +28,7 @@ router.route('/byId/:ticketId')
 router.route('/boolTicket/:eventId/:section/:row/:seat')
     .get(ticketController.boolTicket);
 
-router.route('/mapOfEvent/:eventId/:section/:row')
+router.route('/mapOfEvent/:eventId/:row')
     .get(ticketController.getMApOfEvent);
 
 router.route('/ByEvent/:eventId')

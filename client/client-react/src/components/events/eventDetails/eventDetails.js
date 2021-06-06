@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getEventById } from "../../../api/EventAPI.js";
 import EventList from "../eventList/eventList";
-import SeatMap from "./seatMap3.js"
+import SeatMap from "./seatMap.js"
 
 
 function EventDetails(props) {
