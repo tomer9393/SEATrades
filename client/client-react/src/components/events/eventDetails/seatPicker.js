@@ -207,11 +207,6 @@ function SeatPicker(props) {
             </div>
             <div className="col-lg-12 col-md-12">
               <div className="tickets_row">
-              {
-              numOfTickets>0 ?
-              <button  className="seatChart__delete__button" style={{ width: "70%",marginLeft: '15%' }} onClick={()=>{HandelRemoveClick()}}>Reset Seat Selection</button>
-              : <div></div>
-              }
               {SelectedTickets}
               <div>
               {
@@ -223,8 +218,11 @@ function SeatPicker(props) {
               // <CheckoutButton></CheckoutButton>
               // <Link to="#"  className="seatChart__add__button"  onClick={(e) => HandelCheckoutClick() } style={{right: '210px'}}>CHECKOUT</Link>
               }
-                {/* <Checkout selectedSeats={TempSelectedTickets} event={event}></Checkout> */}
-                {/* className="seatChart__search__form seatChart__add__button" */}
+              {
+              numOfTickets>0 ?
+              <button  className="seatChart__delete__button" style={{ width: "70%",marginLeft: '15%',marginTop: '15px' }} onClick={()=>{HandelRemoveClick()}}>Reset Seat Selection</button>
+              : <div></div>
+              }
               </div>
               </div>
           </div>
@@ -234,7 +232,7 @@ function SeatPicker(props) {
         
     </>
   ) : (
-    <div className="container">
+    <div className="container container_checkout">
     <div className="row">
       <div className="col-lg-12">
       {

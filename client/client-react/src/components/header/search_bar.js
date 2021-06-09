@@ -27,8 +27,12 @@ function SearchBar() {
   ];
   
   const locations = [
-    "Tel-Aviv",
-    "Jeruslaem",
+    "Tel Aviv",
+    "Jerusalem",
+    "Natania",
+    "Ashdod",
+    "Eilat",
+    "Haifa"
   ];
 
   const dropdownOptions1 = [

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import { format } from "date-fns";
 import { useEffect, useState, useContext } from "react";
 import SeatMap from "./seatMap.js"
-import {boolTicketForTrade,existTradeByTicket1Id} from "../../api/TradeAPI.js"
+import {boolTicketForTrade,existTradeByTicket1Id,tradedSeatByTicketId} from "../../api/TradeAPI.js"
 
 function SingleTicket(props) {
   const ticket = props.ticket;
@@ -17,10 +17,17 @@ function SingleTicket(props) {
   const [trade, setTrade] = useState(false);
   const [unTrade, setUntrade] = useState(false);
   const [existTrade, setExistTrade] = useState(undefined);
+  const [tradedSeat, setTradedSeat] = useState(undefined);
 
   useEffect(() => {
     existTradeByTicket1Id(ticketId).then((res) => {
       setExistTrade(res.data);
+    });
+  }, [ticketId]);
+
+  useEffect(() => {
+    tradedSeatByTicketId(ticketId).then((res) => {
+      setTradedSeat(res.data);
     });
   }, [ticketId]);
 
@@ -60,30 +67,30 @@ function SingleTicket(props) {
       return <Link onClick={HandelTradeClick} to="#">Trade</Link>
     }
     if(trade==true){
-       return <div>
+       return <section className="untrade_button_section">
               <div style={{marginBottom: '30px',color: "red" }}>you are allowd to set this ticket for trade only once!</div>
-              <div><Link to="#" onClick={HandelTradeClick} style={{right: '300px'}}>Cancel</Link></div>
-              <div><Link onClick={HandelConfirmTradeClick} style={{background: 'rgb(141 198 67)'}} to="#">Confirm Set for Trade</Link></div>
-              </div>
+              <div><Link to="#" onClick={HandelTradeClick}  className="untrade_button_down4">Cancel</Link></div>
+              <div><Link onClick={HandelConfirmTradeClick} className="untrade_button_upper" style={{background: 'rgb(141 198 67)'}} to="#">Confirm Set for Trade</Link></div>
+              </section>
     }
   }
 
   function UNTradeButton(){
     if(unTrade==false){
       if(existTrade == false || existTrade ==undefined){
-      return  <div><div><Link to="#" onClick={HandelShowSeatsClick}>Show Seats</Link></div>
-              <div><Link to="#" onClick={HandelUnTradeClick} style={{right: '210px'}}>UNTRADE</Link></div></div>
+      return  <section className="untrade_button_section"><div  ><Link to="#" className="untrade_button_upper" onClick={HandelShowSeatsClick}>Show Seats</Link></div>
+              <div><Link to="#"  className="untrade_button_down" onClick={HandelUnTradeClick} >UNTRADE</Link></div></section>
       }else{
-        return <div><div><Link to="/MySEATrades" >My SEATrades</Link></div>
-        <div><Link to="#" onClick={HandelUnTradeClick} style={{right: '230px'}}>UNTRADE</Link></div></div>
+        return <section  className="untrade_button_section"><div><Link className="untrade_button_upper" to="/MySEATrades" >My SEATrades</Link></div>
+        <div><Link to="#" onClick={HandelUnTradeClick}  className="untrade_button_down2" >UNTRADE</Link></div></section>
       }            
     }
     if(unTrade==true){
-      return <div>
+      return <section className="untrade_button_section">
               <div style={{marginBottom: '30px',color: "red" }}>If you untrade this ticket, you will not be able to set it up for trade again.</div>
-              <div><Link to="#" onClick={HandelUnTradeClick} style={{right: '280px'}}>Cancel</Link></div>
-              <div><Link onClick={HandelConfirmTradeClick} style={{background: '#f03250'}} to="#">Confirm Non-Trade</Link></div>
-              </div>
+              <div><Link to="#" onClick={HandelUnTradeClick} className="untrade_button_down3" >Cancel</Link></div>
+              <div><Link onClick={HandelConfirmTradeClick} style={{background: '#f03250'}} className="untrade_button_upper" to="#">Confirm Non-Trade</Link></div>
+              </section>
     }
   }
 
@@ -94,8 +101,9 @@ function SingleTicket(props) {
         <article className="tickets_card">
           {
           forTrade==true && existTrade != true ? 
-          <div className="forTrade_top"> <a>MARKED FOR TRADE</a></div>
-          : existTrade == true ? <div className="forTrade_top" style={{background: '#f03250', color:'#ffffff'}}> <a>Pending SEATrade Request</a></div>
+          <div className="forTrade_top"> <a style={{marginRight: '10px'}}>MARKED FOR TRADE</a></div>
+          : existTrade == true ? <div className="forTrade_top" style={{background: '#f03250', color:'#ffffff'}}> <a style={{marginRight: '10px'}}>Pending Request</a></div>
+          : tradedSeat == true ? <div className="forTrade_top" style={{background: 'rgb(141 198 67)', color:'#ffffff'}}> <a style={{marginRight: '30px'}}>TRADED SEAT!</a></div>
           : <div></div>
           }
           <section className="tickets_seat">
@@ -118,9 +126,10 @@ function SingleTicket(props) {
                 </ul>
             </section>
             {
-            forTrade==false
-            ? <TradeButton></TradeButton>
-            : <UNTradeButton></UNTradeButton>
+            forTrade==false && tradedSeat == false? <TradeButton></TradeButton>
+            : forTrade==true && tradedSeat == false? <UNTradeButton></UNTradeButton>
+            : tradedSeat == true ?  <div></div>
+            : <div></div>
             }
             </section>
         </article>

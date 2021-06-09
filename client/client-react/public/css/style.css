@@ -3347,6 +3347,22 @@ margin: .4em 0;
 	font-weight: 450;
 }
 
+.untrade_button_section .untrade_button_down{
+	right: 210px;
+}
+
+.untrade_button_section .untrade_button_down2{
+	right: 230px;
+}
+.untrade_button_section .untrade_button_down3{
+	right: 270px;
+}
+
+.untrade_button_section .untrade_button_down4{
+	right: 300px;
+}
+
+
 /*---- Show's Breadcrumb ----*/
 
 .artwork {
@@ -3724,6 +3740,8 @@ display: block
 	-ms-transition: .5s all;
 }
 
+
+
 .forTrade
 {
     /* display: table-caption; */
@@ -3877,6 +3895,13 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 }
 
 .seatChart_right {
+    display: flex;
+    flex-direction: column;
+	width: 700px;
+
+}
+
+.seatChart_right_checkout {
     display: flex;
     flex-direction: column;
 	width: 700px;
@@ -4097,7 +4122,22 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
     top: 6px;
 }
 
+.tickets_card-cont .request_status {
+    margin-right: 150px;
+    color: rgb(50, 50, 50);
+    background: none;
+    padding-right: 30px;
+    font-size: 20px;
 
+}
+
+.tickets_card-cont .request_status:hover {
+    margin-right: 150px;
+    color: rgb(50, 50, 50);
+    background: none;
+    padding-right: 30px;
+    font-size: 20px;
+}
 
 @media screen and (max-width: 860px)
 {
@@ -4671,19 +4711,35 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	}
 	
 	.tickets_card-cont h2 {
-		font-size: 30px;
-		font-weight: 600;
+		font-size: inherit;
+		text-decoration: underline;
+		font-weight: bold;
 		line-height: 1.2;
 		margin-bottom: 5px;
 		text-align: center;
-		margin-top: 15px;
+		margin-top: 25px;
 	}
 
 	.tickets_card-list {
 		margin-bottom: 50px;
+		margin-top: 20px;
 	}
 
-	
+	.untrade_button_section{
+		padding-bottom: 30px;
+	}
+
+	.untrade_button_upper{
+		margin-bottom: 30px;
+	}
+
+	.untrade_button_section .untrade_button_down,	
+	.untrade_button_section .untrade_button_down2,
+	.untrade_button_section .untrade_button_down3,
+	.untrade_button_section .untrade_button_down4{
+		right: 10px;
+	}
+
 	.tickets_card-list ul {
 		width: 150px;
 		text-align: left;
@@ -4698,6 +4754,8 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	}
 
 	.tickets_card-cont a {
+		font-size:x-small;
+		padding: 5px 30px;
 		width: 50%;
 		height: auto;
 	}
@@ -4736,6 +4794,71 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	.seatChart_content {
 		display: block;
 		margin-top: 0px;
+	}
+
+	/* .seatChart__text {
+		width: 50%;
+	}
+	 */
+	/* .event__title {
+		width: 50%;
+	} */
+	
+	/* .tickets_row {
+		width: 50%;
+	} */
+
+	.seatChart__search__form form .select__option {
+		position: relative;
+		width: 37.5%;
+		float: left;
+		height: 32px;
+		border-radius: 5px;
+	}
+
+	.seatChart__add__button {
+		width: 25%;
+		height: 32px;
+		border: none;
+		font-size: smaller;
+		font-weight: 700;
+		background: #f03250;
+		color: #ffffff;
+		text-transform: uppercase;
+		border-radius: 5px;
+	}
+
+	.makeStyles-layout-14 {
+    width: 50%;
+    margin-left: 10px;
+	margin-top: 0px;
+    margin-right: 0px;
+	}
+
+	.seatChart_right {
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	.container_checkout {
+		width: 100%;
+		padding-right: 0px;
+		padding-left: 0px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.seatChart__section-title h2 {
+		font-size: 20px;
+	}
+
+	.tickets_card-cont .request_status {
+		color: rgb(50, 50, 50);
+		background: none;
+		padding-bottom: 30px;
+		margin-right: 15px;
+		width: auto;
+		font-size: x-small;
 	}
 }
 

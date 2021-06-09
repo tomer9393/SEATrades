@@ -32,16 +32,21 @@ function SingleTicket(props) {
   //     setMyAlerts(res.data);
   //   });
   // }, [id]);
-  var status_color;
+  var status_color,status_string;
   if(status=='Waiting'){
     status_color='rgb(95 177 227)' // blue
+    status_string='Waiting';
   }else if(status=='Accept'){
     status_color='rgb(141 198 67)' // green
+    status_string='Accepted'
   }else if(status=='Rejected'){
     status_color='rgb(236 23 30)' // red
+    status_string='Rejected'
   }else{
     status_color='#D8DDE0' // grey
+    status_string='Unknown'
   }
+
 
   function HandelShowOfferSeatsClick(){
     if(showOffer==false){
@@ -123,7 +128,7 @@ function SingleTicket(props) {
     return (
       <>
         <article className="tickets_card">
-          <div className="forTrade_top"> <a >MY SEAT</a></div>
+          <div className="forTrade_top"> <a style={{marginRight: '30px'}} >MY SEAT</a></div>
           <section className="tickets_seat">
               <section>
                 <ul>
@@ -193,7 +198,7 @@ function SingleTicket(props) {
               <img src="img/down-arrow.png" alt="" />
         </div>
         <article className="tickets_card">
-        <div className="forTrade_top"> <a >Requested SEAT</a></div>
+        <div className="forTrade_top"> <a style={{marginRight: '30px'}}>Requested SEAT</a></div>
         <section className="tickets_seat">
             <section>
               <ul>
@@ -214,16 +219,23 @@ function SingleTicket(props) {
               <li ><i className="fa fa-map-marker" /><span>{TradeEvent.location}</span></li>
               </ul>
           </section>
-          </section>
-          <section className="tickets_card-cont">
-          <section className="tickets_card-list">
-              <div>
-              <a style={{marginRight: '150px', color: '#323232',backgroundColor: 'white',background: 'none',paddingRight: '20px',fontSize: '20px'}} to="#">Request Status:</a>
-              <a style={{background: status_color}} to="#">{status}</a>
+          <div>
+              {/* <a style={{marginRight: '150px', color: '#323232',backgroundColor: 'white',background: 'none',paddingRight: '30px',fontSize: '20px'}} to="#">Request Status:</a> */}
+              <a className="request_status" to="#">Request Status:</a>
+              <a style={{background: status_color}} to="#">{status_string}</a>
               </div>
           </section>
+          {/* <section className="tickets_card-cont">
+          <section className="tickets_card-list">
+              <div>
+              <a style={{marginRight: '150px', color: '#323232',backgroundColor: 'white',background: 'none',paddingRight: '30px',fontSize: '20px'}} to="#">Request Status:</a>
+              <a className="request_status" to="#">Request Status:</a>
+              <a style={{background: status_color}} to="#">{status_string}</a>
+              </div>
           </section>
+          </section> */}
         </article>
+        <hr style={{width: '70%', marginTop: '50px',marginBottom: '50px'}}></hr>
         </>
         }     
     </>

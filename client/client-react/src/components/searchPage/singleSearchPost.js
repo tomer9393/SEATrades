@@ -7,15 +7,15 @@ function SingleSearchPost(props) {
   var bg = event.imgUrl;
   var date = new Date(event.date);
   var formattedDate = format(date, "dd/MM/yyyy");
+  var soldOut = event.soldOut;
     return (
       <>
       <div className="col-lg-4 col-md-6">
       <div className="listing__item">
         <div className="listing__item__pic set-bg" style={{backgroundImage: `url(${bg})`}}>
-          <img src="img/listing/list_icon-1.png" alt="" />
           <Link to={'/Category/' + event.category}><div className="listing__item__pic__tag">{event.category}</div></Link>
         </div>
-        <div className="listing__item__text">
+        <div className="listing__item__text" style={{textAlign: `left`}}>
           <div className="listing__item__text__inside">
             <h5>{event.name}</h5>
             <div className="listing__item__text__rating">
@@ -32,9 +32,13 @@ function SingleSearchPost(props) {
             </ul>
           </div>
           <div className="listing__item__text__info">
-          <Link className="listing__item__text__info__center" to={`/EventDetails/${event._id}`}>
-            <img src="img/hero/tickets.png" alt="" /> Buy Tickets
+          {
+          soldOut==true
+          ? <a to="/" className="disabledCursor" onClick={ (e) => e.preventDefault() }><img src="img/hero/tickets.png" alt=""></img>  0 tickets Available</a>
+          : <Link className="listing__item__text__info__center" to={`/EventDetails/${event._id}`}>
+            <img src="img/hero/tickets.png" alt=""></img> Buy Tickets
             </Link>
+            }
           </div>
         </div>
       </div>

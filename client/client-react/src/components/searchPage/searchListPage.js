@@ -5,6 +5,7 @@ import SingleSearchPost from "./singleSearchPost";
 //import React, { useEffect, useState } from "react";
 import MostPopular from '../mostPopularPage/mostPopular';
 import Breadcrumb from './breadcrumb';
+import SearchBar from '../header/search_bar';
 import {Link} from "react-router-dom";
 
 function SearchListPage(props) {
@@ -24,25 +25,25 @@ function SearchListPage(props) {
 
   return events?.length === 0 ? (
     <>
-      <Breadcrumb />
-      <section className="spad" >
-      <div className="container search-title">
-          < h2 >We are sorry but there are no results for your search.</ h2>
-          </div>
-          <hr style={{width: '70%'}}></hr> 
-          <div className="container  search-title">
-          < p>You can try and run a new <Link to="/" style={{color: '#ec171e'}}>search</Link></ p>
-          < p>In the meanwhile you can take a look at our most popular events down here</ p>
-          
+      <SearchBar />
+      
+      <section className="categories section-title" style={{background: '#ffffff'}}>
+      < h2 style={{textAlign: 'center', padding: '50px'}} >We are sorry but there are no results for your search.</ h2>
+      <div className="container section-title">
+          < h3>You can try and run a new search.</ h3>
+          < h3>In the meanwhile you can take a look at our most popular events down here</ h3>
       </div>
-      <MostPopular ></MostPopular>
+          <hr style={{width: '70%'}}></hr> 
+      <MostPopular></MostPopular>
       </section>
     </>
   ) : (
     <>
-      <Breadcrumb />
-      <section className="categories spad">
+      <SearchBar />
+      <section className="categories section-title">
+      <h2 style={{textAlign: 'center', padding: '50px'}}>Search Results</h2>
       <div className="container">
+        
       <section className="catagory-welcome-post-area section_padding_100">
         <div className="container">
           <div className="row">{singleSearchPosts}</div>

@@ -322,6 +322,34 @@ const existTradeByTicket1Id = async (ticketId) => {
 
 };
 
+const tradedSeatByTicketId = async (ticketId) => {
+
+    var query = [{
+        $match: {
+            $or: [{
+                    ticket1: ObjectId(ticketId)
+                },
+                {
+                    ticket2: ObjectId(ticketId)
+                }
+    
+            ],
+            $and: [{
+                trade_Status: 'Accept'
+            }]
+        }
+    }];
+
+    const trade = await Trade.aggregate(query);
+    
+    if(trade[0]){
+        return true;
+    }
+
+    return false;
+
+};
+
 const deleteTrade = async (id) => {
 
     try {
@@ -555,5 +583,6 @@ module.exports = {
     MyAlertsTrades,
     MyRequestsTrades,
     existTradeByTicket1Id,
+    tradedSeatByTicketId,
     deleteTrade
 }
