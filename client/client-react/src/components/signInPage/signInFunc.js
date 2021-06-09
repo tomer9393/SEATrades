@@ -124,10 +124,10 @@ export default function LoginPage() {
           {isWrongPassword && (
             <div style={{ color: "red" }}>Wrong password</div>
           )}
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
