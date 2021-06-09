@@ -3861,7 +3861,7 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 }
 
 .seatChart__search__form {
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	background: rgba(255, 255, 255, 0.1);
 	padding: 10px;
 	border-radius: 5px;
@@ -3894,7 +3894,7 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 
 .seatChart__search__form form .select__option {
 	position: relative;
-	width: 28%;
+	width: 42.5%;
 	float: left;
 	height: 32px;
 	border-radius: 5px;
@@ -4073,6 +4073,7 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
     position: absolute;
     top: 6px;
 }
+
 
 
 @media screen and (max-width: 860px)

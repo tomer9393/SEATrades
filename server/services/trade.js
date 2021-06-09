@@ -56,6 +56,7 @@ const acceptTrade = async (id) => { ///////kannnnn state = true
     
         await trade.save();
 
+
         // delete trades requests that ticket1 send to other if exist
         var exist = await existTradeByTicket1Id(trade.ticket2); 
         if(exist){ 
@@ -67,6 +68,7 @@ const acceptTrade = async (id) => { ///////kannnnn state = true
                 await deleteTrade(req_trades[i]._id);
             }
         }
+
 
         // reject all other requests trade with this ticket 
         var ticket = await ticketService.getTicketById(trade.ticket1);
@@ -282,6 +284,7 @@ const ticketForTrade = async (ticketId) => {
     }else{ //click on untrade
         ticket.forTrade = false;
         
+
         var exist = await existTradeByTicket1Id(ticketId); ////////kannnnnn state=true
         if(exist){ 
             // delete trades requests that ticket1 send to other
