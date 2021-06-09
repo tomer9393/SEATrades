@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 //import { categories, locations } from "../utils";
 import {
@@ -10,7 +10,7 @@ import {
 } from "@fluentui/react";
 import { homePageSearch } from "../../api/EventAPI";
 import { useHistory } from "react-router-dom";
-import { initializeIcons } from '@fluentui/react/lib/Icons';
+import { initializeIcons } from "@fluentui/react/lib/Icons";
 
 function SearchBar() {
   const [text, setSearchText] = useState(undefined);
@@ -18,18 +18,9 @@ function SearchBar() {
   const [location, setselectedLocation] = useState(undefined);
   const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
-  const categories = [
-    "Concerts",
-    "Festivals",
-    "Sport",
-    "StandUp",
-    "Theatre",
-  ];
-  
-  const locations = [
-    "Tel-Aviv",
-    "Jeruslaem",
-  ];
+  const categories = ["Concerts", "Festivals", "Sport", "StandUp", "Theatre"];
+
+  const locations = ["Tel-Aviv", "Jeruslaem"];
 
   const dropdownOptions1 = [
     { key: "undefined", text: "Select a category" },
@@ -46,11 +37,13 @@ function SearchBar() {
       text: location,
     })),
   ];
-  
 
   return (
     <>
-      <section className="hero set-bg" style={{backgroundImage: 'url(/img/hero/bg-homepage.jpg)'}}>
+      <section
+        className="hero set-bg"
+        style={{ backgroundImage: "url(/img/hero/bg-homepage.jpg)" }}
+      >
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -62,36 +55,9 @@ function SearchBar() {
                   <h2>Look for tickets to your favorite shows!</h2>
                 </div>
                 <div className="hero__search__form">
-                  <form>
-                    <input
-                      type="text"
-                      placeholder="Enter Artist or Event name..."
-                      onChange={(text) =>
-                        setSearchText(text.target.value || "")
-                      }
-                    />
-                    <div className="select__option" style={{borderRadius: '5px'}}>
-                      <Dropdown style={{borderRadius: '5px'}}
-                        placeholder="Select a category"
-                        options={dropdownOptions1 }
-                        onChange={(_, item) => {
-                          setSelectedCategory(item.key);
-                        }}
-                      />
-                    </div>
-                    <div className="select__option">
-                      <Dropdown
-                        placeholder="Select a location"
-                        options={dropdownOptions2}
-                        onChange={(_, item) => {
-                          setselectedLocation(item.key);
-                        }}
-                      />
-                    </div>
-                    {/* <button onClick={() => homePageSearch(text ,text ,category, location)}type="submit">Search</button> */}
-                  </form>
-                  <button className="hero__search__button"
-                    onClick={() =>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
                       homePageSearch(text, text, category, location)
                         .then((res) => res.data)
                         .then((res) => {
@@ -107,11 +73,40 @@ function SearchBar() {
                             pathname: "/Search",
                             state: { events: res },
                           });
-                        })
-                    }
+                        });
+                    }}
                   >
-                    Search
-                  </button>
+                    <input
+                      type="text"
+                      placeholder="Enter Artist or Event name..."
+                      onChange={(text) =>
+                        setSearchText(text.target.value || "")
+                      }
+                    />
+                    <div
+                      className="select__option"
+                      style={{ borderRadius: "5px" }}
+                    >
+                      <Dropdown
+                        style={{ borderRadius: "5px" }}
+                        placeholder="Select a category"
+                        options={dropdownOptions1}
+                        onChange={(_, item) => {
+                          setSelectedCategory(item.key);
+                        }}
+                      />
+                    </div>
+                    <div className="select__option">
+                      <Dropdown
+                        placeholder="Select a location"
+                        options={dropdownOptions2}
+                        onChange={(_, item) => {
+                          setselectedLocation(item.key);
+                        }}
+                      />
+                    </div>
+                    <button className="hero__search__button">Search</button>
+                  </form>
                 </div>
                 <ul className="hero__categories__tags">
                   <li>
