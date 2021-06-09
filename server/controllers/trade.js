@@ -152,6 +152,15 @@ const existTradeByTicket1Id = async (req, res) => {
     res.json(exist);
 };
 
+const tradedSeatByTicketId = async (req, res) => {
+    const exist = await tradeService.tradedSeatByTicketId( req.params.ticketId);
+    // if (!ticket) {
+    //     return res.status(500).json("Tickets not found");
+    // }
+
+    res.json(exist);
+};
+
 const MyAlertsTrades = async (req, res) => {
     const trades = await tradeService.MyAlertsTrades(req.params.userId);
     if (!trades) {
@@ -182,5 +191,6 @@ module.exports = {
     ticketForTrade,
     MyAlertsTrades,
     MyRequestsTrades,
-    existTradeByTicket1Id
+    existTradeByTicket1Id,
+    tradedSeatByTicketId
 }

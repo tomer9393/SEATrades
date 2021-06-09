@@ -3,7 +3,6 @@ import SingleTicket from "./singleTicket"
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 import { getTicketsByUserId } from "../../api/TicketAPI.js";
-import Popup from "../tradePage/Popup.js";
 import moment from "moment";
 
 export default function MyTickets() {
@@ -63,6 +62,7 @@ export default function MyTickets() {
           </div>
           </div>
         </div>
+        <hr style={{width: '70%', marginTop: '50px'}}></hr>
         <div className="container">
           <div className="col-lg-12 col-md-12">
             <div className="event__title">

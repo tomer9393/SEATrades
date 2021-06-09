@@ -16,20 +16,19 @@ function SeatPicker(props) {
   const ticket = props.ticket;
   const ticketId = ticket._id;
   const myUserId = ticket.user;
-  const event = props.event;
-  const eventId = event._id;
-  const [date,  setSelectedDate] = useState(undefined);
-  const [eventDateList, setEventDateList] = useState([]);
-  const [section,  setSelectedSection] = useState("A");
-  const [row,  setSelectedRow] = useState("E");
-  const [seat,  setSelectedSeat] = useState();
-  const [numOfTickets,  setNumOfTickets] = useState(0);
-  const [seatList,  setSeatList] = useState(undefined);
+  // const event = props.event;
+  // const eventId = event._id;
+  // const [date,  setSelectedDate] = useState(undefined);
+  // const [eventDateList, setEventDateList] = useState([]);
+  // const [section,  setSelectedSection] = useState("A");
+  // const [row,  setSelectedRow] = useState("E");
+  // const [seat,  setSelectedSeat] = useState();
+  // const [numOfTickets,  setNumOfTickets] = useState(0);
+  // const [seatList,  setSeatList] = useState(undefined);
+  // const [confirm,  setConfirm] = useState(false);
   const [request,  setRequest] = useState(false);
-  const [confirm,  setConfirm] = useState(false);
   const [optionalTickets, setOptionalTickets] = useState([]);
   const [chosenTicket, setChosenTicket] = useState(0);
-  const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
   //const tradeUserId = chosenTicket[0].user;
 
@@ -150,6 +149,7 @@ function SeatPicker(props) {
               : <ConfirmButton></ConfirmButton>
               // : <button className="seatChart__add__button" onClick={HandelConfirmClick} style={{marginLeft: '100px', marginTop: '20px',width: '300px',background: 'rgb(240 50 80)'}}>Confirm Request</button>
               }
+              <hr style={{width: '100%', marginTop: '50px'}}></hr>
           </div>
           </div>
         </div>

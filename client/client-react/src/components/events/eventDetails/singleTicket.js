@@ -48,10 +48,10 @@ function singleTicket(props) {
               </section>
             </section>
             <section className="tickets_card-cont">
-            <h2>Price: ₪{price} </h2>
+            <h2  style={{textDecoration: 'none', color: 'green'}}>Price: ₪{price} </h2>
             <section className="tickets_card-list">
                 <ul>
-                <li ><span>{event.name}</span></li>
+                <li ><h2>{event.name}</h2></li>
                 <li ><i className="fa fa-calendar" /><span>{formattedDate}</span></li>
                 <li><i className="fa  fa-clock-o" /><span>20:30pm</span></li>
                 <li><i className="fa fa-map-marker" /><span>{event.location}</span></li>

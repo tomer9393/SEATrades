@@ -1,8 +1,17 @@
 import React from "react";
+import { useState } from "react";
 
-class Newslatter extends React.Component {
-  render() {
-    return (
+
+function Newslatter() {
+
+  const [subscribe, setSubscribe] = useState(false);
+
+  function SubscribeClick(){
+    setSubscribe(true)
+  }
+
+  return (
+      <>
       <section className="newslatter">
         <div className="container">
           <div className="row">
@@ -12,17 +21,25 @@ class Newslatter extends React.Component {
                 <p>Subscribe to our newsletter and don’t miss anything</p>
               </div>
             </div>
+            {
+            subscribe==false ?
             <div className="col-lg-6 col-md-6">
               <form action="#" className="newslatter__form">
                 <input type="text" placeholder="Your email" />
-                <button type="submit">Subscribe</button>
+                <button onClick={SubscribeClick}>Subscribe</button>
               </form>
             </div>
+            : <div className="col-lg-6 col-md-6">
+            <div className="newslatter__text">
+              <h3>Thank you for your Subscription!</h3>
+            </div>
+            </div>
+            } 
           </div>
         </div>
       </section>
-    );
-  }
+      </>
+  );
 }
 
 export default Newslatter;

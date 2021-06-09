@@ -26,6 +26,9 @@ router.route('/boolTrade/:ticketId')
 router.route('/existTradeByTicket1Id/:ticketId')
     .get(TradeController.existTradeByTicket1Id);
 
+router.route('/tradedSeatByTicketId/:ticketId')
+    .get(TradeController.tradedSeatByTicketId);
+
 router.route('/MyAlertsTrades/:userId')
     .get(TradeController.MyAlertsTrades);
 

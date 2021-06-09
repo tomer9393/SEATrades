@@ -18,9 +18,24 @@ function SearchBar() {
   const [location, setselectedLocation] = useState(undefined);
   const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
-  const categories = ["Concerts", "Festivals", "Sport", "StandUp", "Theatre"];
 
-  const locations = ["Tel-Aviv", "Jeruslaem"];
+  const categories = [
+    "Concerts",
+    "Festivals",
+    "Sport",
+    "StandUp",
+    "Theatre",
+  ];
+  
+  const locations = [
+    "Tel Aviv",
+    "Jerusalem",
+    "Natania",
+    "Ashdod",
+    "Eilat",
+    "Haifa"
+  ];
+
 
   const dropdownOptions1 = [
     { key: "undefined", text: "Select a category" },

@@ -1,8 +1,8 @@
 import React from "react";
 import Breadcrumb from './breadcrumb';
-import SeatTrades from './mySEAtTrades';
+import SeatTrades from './mySEATrades';
 
-function MySeatTradesPage() {
+function MySEATradesPage() {
 
     return (
         
@@ -13,4 +13,4 @@ function MySeatTradesPage() {
     );
 }
 
-export default MySeatTradesPage;
+export default MySEATradesPage;
