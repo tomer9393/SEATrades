@@ -39,26 +39,27 @@ const getEventById = async (id) => {
 };
 
 const getEvents = async () => {
-    return await Event.find({});
+    return await Event.find({date : {$gt: new Date(Date.now())}});
 };
 
 const getEventsByCategory = async (category) => {
-    return await Event.find({ category: category });
+    return await Event.find({ category: category , date : {$gt: new Date(Date.now())} });
 };
 
 const getEventsByName = async (name) => {
-    return await Event.find({name : name});
+    return await Event.find({name : name , date : {$gt: new Date(Date.now())}});
 };
 
 const getEventsByArtist = async (artist) => {
-    return await Event.find({artist : artist});
+    return await Event.find({artist : artist , date : {$gt: new Date(Date.now())}});
 };
 
 const getDistincEventsByCategory = async (category) => {
     return await Event.aggregate([
         {
             $match: {
-                category: category
+                category: category,
+                date : {$gt: new Date(Date.now())}
             },
 
         },
@@ -77,7 +78,7 @@ const getDistincEventsByCategory = async (category) => {
 
 
 const getNumOfEventsByCategory = async (category,num) => {
-    return await Event.find({ category: category }).sort({ soldTickets: -1 }).limit(parseInt(num));
+    return await Event.find({ category: category , date : {$gt: new Date(Date.now())} }).sort({ soldTickets: -1 }).limit(parseInt(num));
 };
 
 const getLatestEvents = async (numOfevents) => {
@@ -216,7 +217,8 @@ const homePageSearch = async (name, artist, category, location) => {
                 ],
                 $and: [
                     { category: { $regex: category, $options: 'i' } },
-                    { location: { $regex: location, $options: 'i' } }
+                    { location: { $regex: location, $options: 'i' } },
+                    { date : {$gt: new Date(Date.now())}}
                 ]
                   
               
