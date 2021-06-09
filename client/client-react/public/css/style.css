@@ -4151,17 +4151,56 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 
 .tickets_card + .tickets_card{margin-left: 0}
 
-/* .tickets_card-cont .even-date,
-.tickets_card-cont .even-info
-{
-	font-size: 75%
-} */
-/* .tickets_card-cont
-{
-	font-size: 75%
-} */
+
 }
 
+
+/* #preloader > main > section > div:nth-child(1) > div > div.col-lg-12.col-md-12 > div > div.seatChart_content > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div.tickets_row > article > section.tickets_card-cont.trade_request{
+	padding: 20px 20px 10px 30px;
+} */
+
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div.seatChart_content > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > button
+{
+	width: 500px;
+	/* background: rgb(250, 174, 11); */
+}
+
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > button
+{
+	width: 500px;
+	margin-left: 22px;
+	/* background: rgb(250, 174, 11); */
+}
+
+/* .seatChart__add__button .trade_request{
+	
+		width: 500px;
+		background: rgb(250, 174, 11);
+	
+} */
+/* #preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > div > button, */
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > div > button,
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button{
+
+		margin-top: 20px;
+		width: 240px;
+		/* background: rgb(250, 174, 11); */
+	
+}
+
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > div > div > button,
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div.seatChart_content > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button,
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button{
+	width: 240px;
+	margin-top: 20px;
+}
+#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > div > button
+{
+	margin-left: '22px';
+	width: 240px;
+	margin-top: 20px;
+}
 
 /*--------------- Profile Page ---------*/
 
@@ -4860,6 +4899,36 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 		width: auto;
 		font-size: x-small;
 	}
+	.tickets_card-cont section ul .section{
+		 font-size: large;;
+	}
+	#preloader > main > section > div:nth-child(1) > div > div.col-lg-12.col-md-12 > div > div.seatChart_content > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div.tickets_row > article > section.tickets_card-cont.trade_request{
+		padding: 10px 10px 30px 20px;
+	}
+	
+	
+	.tickets_card-cont .trade_request {
+		padding: 10px 10px 30px 50px;
+	}
+	/* Request Seat Trade button seat trade request */
+
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > button,
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div.seatChart_content > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > button{
+		width:100%;
+		margin-left: 0px;
+	}
+
+	/* cancel button at seat trade request */
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > div > div > button,
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.col-lg-12.col-md-12 > div > div > div > button,
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div.seatChart_content > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button,
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button
+	#preloader > main > section > div > div > div.col-lg-12.col-md-12 > div > div > div.seatChart_right > div.container.container_checkout > div > div.col-lg-12.col-md-12 > div > div > button{
+		width: 100px;
+    	height: 38px;
+	}
+
+	
 }
 
 /* Small Device = 320px */
