@@ -14,6 +14,10 @@ const images = [
       "https://www.ticketsource.co.uk/brochure/images/pages/ticketmanagement/tickets.png",
     title: "My Tickets",
     width: "40%",
+    url2:
+      "http://fwembassytheatre.org/wp-content/uploads/2016/11/Embassy-Theatre-FOH.jpg",
+    title2: "My SEATrades",
+    
     
   },
 ];
@@ -172,7 +176,10 @@ export default function ProfilePage(props) {
           </div>
         </div>
       </section>
-
+      
+      <section className="profile_spad">
+        <div className="profile__container">
+          <div className="profile__row">
       <div className={classes.root}>
       
         {images.map((image) => (
@@ -184,7 +191,7 @@ export default function ProfilePage(props) {
             focusVisibleClassName={classes.focusVisible}
             style={{
               width: image.width,
-              margin:70,
+              margin:30,
             }}
             >
             <Link to='MyTickets'>
@@ -208,8 +215,52 @@ export default function ProfilePage(props) {
             </span>
             </Link>
           </ButtonBase>
+          
         ))}
       </div>
+
+      
+      <div className={classes.root}>
+      
+        {images.map((image) => (
+          <ButtonBase 
+            focusRipple
+            key={image.title2}
+            // onclick={window.parent.location = "/"}
+            className={classes.image}
+            focusVisibleClassName={classes.focusVisible}
+            style={{
+              width: image.width,
+              margin:30,
+            }}
+            >
+            <Link to='MySEATrades'>
+            <span
+              className={classes.imageSrc}
+              style={{
+                backgroundImage: `url(${image.url2})`,
+              }}
+            />
+            <span className={classes.imageBackdrop} />
+            <span  className={classes.imageButton}>
+              <Typography
+                component="span"
+                variant="subtitle1"
+                color="inherit"
+                className={classes.imageTitle}
+              >
+                {image.title2}
+                <span className={classes.imageMarked} />
+              </Typography>
+            </span>
+            </Link>
+          </ButtonBase>
+          
+        ))}
+      </div>
+      </div>
+        </div>
+      </section>
       <section className="logout">
       <hr className="logout hr" style={{width: '70%'}}></hr>
       <Link to="/" onClick={() =>{ auth.logout(); window.parent.location = "/" }} className="primary-btn">Logout</Link>

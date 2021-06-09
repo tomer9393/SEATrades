@@ -149,10 +149,9 @@ const boolTicket = async (req, res) => {
 const getMApOfEvent = async (req, res) => {
 
     const eventId = req.params.eventId;
-    const section = req.params.section;
     const row = req.params.row;
 
-    const map = await ticketService.getMApOfEvent(eventId, section, row);
+    const map = await ticketService.getMApOfEvent(eventId, row);
     
     return res.send(map);
 };

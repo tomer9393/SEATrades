@@ -20,7 +20,7 @@ function singleTicket(props) {
                 </ul>
               </section>
             </section>
-            <section className="tickets_card-cont" style={{padding: '20px 20px 10px 30px'}} >
+            <section className="tickets_card-cont trade_request">
             <section className="tickets_seat_trade" >
                 <ul>
                 <li><i className="fa fa-map-marker" />LOCATION:</li>

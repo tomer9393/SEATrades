@@ -4,14 +4,15 @@ import {Link} from "react-router-dom";
 
 function SingleCategoryPost(props) {
   const event = props.event; 
+  const categoryName = props.name; 
+  console.log(event);
   var bg = event.imgUrl;
     return (
       <>
       <div className="col-lg-4 col-md-6">
       <div className="listing__item">
         <div className="listing__item__pic set-bg" style={{backgroundImage: `url(${bg})`}}>
-          <img src="img/listing/list_icon-1.png" alt="" />
-          <div className="listing__item__pic__tag">Popular</div>
+        <div className="listing__item__pic__tag">{categoryName}</div>
         </div>
         <div className="listing__item__text">
           <div className="listing__item__text__inside">

@@ -15,7 +15,7 @@ function CategoryListPage(props) {
   }, [name]);
 
   const singleCategoriesPosts = events?.map((event) => (
-    <SingleCategoryPost key={event._id} event={event} />
+    <SingleCategoryPost key={event._id} event={event} name={name} />
   ));
 
   return !events ? (

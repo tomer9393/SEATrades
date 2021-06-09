@@ -4,29 +4,33 @@ import { format } from "date-fns";
 import { useState, useEffect , } from "react";
 import {Dropdown} from "@fluentui/react";
 import {getSeatsArrayForRow} from "../../api/TicketAPI";
-import {getTicketsForTrade} from "../../api/TradeAPI";
+import {getTicketsForTrade , createTrade} from "../../api/TradeAPI";
 import { getEventsByName } from "../../api/EventAPI.js";
 import { useHistory } from "react-router-dom";
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 import SingleTicket from './seatMapSingleTicket';
 
+
+
 function SeatPicker(props) {
   const ticket = props.ticket;
   const ticketId = ticket._id;
-  const event = props.event;
-  const eventId = event._id;
-  const [date,  setSelectedDate] = useState(undefined);
-  const [eventDateList, setEventDateList] = useState([]);
-  const [section,  setSelectedSection] = useState("A");
-  const [row,  setSelectedRow] = useState("E");
-  const [seat,  setSelectedSeat] = useState();
-  const [numOfTickets,  setNumOfTickets] = useState(0);
-  const [seatList,  setSeatList] = useState(undefined);
-  const [confirm,  setConfirm] = useState(false);
+  const myUserId = ticket.user;
+  // const event = props.event;
+  // const eventId = event._id;
+  // const [date,  setSelectedDate] = useState(undefined);
+  // const [eventDateList, setEventDateList] = useState([]);
+  // const [section,  setSelectedSection] = useState("A");
+  // const [row,  setSelectedRow] = useState("E");
+  // const [seat,  setSelectedSeat] = useState();
+  // const [numOfTickets,  setNumOfTickets] = useState(0);
+  // const [seatList,  setSeatList] = useState(undefined);
+  // const [confirm,  setConfirm] = useState(false);
+  const [request,  setRequest] = useState(false);
   const [optionalTickets, setOptionalTickets] = useState([]);
   const [chosenTicket, setChosenTicket] = useState(0);
-  const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
+  //const tradeUserId = chosenTicket[0].user;
 
 
   function FormatDate(date){
@@ -52,8 +56,6 @@ function SeatPicker(props) {
     return tradeTicket;
   }
 
-   console.log(optionalTickets);
-   console.log(chosenTicket);
 
   const dropdownTickets = [
     { key: 0, text: "Select a SEAT to Trade With..." },
@@ -71,32 +73,33 @@ function SeatPicker(props) {
   }
 
 
-  function HandelAddClick(){
-    if(confirm==false){
-      setConfirm(true);
+  function HandelRequestClick(){
+    if(request==false){
+      setRequest(true);
     }
-    // setChosenTicket(chosenTicket => chosenTicket.concat([optionalTickets]))
-    // let chosen = {...TempSeatList[seat-1]};
-    // chosen.name = 1;
-    // TempSeatList[seat-1] = chosen;
-    // setSeatList(TempSeatList);
-    // setNumOfTickets(numOfTickets+1);
-    // setSelectedSeat(0);
-    //setOptionalTickets([section,row,seat+1]);
+    if(request==true){
+      setRequest(false);
+    }
   }
-  // console.log(ticket);
-  // const DisplayMyTicket = <SingleTicket key={ticket._id} ticket={ticket} />;
-  // console.log(DisplayMyTicket);
-  // const DisplayMyTicket = ticket?.map((ticket) => (
-  //   <SingleTicket key={ticket._id} event={ticket.event} section={ticket.section} row={ticket.row} seat={ticket.seat}/>
-  //   ));
-  //if(chosenTicket){
-    // const DisplayChosenTicket = chosenTicket?.map((chosenTicket) => (
-    // <SingleTicket key={chosenTicket._id} ticket={chosenTicket}/>
-    // ));
-  //}
 
-  //console.log(DisplayChosenTicket);
+  function HandelConfirmClick(){
+    createTrade(myUserId,chosenTicket[0].user, ticketId,chosenTicket[0]._id);
+    window.location.reload();
+  }
+  
+  function ConfirmButton(){
+    // if(trade==false){
+    //   return <Link onClick={HandelTradeClick} to="#">Trade</Link>
+    // }
+    // if(trade==true){
+       return <div style={{display: 'flex',justifyContent: 'space-between'}}>
+              <div><button className="seatChart__add__button" onClick={HandelRequestClick} style={{ marginTop: '20px',background: 'rgb(250, 174, 11)'}} >Cancel</button></div>
+              <div><button className="seatChart__add__button" onClick={HandelConfirmClick} style={{ marginTop: '20px',background: 'rgb(141 198 67)'}}>Confirm Request</button></div>
+              </div>
+   //}
+  }
+
+
   return (
     <>
         <div className="container">
@@ -106,9 +109,6 @@ function SeatPicker(props) {
                 <div className="seatChart__section-title">
                   <h2>List Of Available Seats To Trade</h2>
                 </div>
-                {/* <div className="section-title select-seat">
-                  <h5>Date</h5>
-                </div> */}
                 <div className="seat_chart_trade_search_form">
 
                   <div className="select__option" >
@@ -119,19 +119,13 @@ function SeatPicker(props) {
                           HandelTicketClick(item.key);
                         }}
                       />
-                      {/* {
-                      chosenTicket==undefined
-                      ? <button className="seatChart__add__button disabledCursor"  onClick={(e) => e.preventDefault() }>+ Add Seat</button>
-
-                      : <button className="seatChart__add__button notDisabled" onClick={HandelAddClick}>+ Add Seat</button>
-                      } */}
                     </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container container_checkout">
           <div className="col-lg-12 col-md-12">
             <div className="seatChart__section-title">
             <h2>Your Seat Trade Request</h2>
@@ -147,13 +141,15 @@ function SeatPicker(props) {
               {
               chosenTicket==0
               ? <div></div>
-              : <button className="seatChart__add__button" onClick={HandelAddClick} style={{width: '500px',background: '#faae0b'}}>Request Seat Trade</button>
+              : <button className="seatChart__add__button trade_request" onClick={HandelRequestClick} style={{ background: 'rgb(250, 174, 11)'}} >Request Seat Trade</button>
               }
               {
-              confirm==false || chosenTicket==0
+              request==false || chosenTicket==0
               ? <div></div>
-              : <button className="seatChart__add__button" style={{marginLeft: '100px', marginTop: '20px',width: '300px',background: 'rgb(240 50 80)'}}>Confirm Request</button>
+              : <ConfirmButton></ConfirmButton>
+              // : <button className="seatChart__add__button" onClick={HandelConfirmClick} style={{marginLeft: '100px', marginTop: '20px',width: '300px',background: 'rgb(240 50 80)'}}>Confirm Request</button>
               }
+              <hr style={{width: '100%', marginTop: '50px'}}></hr>
           </div>
           </div>
         </div>

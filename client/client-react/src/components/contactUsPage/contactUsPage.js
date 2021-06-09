@@ -3,7 +3,7 @@ import Contact from "./contact";
 import Breadcrumb from "./breadcrumb";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import Newslatter from "./newslatter";
+import Newslatter from "../homePage/newslatter";
 
 function ContactUsPage() {
   return (

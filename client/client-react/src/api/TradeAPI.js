@@ -56,12 +56,37 @@ export const rejectTrade = async (tradeId) => {
     } catch (error) { throw ERROR; }
 }
 
+export const existTradeByTicket1Id = async (ticketId) => {
+    try {
+        const exist = await axios.get(`${baseUrl}/existTradeByTicket1Id/${ticketId}`);
+        return exist;
+    } catch (error) { throw ERROR; }
+}
+
+
+export const tradedSeatByTicketId = async (ticketId) => {
+    try {
+        const exist = await axios.get(`${baseUrl}/tradedSeatByTicketId/${ticketId}`);
+        return exist;
+    } catch (error) { throw ERROR; }
+}
+
 export const MyAlertsTrades = async (userId) => {
 
     //return user Alert trades
 
     try {
         const trades = await axios.get(`${baseUrl}/MyAlertsTrades/${userId}`);
+        return trades;
+    } catch (error) { throw ERROR; }
+}
+
+export const MyRequestsTrades = async (userId) => {
+
+    //return user requests trades
+
+    try {
+        const trades = await axios.get(`${baseUrl}/MyRequestsTrades/${userId}`);
         return trades;
     } catch (error) { throw ERROR; }
 }

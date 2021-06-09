@@ -15,6 +15,7 @@ function Mnav (props){
           <li><Link to="/Contact">Contact Us</Link></li>
           <li><Link to="/Profile"><i className="fa fa-user" />&ensp;My Profile</Link></li>
           <li><Link to="/MyTickets"><i className="fa fa-ticket" />&ensp;My Tickets</Link></li>
+          <li><Link to="/mySEATrades"><i className="fa fa-lightbulb-o" />&ensp;SEATrades</Link></li>
       </ul>
     </nav>
     </>

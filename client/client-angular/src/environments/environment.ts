@@ -12,5 +12,6 @@ export const environment = {
   usersAdminUrl : 'http://localhost:8081/admin',
   usersUrl : 'http://localhost:8081/users',
   filtersUrl : 'http://localhost:8081/filters',
-  contactsUrl : 'http://localhost:8081/contacts'
+  contactsUrl : 'http://localhost:8081/contacts',
+  tradesUrl: 'http://localhost:8081/trades'
 };

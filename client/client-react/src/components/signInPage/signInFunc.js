@@ -34,8 +34,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function LoginPage() {
   const auth = useContext(AuthContext);
   const classes = useStyles();
@@ -58,7 +56,6 @@ export default function LoginPage() {
     };
 
     fetch("http://localhost:8081/users/login", requestOptions)
-										  
       .then((response) => {
         setIsWrongUsername(false);
         setIsWrongPassword(false);
@@ -82,9 +79,7 @@ export default function LoginPage() {
         }
       })
       .catch((error) => {
-							  
         console.log(error);
-						   
       });
   };
 
@@ -109,7 +104,7 @@ export default function LoginPage() {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value.toLowerCase())}
           />
           <TextField
             variant="outlined"
@@ -129,10 +124,10 @@ export default function LoginPage() {
           {isWrongPassword && (
             <div style={{ color: "red" }}>Wrong password</div>
           )}
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -147,7 +142,6 @@ export default function LoginPage() {
               <Link href="/SignUp" variant="body2" style={{ color: "blue" }}>
                 {"Don't have an account? Sign Up"}
               </Link>
-														 
             </Grid>
           </Grid>
         </form>

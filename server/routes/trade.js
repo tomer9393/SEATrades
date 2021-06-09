@@ -23,7 +23,16 @@ router.route('/ticketForTrade/:ticketId')
 router.route('/boolTrade/:ticketId')
     .patch(TradeController.ticketForTrade);
 
+router.route('/existTradeByTicket1Id/:ticketId')
+    .get(TradeController.existTradeByTicket1Id);
+
+router.route('/tradedSeatByTicketId/:ticketId')
+    .get(TradeController.tradedSeatByTicketId);
+
 router.route('/MyAlertsTrades/:userId')
     .get(TradeController.MyAlertsTrades);
+
+router.route('/MyRequestsTrades/:userId')
+    .get(TradeController.MyRequestsTrades);
 
 module.exports = router;

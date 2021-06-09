@@ -8,7 +8,7 @@ export const environment = {
   filtersUrl : 'http://localhost:8081/filters',
   usersAdminUrl : 'http://localhost:8081/admin',
   usersUrl : 'http://localhost:8081/users',
-  contactsUrl : 'http://localhost:8081/contacts'
-
+  contactsUrl : 'http://localhost:8081/contacts',
+  tradesUrl: 'http://localhost:8081/trades'
 
 };
