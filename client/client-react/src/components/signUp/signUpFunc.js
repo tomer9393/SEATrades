@@ -97,7 +97,7 @@ export default function RegisterPage() {
             phoneNumber: phoneNumber,
           }),
         };
-        fetch("http://localhost:8081/users/signup", requestOptions)
+        fetch("http://193.106.55.117:8081/users/signup", requestOptions)
           .then((response) => {
             if (response.status === 422) {
               setIsExistingUser(true);
