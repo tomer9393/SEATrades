@@ -3193,6 +3193,15 @@ ol {
 	margin-top: 10px;
 }
 
+.event__title h2 {
+	font-size: 25px;
+	text-transform: capitalize;
+	/* font-weight: 700; */
+	color: #323232;
+	/* line-height: 54px;
+	margin-bottom: 20px;
+	margin-top: 10px; */
+}
 
 .content-event h3{	
 	font-size: 39px;
@@ -3536,6 +3545,20 @@ font-weight: 600;
 color: #2b2b2b;
 font-weight: 600;
 font-size: 250%
+}
+
+.tickets_seat section ul .section2
+{
+color: #2b2b2b;
+font-weight: 600;
+font-size: 150%
+}
+/* section.tickets_card-cont > section > ul > li.section2  */
+.tickets_card-cont  section ul .section2
+{
+color: #2b2b2b;
+font-weight: 600;
+font-size: 150%
 }
 
 .tickets_seat section ul .trade {
@@ -4174,7 +4197,8 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 .profile__div{
 
 	display: flex;
-	justify-content: space-around;
+	/* justify-content: space-around; */
+	margin-left: 130px;
 
 }
 
@@ -4609,6 +4633,10 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 
 	.profile__text{
 		width: 100%;
+	}
+
+	.profile__div{
+		margin-left: 45px;
 	}
 
 	.profile__title h2{

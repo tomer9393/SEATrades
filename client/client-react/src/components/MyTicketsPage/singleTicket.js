@@ -2,7 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 import { format } from "date-fns";
 import { useEffect, useState, useContext } from "react";
-import Popup from '../tradePage/Popup';
 import SeatMap from "./seatMap.js"
 import {boolTicketForTrade,existTradeByTicket1Id} from "../../api/TradeAPI.js"
 

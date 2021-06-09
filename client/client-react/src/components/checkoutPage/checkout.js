@@ -119,7 +119,9 @@ export default function Checkout(props) {
     if(activeStep === steps.length-1){
       FinalSeats?.forEach((seat) => {
       const ticket = createTicket(userId, eventId, seat[0], seat[1], seat[2], seat[3]);
-    })}
+    })
+     props.setPlaceOrder(true);
+    }
   };
 
   const handleBack = () => {
