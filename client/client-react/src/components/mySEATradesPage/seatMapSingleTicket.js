@@ -12,7 +12,7 @@ function SingleTicket(props) {
     return (
       <>
        <article className="tickets_card">
-       <div className="forTrade_top" style={{background:'#8ec547',width: '544.984px'}}> <a style={{color:'#FFFFFF',marginRight: '330px'}}>OFFERED SEAT</a></div>
+       <div className="forTrade_top" style={{background:'rgb(94 176 223)',width: '544.984px'}}> <a style={{color:'#FFFFFF',marginRight: '300px'}}>OFFERED SEAT</a></div>
           <section className="tickets_seat" style={{width: '220px'}}>
               <section>
                 <ul>
@@ -22,7 +22,7 @@ function SingleTicket(props) {
                 </ul>
               </section>
             </section>
-            <section className="tickets_card-cont" style={{padding: '20px 20px 10px 30px'}} >
+            <section className="tickets_card-cont trade_request"  >
             <section className="tickets_seat_trade" >
                 <ul style={{marginTop: '10px'}}>
                 <li><i className="fa fa-map-marker" />LOCATION:</li>

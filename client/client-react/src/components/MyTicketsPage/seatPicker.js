@@ -93,8 +93,8 @@ function SeatPicker(props) {
     // }
     // if(trade==true){
        return <div style={{display: 'flex',justifyContent: 'space-between'}}>
-              <div><button className="seatChart__add__button" onClick={HandelRequestClick} style={{marginTop: '20px',width: '240px',background: 'rgb(250, 174, 11)'}}>Cancel</button></div>
-              <div><button className="seatChart__add__button" onClick={HandelConfirmClick} style={{ marginTop: '20px',width: '240px',background: 'rgb(141 198 67)'}}>Confirm Request</button></div>
+              <div><button className="seatChart__add__button" onClick={HandelRequestClick} style={{ marginTop: '20px',background: 'rgb(250, 174, 11)'}} >Cancel</button></div>
+              <div><button className="seatChart__add__button" onClick={HandelConfirmClick} style={{ marginTop: '20px',background: 'rgb(141 198 67)'}}>Confirm Request</button></div>
               </div>
    //}
   }
@@ -125,7 +125,7 @@ function SeatPicker(props) {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container container_checkout">
           <div className="col-lg-12 col-md-12">
             <div className="seatChart__section-title">
             <h2>Your Seat Trade Request</h2>
@@ -141,7 +141,7 @@ function SeatPicker(props) {
               {
               chosenTicket==0
               ? <div></div>
-              : <button className="seatChart__add__button" onClick={HandelRequestClick} style={{width: '500px',background: '#faae0b'}}>Request Seat Trade</button>
+              : <button className="seatChart__add__button trade_request" onClick={HandelRequestClick} style={{ background: 'rgb(250, 174, 11)'}} >Request Seat Trade</button>
               }
               {
               request==false || chosenTicket==0
