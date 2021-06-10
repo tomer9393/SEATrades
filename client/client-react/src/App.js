@@ -63,8 +63,12 @@ function App() {
     <Switch>
       <Route path="/" exact>
         <HomePage />
-      </Route>
-      <Route path="/Category/:name" component={(props) => <CategoryPage {...props}/>} />
+      </Route> 
+      <Route path="/Category/Concerts" component={(props) => <CategoryPage name={'Concerts'} {...props}/>} />
+      <Route path="/Category/Festivals" component={(props) => <CategoryPage name={'Festivals'} {...props}/>} />
+      <Route path="/Category/Sport" component={(props) => <CategoryPage name={'Sport'} {...props}/>} />
+      <Route path="/Category/StandUp" component={(props) => <CategoryPage name={'StandUp'} {...props}/>} />
+      <Route path="/Category/Theatre" component={(props) => <CategoryPage name={'Theatre'} {...props}/>} />
       <Route path="/EventsList/:name" component={(props) => <EventsList {...props}/>} />
       <Route path="/EventDetails/:id">
         <SignInPage />
