@@ -55,7 +55,7 @@ export default function LoginPage() {
       }),
     };
 
-    fetch("http://localhost:8081/users/login", requestOptions)
+    fetch("http://193.106.55.117:8081/users/login", requestOptions)
       .then((response) => {
         setIsWrongUsername(false);
         setIsWrongPassword(false);

@@ -84,8 +84,9 @@ function SeatPicker(props) {
 
   function HandelConfirmClick(){
     createTrade(myUserId,chosenTicket[0].user, ticketId,chosenTicket[0]._id);
-    window.location.reload();
-  }
+    setTimeout(function(){
+      window.location.reload(1);
+   }, 1000);  }
   
   function ConfirmButton(){
     // if(trade==false){

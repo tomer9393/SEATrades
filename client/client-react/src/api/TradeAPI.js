@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8081/trades';
+const baseUrl = 'http://193.106.55.117:8081/trades';
 const ERROR = -1;
 
 

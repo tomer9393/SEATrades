@@ -37,4 +37,4 @@ app.use('/trades', tradeRoutes);
 const server = http.createServer(app);
 
 
-server.listen(process.env.PORT);
+server.listen(process.env.PORT, "0.0.0.0");

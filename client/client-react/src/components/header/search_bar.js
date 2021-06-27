@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import {useEffect, useState } from "react";
 //import { categories, locations } from "../utils";
 import {
   // TextField,
@@ -18,6 +18,13 @@ function SearchBar() {
   const [location, setselectedLocation] = useState(undefined);
   const history = useHistory();
   initializeIcons(undefined, { disableWarnings: true });
+
+
+  useEffect(() => {
+    if(text==""){
+      setSearchText(undefined);
+    }
+  }, [text])
 
   const categories = [
     "Concerts",
@@ -81,6 +88,7 @@ function SearchBar() {
                             setSelectedCategory,
                             setselectedLocation
                           );
+			window.scrollTo(750, 750)
                           console.log(text);
                           console.log(category);
                           console.log(location);

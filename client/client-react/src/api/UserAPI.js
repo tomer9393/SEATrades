@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:8081/users";
+const baseUrl = "http://193.106.55.117:8081/users";
 const ERROR = -1;
 
 export const signUp = async (

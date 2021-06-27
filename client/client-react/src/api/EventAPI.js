@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8081/events';
+const baseUrl = 'http://193.106.55.117:8081/events';
 const ERROR = -1;
 
 //get all events with array of ticket

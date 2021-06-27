@@ -10,7 +10,7 @@ function Breadcrumb(props) {
 
     return (
     <>
-    <div className="blog-details-hero set-bg" style={{backgroundImage: `url(/img/hero/bg-homePage.jpg)`}}>
+    <div className="blog-details-hero set-bg" style={{backgroundImage: `url(/img/hero/bg-homepage.jpg)`}}>
         <div className="container">
             <div className="row">
                 <div className="col-lg-7">
