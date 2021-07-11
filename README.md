@@ -80,9 +80,18 @@ Each event will show the event details such as: date, location, artist etc... an
 <br> 
 
 <h3>For Admins - </h3>
-  
-  ****** UPDATE ******
-  <br> <br> <br> <br> 
+Admin can see all the data stored about users, events, ticket sales, seat trading requests and alert and more.<br>
+Admin can add, modify and delete events. And also can see important information in graphs.
+<br>
+<br>
+<div>
+<img src=https://user-images.githubusercontent.com/63789569/125201703-ed4afe80-e278-11eb-8ad7-8524b06393c2.jpg>
+<br>
+<img src=https://user-images.githubusercontent.com/63789569/125201707-ede39500-e278-11eb-8333-d273c32189ea.jpg>    
+<br>
+</div>
+<br>
+<br>
 
 ## Use-case Videos
   <h3>Use case for:</h3>
