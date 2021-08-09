@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "SET NODE_ENV=local&& nodemon app.js",
-    "startLinux": "NODE_ENV=development PORT=8081 CONNECTION_STRING='mongodb+srv://dbUser:dbUser@cluster0.sljyu.mongodb.net/SeaTrades?retryWrites=true&w=majority' nodemon app.js"
+    "startLinux": "PORT=8081 CONNECTION_STRING='mongodb+srv://dbUser:dbUser@cluster0.sljyu.mongodb.net/SeaTrades?retryWrites=true&w=majority' nodemon app.js"
   },
   "keywords": [],
   "author": "",

@@ -87,13 +87,17 @@ export default function MySeatTrades() {
         <div className="container">
           <div className="col-lg-12 col-md-12">
             <div className="event__title">
-            <h1>My SEATrade Alerts</h1>
+            <h1 style={{textDecoration: 'underline'}}>My SEATrade Alerts</h1>
             <h2>A list of Seats that other customers offered to trade with <strong style={{color: '#ec171e'}}>YOUR</strong> tradable seats. </h2>
             </div>
             <div className="col-lg-12 col-md-12">
-              <div className="tickets_row">
-              {MyAlertsSingleTickets}
-              </div>
+              { 
+                MyAlertsSingleTickets==0 
+                ? <div className="event__title"><h1>No Alerts Available</h1></div>
+                : <div className="tickets_row">
+                {MyAlertsSingleTickets}
+                </div>
+              }
           </div>
           </div>
         </div>
@@ -101,13 +105,17 @@ export default function MySeatTrades() {
         <div className="container">
           <div className="col-lg-12 col-md-12">
             <div className="event__title">
-            <h1 style={{marginTop: '40px'}} >My SEATrade Requests</h1>
+            <h1 style={{marginTop: '40px',textDecoration: 'underline'}} >My SEATrade Requests</h1>
             <h2>A list of Requests you made to trade your seat with <strong style={{color: '#ec171e'}}>OTHERS</strong> tradable seats. </h2>
             </div>
             <div className="col-lg-12 col-md-12">
-              <div className="tickets_row">
-              {MyRequestsSingleTickets}
-              </div>
+              { 
+              MyRequestsSingleTickets==0 
+              ? <div className="event__title"><h1>No Requests Available</h1></div>
+              : <div className="tickets_row">
+                {MyRequestsSingleTickets}
+                </div>
+              }
           </div>
           </div>
         </div>

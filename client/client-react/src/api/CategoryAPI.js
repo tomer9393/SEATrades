@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8081/categories';
+const baseUrl = 'http://193.106.55.117:8081/categories';
 const ERROR = -1;
 
 export const getAllCategories = async () => {

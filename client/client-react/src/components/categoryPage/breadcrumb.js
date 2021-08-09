@@ -6,7 +6,7 @@ function Breadcrumb(props) {
   const name = props.name;
     return (
       <>
-      <div className="breadcrumb-area set-bg" style={{backgroundImage: 'url(/img/hero/bg-homePage.jpg)'}}>
+      <div className="breadcrumb-area set-bg" style={{backgroundImage: 'url(/img/hero/bg-homepage.jpg)'}}>
       <div className="container">
       <div className="col-lg-12 text-center">
             <div className="breadcrumb__text">

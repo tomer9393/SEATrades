@@ -23,13 +23,16 @@ function SingleTicket(props) {
     existTradeByTicket1Id(ticketId).then((res) => {
       setExistTrade(res.data);
     });
-  }, [ticketId]);
-
-  useEffect(() => {
-    tradedSeatByTicketId(ticketId).then((res) => {
+      tradedSeatByTicketId(ticketId).then((res) => {
       setTradedSeat(res.data);
     });
   }, [ticketId]);
+
+//  useEffect(() => {
+//    tradedSeatByTicketId(ticketId).then((res) => {
+//      setTradedSeat(res.data);
+//    });
+//  }, [ticketId]);
 
   function HandelShowSeatsClick(){
     if(showSeats==false){
@@ -59,7 +62,9 @@ function SingleTicket(props) {
   
   function HandelConfirmTradeClick(){
     boolTicketForTrade(ticketId);
-    window.location.reload();
+     setTimeout(function(){
+      window.location.reload(1);
+   }, 1000);
   }
 
   function TradeButton(){
@@ -68,7 +73,7 @@ function SingleTicket(props) {
     }
     if(trade==true){
        return <section className="untrade_button_section">
-              <div style={{marginBottom: '30px',color: "red" }}>you are allowd to set this ticket for trade only once!</div>
+              <div style={{marginBottom: '30px',color: "green" }}>you are allowd to set this ticket for trade only once!</div>
               <div><Link to="#" onClick={HandelTradeClick}  className="untrade_button_down4">Cancel</Link></div>
               <div><Link onClick={HandelConfirmTradeClick} className="untrade_button_upper" style={{background: 'rgb(141 198 67)'}} to="#">Confirm Set for Trade</Link></div>
               </section>

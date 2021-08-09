@@ -2,14 +2,18 @@ import React from "react";
 import SingleSearchPost from "./singleSearchPost";
 //import { useParams } from "react-router-dom";
 //import { homePageSearch } from "../../api/EventAPI";
-//import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MostPopular from '../mostPopularPage/mostPopular';
 import Breadcrumb from './breadcrumb';
 import SearchBar from '../header/search_bar';
 import {Link} from "react-router-dom";
 
 function SearchListPage(props) {
-  // const { name, artist, category, location } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(650, 650)
+  }, [])
+	// const { name, artist, category, location } = useParams();
   // const [events, setEvents] = useState(undefined);
   //const events = props.events;
   const events = props.location?.state?.events;
@@ -22,8 +26,9 @@ function SearchListPage(props) {
   const singleSearchPosts = events?.map((event) => (
     <SingleSearchPost key={event._id} event={event} />
   ));
-
-  return events?.length === 0 ? (
+  return !events ? (
+    <div>Loading...</div>
+  ) : events?.length === 0 ? (
     <>
       <SearchBar />
       
