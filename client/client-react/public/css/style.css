@@ -4261,6 +4261,30 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	width: 350px;
 }
 
+.profile_Id h2{
+	margin-bottom: 0;
+	margin-left: 60px;
+}
+
+.profile_Id_qr{
+	top: 0;
+	left: 0;
+}
+
+.profile_Id_qr img{
+	width: 400px;
+	height: 400px;
+	max-width: unset;
+}
+
+.profile_Id_qr div{
+	position: absolute;
+	top: 70px;
+	left: 220px;
+}
+
+
+
 .profile__text h2 {
 	font-size: 42px;
 	color: #000000;
@@ -4715,12 +4739,24 @@ section.tickets_card-cont > section.disclaimer{width: 80%;}
 	}
 
 	.profile__div{
-		margin-left: 45px;
+		margin-left: 30px;
 	}
 
+	
 	.profile__title h2{
 		width: 100%;
 		text-align: center;
+	}
+
+	.profile_Id h2{
+		margin-left: 0;
+	}
+	.profile_Id_qr img{
+		width:335px;
+	}
+
+	.profile_Id_qr div {
+		left:85px;
 	}
 
 	.work__item {

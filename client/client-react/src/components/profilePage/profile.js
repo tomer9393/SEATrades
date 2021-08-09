@@ -160,14 +160,15 @@ export default function ProfilePage(props) {
             </div>
             <div className="profile_vl"></div>
             <div className="col-lg-4 col-md-4">
-            <div className="profile__title">
-                <h2>
+            <div className="profile__title profile_Id">
+                <h2 >
                 Event ID
                 </h2>
-                <div className="col-lg-10 col-md-10">
-                <div className="profile__div">
-              <div className="team__item">
-              <QRCode value={user.code} />
+            <div className="col-lg-10 col-md-10">
+            <div className="profile__div">
+              <div className="team__item profile_Id_qr">
+              <img src="/img/frame-QR.gif" ></img>
+              <div><QRCode value={user.code} /></div>
               </div>
               </div>
             </div>
